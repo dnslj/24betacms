@@ -79,10 +79,10 @@
                         <li><?php echo l(t('user_account_list', 'admin'), url('admin/user/list'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
-                <!--
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('system_tool', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <!--
                         <li class="nav-header">广告</li>
                         <li><a href="#">广告单元</a></li>
                         <li><a href="#">自建广告</a></li>
@@ -90,9 +90,11 @@
                         <li class="nav-header">数据</li>
                         <li><a href="#">备份</a></li>
                         <li><a href="#">恢复</a></li>
+                        <li class="divider"></li>
+                        -->
+                        <li><?php echo l(t('friend_link', 'admin'), url('admin/link/list'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
-                 -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('system_setting', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">

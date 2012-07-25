@@ -73,28 +73,4 @@ class CategoryController extends AdminController
 	     
 	    $this->render('list', $data);
 	}
-	
-	public function actionStatistics()
-	{
-	    $criteria = new CDbCriteria();
-	    $criteria->limit = param('adminCategoryCountOfPage');
-	    
-	    $sort = new CSort('Category');
-	    $sort->defaultOrder = 'post_nums desc, id asc';
-	    $sort->applyOrder($criteria);
-	    
-	    $pages = new CPagination(AdminCategory::model()->count($criteria));
-	    $pages->pageSize = param('adminCategoryCountOfPage');
-	    $pages->applyLimit($criteria);
-	    
-	    $models = AdminCategory::model()->findAll($criteria);
-	    
-	    $data = array(
-            'models' => $models,
-            'sort' => $sort,
-            'pages' => $pages,
-	    );
-	    
-	    $this->render('list', $data);
-	}
 }

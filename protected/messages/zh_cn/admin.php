@@ -270,6 +270,13 @@ return array(
     'filter_keyword_alert' => $filter_keyword_alert,
     'occurred_following_errors' => '发生以下错误',
     'kwcontent_format_tip' => '一行一个关键词，如果有替换词，使用逗号(,)分隔，例如：傻子,文明用语',
+        
+    /* friend link manage */
+    'friend_link' => '友情链接',
+    'create_link' => '新建链接',
+    'edit_link' => '编辑链接',
+    'save_link_success' => '{name}&nbsp;保存成功。',
+    'link_list_table' => '链接列表',
 );
 
 

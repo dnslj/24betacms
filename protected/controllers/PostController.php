@@ -40,6 +40,11 @@ class PostController extends Controller
         $this->setPageDescription($post->summary);
         $this->setPageKeyWords($post->tagText);
         
+        if (param('support_code_highlight')) {
+            cs()->registerScriptFile(sbu('libs/prettify/prettify.js'), CClientScript::POS_END);
+            cs()->registerCssFile(sbu('libs/prettify/prettify.css'), 'screen');
+        }
+        
         cs()->registerMetaTag('all', 'robots');
         $this->render('show', array(
             'post' => $post,

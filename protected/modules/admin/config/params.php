@@ -21,5 +21,7 @@ return array(
     'adminUploadFilesCountOfPage' => 30,
     // 每页显示的专题数量
     'adminSpecialCountOfPage' => 20,
+    // 每页显示的链接数量
+    'adminLinkCountOfPage' => 20,
         
 );

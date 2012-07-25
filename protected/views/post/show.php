@@ -64,8 +64,10 @@
 
 <script type="text/javascript">
 $(function(){
+	<?php if (param('support_code_highlight')) echo 'prettyPrint();';?>
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
 	$(document).on('click', '.beta-comment-rating', BetaComment.rating);
 	$(document).on('click', '.beta-comment-reply', BetaComment.reply);
 });
 </script>
+

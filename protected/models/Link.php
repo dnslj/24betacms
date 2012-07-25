@@ -11,6 +11,7 @@
  * @property string $desc
  * @property integer $orderid
  * @property string $nameLink
+ * @property string $logoImage
  * @property string $logoLink
  */
 class Link extends CActiveRecord
@@ -71,12 +72,16 @@ class Link extends CActiveRecord
 	    return $html;
 	}
 	
+	public function getLogoImage()
+	{
+	    return image($this->logo, $this->name, array('class'=>'link-logo'));
+	}
+	
 	public function getLogoLink($target = '_blank')
 	{
 	    $html = '';
 	    if ($this->logo && $this->url) {
-	        $image = image($this->logo, $this->name, array('class'=>'link-logo'));
-	        $html = l($image, $this->url, array('class'=>'beta-link-item', 'target'=>$target, 'title'=>$this->desc));
+	        $html = l($this->getLogoImage(), $this->url, array('class'=>'beta-link-item', 'target'=>$target, 'title'=>$this->desc));
 	    }
 	    
 	    return $html;
