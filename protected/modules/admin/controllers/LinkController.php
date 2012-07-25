@@ -25,6 +25,7 @@ class LinkController extends AdminController
 	    if (request()->getIsPostRequest() && isset($_POST['AdminLink'])) {
 	        $model->attributes = $_POST['AdminLink'];
 	        if ($model->save()) {
+	            self::clearLinksCache();
 	            user()->setFlash('save_link_result', t('save_link_success', 'admin', array('{name}'=>$model->name)));
 	            $this->redirect(request()->getUrl());
 	        }
@@ -43,6 +44,7 @@ class LinkController extends AdminController
 	        foreach ($rows as $id => $orderid) {
 	            AdminLink::model()->updateByPk((int)$id, array('orderid'=>(int)$orderid));
 	        }
+	        self::clearLinksCache();
 	        user()->setFlash('order_id_save_result_success', t('order_id_save_success', 'admin'));
 	    }
 	    catch (Exception $e) {
@@ -57,7 +59,7 @@ class LinkController extends AdminController
 	    $criteria->limit = param('adminLinkCountOfPage');
 	    
 	    $sort = new CSort('Link');
-	    $sort->defaultOrder = 'orderid desc, id asc';
+	    $sort->defaultOrder = 'orderid asc, id asc';
 	    $sort->applyOrder($criteria);
 	    
 	    $pages = new CPagination(AdminLink::model()->count($criteria));
@@ -74,4 +76,14 @@ class LinkController extends AdminController
 	    
 	    $this->render('list', $data);
 	}
+	
+	private static function clearLinksCache()
+	{
+	    if (app()->getCache()) {
+	        $result = app()->getCache()->delete('cache_friend_links');
+	        return $result;
+	    }
+	    return true;
+	}
 }
+

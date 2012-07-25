@@ -99,4 +99,32 @@ class Link extends CActiveRecord
 	    return $pos === 0;
 	}
 
+	public function fetchLinks()
+	{
+	    if (app()->getCache()) {
+	        $models = app()->getCache()->get('cache_friend_links');
+	        if ($models === false) {
+	            $models = self::fetchModels();
+	            if (count($models) > 0) {
+	                app()->getCache()->set('cache_friend_links', $models);
+	            }
+	        }
+	    }
+	    else
+	        $models = self::fetchModels();
+	    
+	    return $models;
+	}
+	
+	
+	public static function fetchModels()
+	{
+	    $criteria = new CDbCriteria();
+	    $criteria->order = 'orderid asc, id asc';
+	
+	    $models = Link::model()->findAll($criteria);
+	    return $models;
+	}
+	
+	
 }

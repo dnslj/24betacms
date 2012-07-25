@@ -56,6 +56,6 @@
 
 <div class="alert alert-danger">
     <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
-    <?php echo t('orderid_sort_tip', 'admin');?>
+    <?php echo t('link_orderid_sort_tip', 'admin');?>
 </div>
 

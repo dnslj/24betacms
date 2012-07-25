@@ -47,32 +47,12 @@ class BetaLinks extends CWidget
         
     public function run()
     {
-        if (app()->getCache()) {
-            $models = app()->getCache()->get('cache_friend_links');
-            if ($models === false)
-                $models = $this->fetchModels();
-        }
-        else
-            $models = $this->fetchModels();
+        $models = Link::fetchLinks();
         
         if (empty($models) && !$this->allowEmpty) return ;
         $this->render('beta_friend_links', array('models'=>$models));
     }
     
-    private function fetchModels()
-    {
-        $criteria = new CDbCriteria();
-        $criteria->order = 'orderid asc, id asc';
-        $criteria->limit = $this->count;
-
-        $models = Link::model()->findAll($criteria);
-        
-        if (app()->getCache() && count($models) > 0) {
-            app()->getCache()->set('cache_friend_links', $models);
-        }
-        
-        return $models;
-    }
 }
 
 

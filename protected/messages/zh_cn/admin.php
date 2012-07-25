@@ -277,6 +277,7 @@ return array(
     'edit_link' => '编辑链接',
     'save_link_success' => '{name}&nbsp;保存成功。',
     'link_list_table' => '链接列表',
+    'link_orderid_sort_tip' => '排序提示：数字越小，排的越靠前',
 );
 
 
