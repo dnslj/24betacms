@@ -22,6 +22,7 @@
             <th class="span2"><?php echo $sort->link('name');?></th>
             <th class="span3 align-center"><?php echo $sort->link('url');?></th>
             <th class="span3 align-center"><?php echo $sort->link('desc');?></th>
+            <th class="span2 align-center"><?php echo $sort->link('logo');?></th>
             <th><a class="label label-important" href="<?php echo url('admin/link/create');?>"><?php echo t('create_link', 'admin');?></a></th>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
             <td><?php echo $model->nameLink;?></td>
             <td><?php echo $model->url;?></td>
             <td><?php echo $model->desc;?></td>
+            <td><?php echo $model->logoImage;?></td>
             <td>
                 <?php echo l(t('edit', 'admin'), url('admin/link/create', array('id'=>$model->id)));?>
             </td>

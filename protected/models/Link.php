@@ -74,7 +74,11 @@ class Link extends CActiveRecord
 	
 	public function getLogoImage()
 	{
-	    return image($this->logo, $this->name, array('class'=>'link-logo'));
+	    $html = '';
+	    if ($this->logo)
+	        $html = image($this->logo, $this->name, array('class'=>'link-logo'));
+	    
+	    return $html;
 	}
 	
 	public function getLogoLink($target = '_blank')
