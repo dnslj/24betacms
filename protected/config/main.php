@@ -79,6 +79,9 @@ return array(
 		    'tablePrefix' => $dbconfig['tablePrefix'],
             'enableParamLogging' => true,
             'enableProfiling' => true,
+            'attributes' => array(
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ),
 // 		    'schemaCacheID' => 'cache',
 // 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
 // 		    'queryCacheID' => 'cache',
