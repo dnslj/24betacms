@@ -66,7 +66,7 @@ var KEConfig = {
 		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste',
 	        '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript', '|', 'link', 'unlink', 'selectall', 'clearhtml', 'removeformat', 'quickformat',
 	        '/', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough',
-	        '|', 'image', 'flash', 'media', 'table', 'hr', 'emoticons', 'fullscreen', 'preview', '|', 'source']
+	        '|', 'image', 'flash', 'media', 'table', 'code', 'hr', 'emoticons', 'fullscreen', 'preview', '|', 'source']
 	},
 	adminmini: {
 		height:180,
