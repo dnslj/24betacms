@@ -39,7 +39,7 @@ class LoginForm extends CFormModel
     {
         if ($this->hasErrors('username')) return false;
         foreach ((array)param('reservedWords') as $v) {
-            $pos = strpos($this->$attribute, $v);
+            $pos = stripos($this->$attribute, $v);
             if (false !== $pos) {
                 $this->addError($attribute, t('nickname_is_exist'));
                 break;

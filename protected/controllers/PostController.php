@@ -40,7 +40,7 @@ class PostController extends Controller
         $this->setPageDescription($post->summary);
         $this->setPageKeyWords($post->tagText);
         
-        if (param('support_code_highlight')) {
+        if ($post->getContainCode()) {
             cs()->registerScriptFile(sbu('libs/prettify/prettify.js'), CClientScript::POS_END);
             cs()->registerCssFile(sbu('libs/prettify/prettify.css'), 'screen');
         }

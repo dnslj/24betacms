@@ -93,13 +93,13 @@ class Link extends CActiveRecord
 	
 	public function getUrlValid()
 	{
-	    $pos = strpos($this->url, 'http://');
+	    $pos = stripos($this->url, 'http://');
 	    return $pos === 0;
 	}
 	
 	public function getLogoValid()
 	{
-	    $pos = strpos($this->logo, 'http://');
+	    $pos = stripos($this->logo, 'http://');
 	    return $pos === 0;
 	}
 

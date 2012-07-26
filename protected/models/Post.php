@@ -54,6 +54,7 @@
  * @property string $categoryLink
  * @property string $topicLink
  * @property string $summaryContainImage
+ * @property string $containCode
  */
 class Post extends CActiveRecord
 {
@@ -211,15 +212,15 @@ class Post extends CActiveRecord
 	public function getFilterSummary()
 	{
 	    $html = $this->summary;
-	    if (strpos(strtolower(param('summaryHtmlTags')), 'img') !== false)
+	    if (stripos(strtolower(param('summaryHtmlTags')), 'img') !== false)
 	        $html = self::processImgTag($html);
 	    
 	    return $html;
 	}
 	public function getFilterContent()
 	{
+	    $html = $this->content;
 	    // @todo filter content
-	    $html = nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a><br>'));
 // 	    $html = self::processImgTag($html);
 	    return $html;
 	}
@@ -279,7 +280,7 @@ class Post extends CActiveRecord
 	    $textLen = 50;
 	    $text = mb_strimwidth($this->source, 0, $textLen, '...', app()->charset);
 	    
-	    $pos = strpos($this->source, 'http://');
+	    $pos = stripos($this->source, 'http://');
 	    if ($pos === false)
 	        $source = $text;
 	    elseif ($pos === 0)
@@ -373,7 +374,7 @@ class Post extends CActiveRecord
 	    
 	    if (empty($url)) return '';
 
-	    $pos = strpos($this->thumbnail, 'http://');
+	    $pos = stripos($this->thumbnail, 'http://');
         if ($pos === false)
             $url = fbu($this->thumbnail);
         elseif ($pos === 0)
@@ -408,7 +409,7 @@ class Post extends CActiveRecord
 
 	public function getSummaryContainImage()
 	{
-	    $pos = strpos($this->getFilterSummary(), '<img');
+	    $pos = stripos($this->getFilterSummary(), '<img');
 	    return $post !== false;
 	}
 	
@@ -419,6 +420,12 @@ class Post extends CActiveRecord
 	        $html = $this->topic->getIconPostsLink();
 	    
 	    return $html;
+	}
+
+	public function getContainCode()
+	{
+	    $pos = stripos($this->getFilterContent(), 'prettyprint');
+	    return $pos !== false;
 	}
 	
 	public function trash()

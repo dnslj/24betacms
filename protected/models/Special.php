@@ -98,7 +98,7 @@ class Special extends CActiveRecord
 	    if (empty($thumbnail))
 	        return '';
 	    
-	    $pos = strpos($thumbnail, 'http://');
+	    $pos = stripos($thumbnail, 'http://');
 	    if ($pos === 0)
 	        $url = $thumbnail;
 	    elseif ($pos === false)

@@ -117,7 +117,7 @@ class Topic extends CActiveRecord
 	{
 	    if (empty($this->icon)) return '';
 	    
-	    $pos = strpos($this->icon, 'http://');
+	    $pos = stripos($this->icon, 'http://');
 	    if ($pos === false)
 	        $url = fbu($this->icon);
 	    elseif ($pos === 0)

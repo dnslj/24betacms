@@ -96,7 +96,7 @@ class Upload extends CActiveRecord
 
 	public function getFileUrl()
 	{
-	    $pos = strpos($this->url, 'http://');
+	    $pos = stripos($this->url, 'http://');
 	    if ($pos === 0)
     	    return $this->url;
 	    elseif ($pos === false)
