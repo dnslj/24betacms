@@ -9,6 +9,13 @@
         <?php if ($post->contributor):?><div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div><?php endif;?>
         <div class="beta-post-content"><?php echo $post->content;?></div>
         
+        <div class="beta-post-share">
+            <a class="beta-digg-button" href="" rel="nofollow" title="Like" data-id="<?php echo $post->id;?>">
+                <span class="digg-plus">+</span>
+                <span class="digg-count"><?php echo $post->digg_nums;?></span>
+            </a>
+        </div>
+        
         <?php if ($post->tags):?>
         <div class="beta-post-tags"><?php echo t('tag_label');?><?php echo $post->tagLinks;?></div>
         <?php endif;?>
