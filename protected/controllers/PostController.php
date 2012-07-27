@@ -66,8 +66,7 @@ class PostController extends Controller
             throw new CHttpException(404, t('post_is_not_found'));
         $post->visit_nums += 1;
         $post->update(array('visit_nums'));
-        echo $callback . '(' . $post->visit_nums . ')';
-        exit(0);
+        BetaBase::jsonp($callback, $post->visit_nums);
     }
     
     public function actionComment($callback, $id = 0)
@@ -164,6 +163,22 @@ class PostController extends Controller
             'title'=>t('contribute_post_success'),
             'postid'=>$postid,
         ));
+    }
+    
+    public function actionDigg($callback)
+    {
+        $id = (int)$_POST['pid'];
+        if ($id < 0) throw new CHttpException(500);
+        
+        $model = Post::model()->published()->findByPk($id);
+        if ($model === null) throw new CHttpException(500);
+        
+        $model->digg_nums += 1;
+        $result = $model->save(true, array('digg_nums'));
+        $data = array('digg_nums'=>$model->digg_nums);
+        $data['errno'] = (int)$result;
+        
+        BetaBase::jsonp($callback, $data);
     }
 
 }

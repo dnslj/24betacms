@@ -10,9 +10,8 @@
         <div class="beta-post-content"><?php echo $post->content;?></div>
         
         <div class="beta-post-share">
-            <a class="beta-digg-button" href="" rel="nofollow" title="Like" data-id="<?php echo $post->id;?>">
-                <span class="digg-plus">+</span>
-                <span class="digg-count"><?php echo $post->digg_nums;?></span>
+            <a id="beta-digg-button" class="beta-digg-button" href="<?php echo aurl('post/digg');?>" rel="nofollow" title="Like" data-id="<?php echo $post->id;?>">
+                <span class="digg-plus">+</span><span class="digg-count"><?php echo $post->digg_nums;?></span>
             </a>
         </div>
         
@@ -73,6 +72,7 @@
 $(function(){
 	<?php if ($post->getContainCode()) echo 'prettyPrint();';?>
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
+	$(document).one('click', '#beta-digg-button', BetaPost.digg);
 	$(document).on('click', '.beta-comment-rating', BetaComment.rating);
 	$(document).on('click', '.beta-comment-reply', BetaComment.reply);
 });

@@ -24,6 +24,24 @@ var BetaPost = {
 			$('.beta-post-detail .beta-visit-nums').text(data);
 		});
 	},
+	digg: function(event) {
+		event.preventDefault();
+		var tthis = $(event.currentTarget);
+			
+		var jqXhr = $.ajax({
+			type: 'post',
+			url: tthis.attr('href'),
+			data: {pid: tthis.attr('data-id')},
+			dataType: 'jsonp',
+		});
+		
+		jqXhr.done(function(data){
+			if (data.errno != 0)
+				tthis.find('.digg-count').text(data.digg_nums);
+			
+			tthis.attr('href', 'javascript:void(0);');
+		});
+	},
 	create: function(event) {
 		$(this).find('.beta-control-group').removeClass('error');
 		var title = $.trim($('#post-title').val());

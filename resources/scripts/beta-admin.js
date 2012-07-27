@@ -43,7 +43,7 @@ var BetaAdmin = {
 	handleRow: function(event){
 		event.preventDefault();
 
-		var tthis = $(event.target);
+		var tthis = $(event.currentTarget);
 		var jqXhr = $.ajax({
 			url: tthis.attr('href'),
 			dataType: 'jsonp',
@@ -59,7 +59,7 @@ var BetaAdmin = {
 	},
 	deleteRow: function(event){
 		event.preventDefault();
-		var tthis = $(event.target);
+		var tthis = $(event.currentTarget);
 		var confirm = window.confirm(event.data.confirmText);
 		if (!confirm) return ;
 
@@ -83,7 +83,7 @@ var BetaAdmin = {
 			rowIds.push($(element).val());
 		});
 
-		var tthis = $(event.target);
+		var tthis = $(event.currentTarget);
 		var jqXhr = $.ajax({
 			url: tthis.attr('data-src'),
 			dataType: 'jsonp',
@@ -131,7 +131,7 @@ var BetaAdmin = {
 	},
 	ajaxSetBooleanColumn: function(event) {
 		event.preventDefault();
-		var tthis = $(event.target);
+		var tthis = $(event.currentTarget);
 		var jqXhr = BetaAdmin.handleRow(event);
 		jqXhr.done(function(data){
 			if (data.errno == BETA_NO) {
@@ -156,7 +156,7 @@ var BetaAdmin = {
 	},
 	quickUpdate: function(event){
 		event.preventDefault();
-		var tthis = $(event.target);
+		var tthis = $(event.currentTarget);
 		var form = tthis.parents('form');
 		var jqXhr = $.ajax({
 			url: form.attr('action'),
@@ -183,7 +183,7 @@ var BetaAdmin = {
 	},
 	updateFilterKeywordRow: function(event){
 		event.preventDefault();
-		var tthis = $(event.target);
+		var tthis = $(event.currentTarget);
 		var tr = tthis.parents('tr');
 		var url = tr.attr('data-url');
 		if (url.length == 0) return false;
