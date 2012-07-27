@@ -8,7 +8,6 @@
     <meta name="copyright" content="Copyright (c) 2009-2012 24beta.com All Rights Reserved." />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo aurl('feed/timeline');?>" />
     <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-all.css');?>" />
-    <script type="text/javascript" src="<?php echo sbu('libs/jquery-1.7.2.min.js');?>"></script>
     <?php echo param('header_html');?>
 </head>
 <body>
@@ -46,5 +45,6 @@
 </body>
 </html>
 
+<?php cs()->registerCoreScript('jquery');?>
 <?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);?>
 <?php cs()->registerScriptFile(tbu('scripts/beta-main.js'), CClientScript::POS_END);?>

@@ -4,8 +4,8 @@ class PostController extends Controller
     public function filters()
     {
         return array(
-            'ajaxOnly + visit',
-            'postOnly + visit',
+            'ajaxOnly + visit, digg',
+            'postOnly + visit, digg',
         );
     }
     
@@ -175,6 +175,7 @@ class PostController extends Controller
         
         $model->digg_nums += 1;
         $result = $model->save(true, array('digg_nums'));
+        
         $data = array('digg_nums'=>$model->digg_nums);
         $data['errno'] = (int)$result;
         

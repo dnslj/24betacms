@@ -78,3 +78,6 @@ $(function(){
 });
 </script>
 
+<?php cs()->registerCoreScript('cookie');?>
+<?php cs()->registerScriptFile(sbu('libs/json.js'), CClientScript::POS_END);?>
+

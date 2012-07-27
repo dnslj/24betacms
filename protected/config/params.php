@@ -10,4 +10,7 @@ return array(
 
     'expire_after_create_post_successs_post_id' => 300,
     'sess_post_create_token' => 'beta_post_create_token',
+
+    'beta_digg_cookie_name' => 'beta_digg',
+    'beta_digg_cookie_expire' => 24 * 60 * 60 *7,
 );

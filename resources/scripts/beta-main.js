@@ -27,19 +27,29 @@ var BetaPost = {
 	digg: function(event) {
 		event.preventDefault();
 		var tthis = $(event.currentTarget);
-			
+		var postid = parseInt(tthis.attr('data-id'));
+		var digg_cookie_name = 'beta_digg';
+		var _cookies = JSON.parse($.cookie(digg_cookie_name));
+		if (!$.isArray(_cookies)) _cookies = [];
+		if ($.inArray(postid, _cookies) > -1) return false;
+		
 		var jqXhr = $.ajax({
 			type: 'post',
 			url: tthis.attr('href'),
-			data: {pid: tthis.attr('data-id')},
+			data: {pid: postid},
 			dataType: 'jsonp',
 		});
 		
 		jqXhr.done(function(data){
-			if (data.errno != 0)
+			if (data.errno != 0) {
 				tthis.find('.digg-count').text(data.digg_nums);
+				_cookies.push(postid);
+				$.unique(_cookies);
+				$.cookie(digg_cookie_name, JSON.stringify(_cookies), {expires:7, path:'/'});
+			}
 			
 			tthis.attr('href', 'javascript:void(0);');
+			$(document).off('click', '#beta-digg-button');
 		});
 	},
 	create: function(event) {
