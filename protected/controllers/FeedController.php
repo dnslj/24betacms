@@ -11,11 +11,6 @@ class FeedController extends Controller
     
     public function actionIndex()
     {
-        $this->forward('timeline');
-    }
-    
-    public function actionTimeline()
-    {
         $cmd = app()->getDb()->createCommand()
             ->where('state = :enabled', array(':enabled'=>POST_STATE_ENABLED));
         
@@ -25,6 +20,7 @@ class FeedController extends Controller
             'rows' => $rows,
             'feedname' => app()->name,
         ));
+        exit(0);
     }
     
     public function actionCategory($id)
@@ -49,6 +45,7 @@ class FeedController extends Controller
             'rows' => $rows,
             'feedname' => $feedname,
         ));
+        exit(0);
     }
     
     public function actionTopic($id)
@@ -73,6 +70,7 @@ class FeedController extends Controller
             'rows' => $rows,
             'feedname' => $feedname,
         ));
+        exit(0);
     }
     
     private static function fetchPosts(CDbCommand $cmd)

@@ -7,7 +7,7 @@
             <?php if ($post->topic) echo $post->topicLink;?>
         </span></div>
         <?php if ($post->contributor):?><div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div><?php endif;?>
-        <div class="beta-post-content"><?php echo $post->content;?></div>
+        <div class="beta-post-content"><?php echo $post->filterContent;?></div>
         
         <div class="beta-post-share">
             <a id="beta-digg-button" class="beta-digg-button" href="<?php echo aurl('post/digg');?>" rel="nofollow" title="Like" data-id="<?php echo $post->id;?>">
