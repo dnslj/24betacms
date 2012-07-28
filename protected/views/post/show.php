@@ -10,7 +10,7 @@
         <div class="beta-post-content"><?php echo $post->filterContent;?></div>
         
         <div class="beta-post-share">
-            <a id="beta-digg-button" class="beta-digg-button" href="<?php echo aurl('post/digg');?>" rel="nofollow" title="Like" data-id="<?php echo $post->id;?>">
+            <a id="beta-digg-button" class="beta-digg-button" href="javascript:void(0);" data-url="<?php echo aurl('post/digg');?>" rel="nofollow" title="Like" data-id="<?php echo $post->id;?>">
                 <span class="digg-plus">+</span><span class="digg-count"><?php echo $post->digg_nums;?></span>
             </a>
         </div>
