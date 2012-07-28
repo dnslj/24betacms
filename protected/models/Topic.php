@@ -133,7 +133,7 @@ class Topic extends CActiveRecord
 	    if (empty($this->icon))
 	        return '';
 	    else
-    	    return image($this->getIconUrl(), $this->name, array('class'=>'topic-icon', 'title'=>$this->name));
+    	    return image($this->getIconUrl(), $this->name, array('class'=>'topic-icon', 'title'=>$this->name, 'align'=>'right'));
 	}
 	
 	public function getIconPostsLink($target='_blank')

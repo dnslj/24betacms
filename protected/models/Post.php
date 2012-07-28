@@ -55,6 +55,8 @@
  * @property string $topicLink
  * @property string $summaryContainImage
  * @property string $containCode
+ * @property Topic $topic
+ * @property Category $category
  */
 class Post extends CActiveRecord
 {
