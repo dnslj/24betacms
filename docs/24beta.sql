@@ -8,9 +8,9 @@ CREATE SCHEMA IF NOT EXISTS `cd_24beta` DEFAULT CHARACTER SET utf8 COLLATE utf8_
 USE `cd_24beta` ;
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_user`
+-- Table `cd_user`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_user` (
+CREATE  TABLE IF NOT EXISTS `cd_user` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `email` VARCHAR(100) NOT NULL DEFAULT '' ,
   `name` VARCHAR(50) NOT NULL DEFAULT '' ,
@@ -30,9 +30,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_category`
+-- Table `cd_category`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_category` (
+CREATE  TABLE IF NOT EXISTS `cd_category` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(50) NOT NULL DEFAULT '' ,
   `post_nums` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
@@ -47,9 +47,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_post`
+-- Table `cd_post`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_post` (
+CREATE  TABLE IF NOT EXISTS `cd_post` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `post_type` TINYINT UNSIGNED NOT NULL DEFAULT 0 ,
   `category_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
@@ -95,9 +95,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_comment`
+-- Table `cd_comment`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_comment` (
+CREATE  TABLE IF NOT EXISTS `cd_comment` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `post_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
   `content` TEXT NULL ,
@@ -121,9 +121,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_tag`
+-- Table `cd_tag`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_tag` (
+CREATE  TABLE IF NOT EXISTS `cd_tag` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(50) NOT NULL DEFAULT '' ,
   `post_nums` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
@@ -136,9 +136,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_post_tag`
+-- Table `cd_post_tag`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_post_tag` (
+CREATE  TABLE IF NOT EXISTS `cd_post_tag` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `post_id` BIGINT(19) UNSIGNED NOT NULL DEFAULT '0' ,
   `tag_id` BIGINT(19) UNSIGNED NOT NULL DEFAULT '0' ,
@@ -150,9 +150,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_topic`
+-- Table `cd_topic`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_topic` (
+CREATE  TABLE IF NOT EXISTS `cd_topic` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(50) NOT NULL DEFAULT '' ,
   `post_nums` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
@@ -167,9 +167,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_special`
+-- Table `cd_special`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_special` (
+CREATE  TABLE IF NOT EXISTS `cd_special` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `token` VARCHAR(100) NOT NULL DEFAULT '' ,
   `name` VARCHAR(100) NOT NULL DEFAULT '' ,
@@ -186,9 +186,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_special_post`
+-- Table `cd_special_post`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_special_post` (
+CREATE  TABLE IF NOT EXISTS `cd_special_post` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `special_id` BIGINT(19) UNSIGNED NOT NULL DEFAULT '0' ,
   `post_id` BIGINT(19) UNSIGNED NOT NULL DEFAULT '0' ,
@@ -201,9 +201,9 @@ COMMENT = 'special与post的多对多中间表' ;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_auth_itemchild`
+-- Table `cd_auth_itemchild`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_auth_itemchild` (
+CREATE  TABLE IF NOT EXISTS `cd_auth_itemchild` (
   `parent` VARCHAR(64) NOT NULL ,
   `child` VARCHAR(64) NOT NULL ,
   PRIMARY KEY (`parent`, `child`) )
@@ -213,9 +213,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_auth_item`
+-- Table `cd_auth_item`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_auth_item` (
+CREATE  TABLE IF NOT EXISTS `cd_auth_item` (
   `name` VARCHAR(64) NOT NULL ,
   `type` INT(11) NOT NULL ,
   `description` TEXT NULL DEFAULT NULL ,
@@ -228,9 +228,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_auth_assignment`
+-- Table `cd_auth_assignment`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_auth_assignment` (
+CREATE  TABLE IF NOT EXISTS `cd_auth_assignment` (
   `itemname` VARCHAR(64) NOT NULL ,
   `userid` VARCHAR(64) NOT NULL ,
   `bizrule` TEXT NULL DEFAULT NULL ,
@@ -242,9 +242,9 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_upload`
+-- Table `cd_upload`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_upload` (
+CREATE  TABLE IF NOT EXISTS `cd_upload` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `post_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
   `file_type` TINYINT UNSIGNED NOT NULL DEFAULT 0 ,
@@ -266,9 +266,9 @@ COMMENT = '上传文件表' ;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_config`
+-- Table `cd_config`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_config` (
+CREATE  TABLE IF NOT EXISTS `cd_config` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `category_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 ,
   `config_name` VARCHAR(100) NOT NULL DEFAULT '' ,
@@ -286,9 +286,9 @@ COMMENT = '配置信息表' ;
 
 
 -- -----------------------------------------------------
--- Table `cd_24beta`.`cd_filter_keyword`
+-- Table `cd_filter_keyword`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cd_24beta`.`cd_filter_keyword` (
+CREATE  TABLE IF NOT EXISTS `cd_filter_keyword` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `keyword` VARCHAR(50) NOT NULL DEFAULT '' ,
   `replace` VARCHAR(50) NULL ,
@@ -314,7 +314,10 @@ CREATE TABLE `cd_link` (
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `url_UNIQUE` (`url`),
   KEY `orderid_id_idx` (`orderid`,`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接表';
+) ENGINE=MyISAM 
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci, 
+COMMENT='友情链接表';
 
 
 BEGIN;
