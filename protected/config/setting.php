@@ -44,13 +44,13 @@ return array(
     // 缓存数据目录
     'dataPath' => BETA_CONFIG_ROOT . DS . '..' . DS . 'data' . DS,
     // 上传文件保存目录及基本url地址，url后面要带/
-    'uploadBasePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'uploads' . DS,
+    'uploadBasePath' => BETA_WEBROOT . DS . '..' . DS . 'uploads' . DS,
     'uploadBaseUrl' => 'http://f.24beta.cn/',
     // 静态资源文件保存目录及基本url地址，url后面要带/
-    'resourceBasePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'resources' . DS,
+    'resourceBasePath' => BETA_WEBROOT . DS . '..' . DS . 'resources' . DS,
     'resourceBaseUrl' => 'http://s.24beta.cn/',
     // theme静态资源文件保存目录及基本url地址，url后面要带/
-    'themeResourceBasePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'resources' . DS . 'themes' . DS,
+    'themeResourceBasePath' => BETA_WEBROOT . DS . '..' . DS . 'resources' . DS . 'themes' . DS,
     'themeResourceBaseUrl' => 'http://s.24beta.cn/themes/',
 
     /*
