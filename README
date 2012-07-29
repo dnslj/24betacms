@@ -1,40 +1,14 @@
-## 欢迎下载使用24blog媒体博客软件。
+<h2>欢迎下载使用24blog博客媒体软件。</h2>
 
-### 24blog v1.0 beta 版已经发布，欢迎大家测试并提供bug测试报告。
-### 如果有问题可以加入我们的QQ群(72101715)进行反馈。
+<h3>24blog v1.0 正式版已经发布，欢迎大家使用并提供bug测试报告(cdcchen@gmail.com)。</h3>
+<h3>如果有问题可以加入我们的QQ群(72101715)进行反馈。</h3>
 
+<ul>
+    <li><a href="https://github.com/downloads/cdcchen/24beta/24blog-v1.0-vhost-release.zip">24Blog v1.0 正式版下载地址</a></li>
+    <li><a href="https://github.com/cdcchen/24beta/wiki">24Blog v1.0 正式版安装使用教程</a></li>
+</ul>
 
-## 24Blog v1.0 测试版安装使用说明
-### 安装说明
-1. 点击<https://github.com/downloads/cdcchen/24beta/24blog-v1.0-vhost.zip>下载源码包
-
-2. 解压缩后，将24blog-v1.0-vhost目录内的文件全部上传到您的网站的根目录下面。
-
-3. 将docs目录下的24beta.sql导入到数据库中，sql文件会自动创建一个名字为cd_24beta的数据库，你也可以自己修改为其它的名字。
-
-4. 修改protected/data目录下的db.config.php文件中的数据库连接信息
-
-5. 修改以下三个目录的权限为777
-    - protected/runtime
-    - protected/data
-    - resources/assets
-    - uploads
-
-6. 安装结束。
-
-### 伪静态开启
-    如果是apache的话，在根目录下已经有.htaccess文件了，不需要再加重写规则，前提是你的apache允许网站使用.htaccess文件。
-    如果是nginx的话，将以下代码加入 server配置中
-
-    location / {
-        if (!-e $request_filename){ rewrite (.*) /index.php last;}
-    }
-
-    然后在后台打开伪静态开关。后台->设置->网站设置中，第9个参数，修改为path
-
-### 注意事项
-    - 管理员初始账号：admin@24beta.com 密码：123123
-    - 管理后台地址：http://xxx.com/index.php?r=admin
-
-### 其它问题
-    如果安装过程中遇到其它问题，请加入QQ群(72101715)向我们提供测试报告，帮助我们尽快修复bug，谢谢。
+<h3>其它问题</h3>
+<blockquote>
+如果安装过程中遇到其它问题，请加入QQ群(72101715)向我们提供测试报告，帮助我们尽快修复bug，谢谢。
+<blockquote>
