@@ -10,7 +10,6 @@
 
 - [24Blog v1.0 正式版下载地址](https://github.com/downloads/cdcchen/24beta/24blog-v1.0-vhost-release.zip)
 - [24Blog v1.0 正式版安装使用教程](https://github.com/cdcchen/24beta/wiki)
-</ul>
 
 
 ###其它问题###
