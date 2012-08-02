@@ -1,5 +1,5 @@
 <div class="hero-unit">
-    <h2><?php echo t('appname', 'admin', array('{appname}'=>app()->name));?></h2>
+    <h2><?php echo t('welcome_text', 'admin', array('{appname}'=>app()->name));?></h2>
     <p><?php echo date('Y-m-d H:i:s');?></p>
     <p>
         <?php echo t('not_veryfiy_post_text', 'admin', array('{count}'=>$postCount));?>
