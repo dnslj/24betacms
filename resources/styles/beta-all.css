@@ -178,7 +178,7 @@ pre code{padding:0;background-color:transparent;}
 /* post show detail */
 .beta-post-show {border:1px solid #BFBFBF; overflow:hidden;}
 .beta-post-detail {overflow:hidden; padding:10px;}
-.beta-post-detail h1 {font-family:微软雅黑;font-size:20px; text-align:center; line-height:26px;}
+.beta-post-detail h1 {font-family:微软雅黑;font-size:20px; text-align:center; line-height:26px; margin-bottom:25px;}
 .beta-post-detail .beta-post-content {margin:10px 0; word-wrap:break-word; overflow:hidden;}
 .beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {font-size:12px; margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
 .beta-post-detail .beta-post-tags a, .beta-post-detail .beta-post-source a {margin-left:5px; font-size:12px!important;}
