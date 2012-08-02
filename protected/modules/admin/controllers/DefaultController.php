@@ -10,11 +10,21 @@ class DefaultController extends AdminController
 	public function actionWelcome()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('state'=>Admin_NOT_VERIFY));
-	    $unVerifyCount = AdminPost::model()->count($criteria);
+	    $criteria->addColumnCondition(array('t.state'=>Admin_NOT_VERIFY));
+	    $postCount = Post::model()->count($criteria);
+	    
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('t.state'=>USER_STATE_UNVERIFY));
+	    $userCount = User::model()->count($criteria);
+	    
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('t.state'=>COMMENT_STATE_NOT_VERIFY));
+	    $commentCount = Comment::model()->count($criteria);
 	    
 	    $this->render('welcome', array(
-	        'unVerifyCount' => $unVerifyCount,
+	        'postCount' => $postCount,
+	        'userCount' => $userCount,
+	        'commentCount' => $commentCount,
 	    ));
 	}
 

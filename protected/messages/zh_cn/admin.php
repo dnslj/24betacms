@@ -278,6 +278,15 @@ return array(
     'save_link_success' => '{name}&nbsp;保存成功。',
     'link_list_table' => '链接列表',
     'link_orderid_sort_tip' => '排序提示：数字越小，排的越靠前',
+
+    /* welcome */
+    'welcome_text' => "欢迎使用{appname}管理中心",
+    'not_veryfiy_post_text' => '有&nbsp;<b>{count}</b>&nbsp;个投稿未审核。',
+    'not_veryfiy_user_text' => '有&nbsp;<b>{count}</b>&nbsp;个用户注册请求未处理。',
+    'not_veryfiy_comment_text' => '有&nbsp;<b>{count}</b>&nbsp;个评论未审核。',
+    'view_latest_posts' => '查看最新投稿',
+    'view_latest_users' => '审核用户',
+    'view_latest_comments' => '审核评论',
 );
 
 
