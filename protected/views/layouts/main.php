@@ -23,7 +23,7 @@
             <li><a href="<?php echo aurl('post/create');?>" <?php if ($this->channel == 'contribute') echo 'class="active"';?>><?php echo t('nav_contribute');?></a></li>
         </ul>
         <ul class="user-mini-bar fright">
-            <?php $this->userMiniToolbar();?>
+            <?php $this->renderDynamic('userMiniToolbar');?>
         </ul>
         <div class="clear"></div>
     </div>
