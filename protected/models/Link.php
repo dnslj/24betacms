@@ -103,7 +103,7 @@ class Link extends CActiveRecord
 	    return $pos === 0;
 	}
 
-	public function fetchLinks()
+	public static function fetchLinks()
 	{
 	    if (app()->getCache()) {
 	        $models = app()->getCache()->get('cache_friend_links');
