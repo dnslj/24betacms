@@ -14,6 +14,7 @@ class BetaCategoryMenu extends CWidget
         $rows = $this->fetchCategories();
         if (empty($rows)) return ;
         
+        $html = '';
         foreach ($rows as $row) {
             $id = (int)$row['id'];
             $url = aurl('category/posts', array('id'=>$id));
