@@ -21,7 +21,7 @@ catch (Exception $e) {
 $dbconfig = require($params['dataPath'] . DS . 'db.config.php');
 
 return array(
-    'id' => $params['domain'],
+    'id' => $_SERVER["HTTP_HOST"],
     'name' => $params['sitename'],
     'basePath' => BETA_CONFIG_ROOT . DS . '..',
     'charset' => 'utf-8',
