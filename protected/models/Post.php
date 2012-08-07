@@ -418,7 +418,7 @@ class Post extends CActiveRecord
 	public function getTopicIconHtml()
 	{
 	    $html = '';
-	    if ($this->topic_id > 0 && (bool)param('post_list_show_topic_icon') === true && $this->topic !== null)
+	    if ($this->topic_id > 0 && (bool)param('post_list_show_topic_icon') === true && $this->topic !== null && !$this->getSummaryContainImage())
 	        $html = $this->topic->getIconPostsLink();
 	    
 	    return $html;
