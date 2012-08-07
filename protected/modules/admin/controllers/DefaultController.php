@@ -10,7 +10,7 @@ class DefaultController extends AdminController
 	public function actionWelcome()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('t.state'=>Admin_NOT_VERIFY));
+	    $criteria->addColumnCondition(array('t.state'=>POST_STATE_NOT_VERIFY));
 	    $postCount = Post::model()->count($criteria);
 	    
 	    $criteria = new CDbCriteria();
