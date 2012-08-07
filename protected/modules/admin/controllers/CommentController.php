@@ -97,7 +97,7 @@ class CommentController extends AdminController
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->state == COMMENT_STATE_DISABLED ? 'setshow' : 'sethide', 'admin')
+	            'label' => t($model->state == COMMENT_STATE_DISABLED ? 'sethide' : 'setshow', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);
@@ -119,7 +119,7 @@ class CommentController extends AdminController
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->recommend == BETA_NO ? 'set_recommend_comment' : 'cancel_recommend_comment', 'admin')
+	            'label' => t($model->recommend == BETA_NO ? 'not_recommend_comment' : 'set_recommend_comment', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);

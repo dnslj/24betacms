@@ -56,7 +56,7 @@ class SiteController extends Controller
     {
         if (!user()->getIsGuest()) {
             $returnUrl = strip_tags(trim($url));
-            if (empty($returnUrl)) $returnUrl = aurl('user/default');
+            if (empty($returnUrl)) $returnUrl = aurl('site/index'); // @todo 如果有了用户中心，这里应该跳转到用户中心
             request()->redirect($returnUrl);
             exit(0);
         }
@@ -75,7 +75,7 @@ class SiteController extends Controller
             if (empty($returnUrl))
                 $returnUrl = request()->getUrlReferrer();
             if (empty($returnUrl))
-                $returnUrl = aurl('user/default');
+                $returnUrl = aurl('site/index'); // @todo 如果有了用户中心，这里应该跳转到用户中心
             $model->returnUrl = urlencode($returnUrl);
         }
         
@@ -88,7 +88,9 @@ class SiteController extends Controller
     public function actionSignup()
     {
         if (!user()->getIsGuest()) {
-            $this->redirect(aurl('user/default'));
+            // @todo 如果有了用户中心，这里应该跳转到用户中心
+//             $this->redirect(aurl('user/default'));
+            $this->redirect(aurl('site/index'));
             exit(0);
         }
         

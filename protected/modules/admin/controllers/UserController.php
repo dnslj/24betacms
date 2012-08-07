@@ -25,6 +25,16 @@ class UserController extends AdminController
 	    $this->render('list', $data);
 	}
 	
+	public function actionForbidden()
+	{
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('state'=>USER_STATE_FORBIDDEN));
+	    $data = AdminUser::fetchList($criteria);
+	     
+	    $this->adminTitle = t('forbidden_user', 'admin');
+	    $this->render('list', $data);
+	}
+	
 	public function actionToday()
 	{
 	    $time = $_SERVER['REQUEST_TIME'] - 24*60*60;
@@ -64,8 +74,10 @@ class UserController extends AdminController
 	        $model->attributes = $_POST['AdminUser'];
 	        
 	        $attributes = $model->getAttributes();
-	        if ($model->getIsNewRecord())
+	        $model->state = (bool)$model->state ? USER_STATE_ENABLED : USER_STATE_FORBIDDEN;
+	        if ($model->getIsNewRecord()) {
     	        $model->encryptPassword();
+	        }
 	        else
 	            unset($attributes['password']);
 	        

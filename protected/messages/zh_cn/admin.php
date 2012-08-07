@@ -123,6 +123,7 @@ return array(
     'order_id_save_error' => '排序ID更新出错：{error}',
         
     'verify_user' => '审核用户',
+    'forbidden_user' => '禁用用户',
     'create_user' => '添加用户',
     'edit_user' => '修改账号',
     'search_user' => '搜索用户',
@@ -153,13 +154,15 @@ return array(
     'search_comment' => '搜索评论',
     'comment_list_table' => '评论列表',
     'set_recommend_comment' => '推荐',
-    'cancel_recommend_comment' => '普通',
+    'not_recommend_comment' => '未推荐',
     'set_batch_verify' => '通过',
     'set_batch_reject' => '拒绝',
     'show_comment' => '显示',
     'hide_comment' => '隐藏',
     'delete_comment' => '删除',
     'reload_data' => '重新载入',
+    'recommend_word' => '荐',
+    'hot_word' => '热',
 
     /* post manage */
     'create_posts' => '发表文章',

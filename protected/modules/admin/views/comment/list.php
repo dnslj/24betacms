@@ -24,14 +24,16 @@
         <?php foreach ($models as $model):?>
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemids" value="<?php echo $model->id;?>" /></td>
-            <td class="align-center"><?php echo $model->id;?></td>
+            <td class="align-center">
+                <div><?php echo $model->id;?></div>
+                <?php if($model->recommend == COMMENT_STATE_ENABLED):?><span class="label label-success"><?php echo t('recommend_word', 'admin');?></span><?php endif;?>
+                <?php if($model->isHot):?><span class="label label-warning"><?php echo t('hot_word', 'admin');?></span><?php endif;?>
+            </td>
             <td class="comment-content"><?php echo $model->content;?></td>
             <td class="align-center">
-                <?php echo $model->verifyUrl;?><br />
-                <?php echo $model->recommendUrl;?>
+                <?php echo $model->verifyUrl;?>
             </td>
             <td class="align-center">
-                <?php echo $model->editUrl;?><br />
                 <?php echo $model->deleteUrl;?>
             </td>
             <td>

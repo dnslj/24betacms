@@ -11,7 +11,7 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container admin-nav-container">
-            <a class="brand" href="<?php echo url('admin/default/welcome');?>" target="main">24Beta<?php echo t('control_center', 'admin');?></a>
+            <a class="brand" href="<?php echo url('admin/default/welcome');?>" target="main"><?php echo t('control_center', 'admin');?></a>
             <ul class="nav">
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
@@ -77,6 +77,7 @@
                         <li class="nav-header"><?php echo t('statistics', 'admin');?></li>
                         <li><?php echo l(t('today_signup_user', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('user_account_list', 'admin'), url('admin/user/list'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('forbidden_user', 'admin'), url('admin/user/forbidden'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
                 <li class="dropdown">

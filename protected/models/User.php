@@ -111,7 +111,6 @@ class User extends CActiveRecord
 	    if ($this->getIsNewRecord()) {
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
-	        $this->state = $this->state && !param('userRequiredEmailVerfiy');
 	    }
 	    return true;
 	}

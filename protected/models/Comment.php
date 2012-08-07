@@ -149,6 +149,11 @@ class Comment extends CActiveRecord
 	    return $name;
 	}
 	
+	public function getIsHot()
+	{
+        return (int)$this->up_nums >= (int)param('upNumsOfCommentIsHot');
+	}
+	
 	public static function fetchList($postid, $page = 1)
 	{
 	    $postid = (int)$postid;

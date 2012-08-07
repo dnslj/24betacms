@@ -52,8 +52,12 @@ class AdminUser extends User
     {
         if ($this->state == USER_STATE_ENABLED)
             $html = '<span class="label label-success">' . t('user_enabled', 'admin') . '</span>';
+	    elseif ($this->state == USER_STATE_FORBIDDEN)
+	        $html = '<span class="label label-important">' . t('user_forbidden', 'admin') . '</span>';
+	    elseif ($this->state == USER_STATE_UNVERIFY)
+    	    $html = '<span class="label label-warning">' . t('user_unverify', 'admin') . '</span>';
 	    else
-	        $html = $html = '<span class="label label-important">' . t('user_forbidden', 'admin') . '</span>';
+	        $html = '<span class="label">Unkown</span>';
 	    
 	    return $html;
     }
@@ -61,12 +65,17 @@ class AdminUser extends User
     public function getStateAjaxLink()
     {
         $url = url('admin/user/setVerify', array('id'=>$this->id));
+        
         if ($this->state == USER_STATE_ENABLED)
-            $html = l('启用', $url, array('class'=>'label label-success row-state'));
+            $html = '<a class="row-state label label-success" href="%s">' . t('user_enabled', 'admin') . '</a>';
+        elseif ($this->state == USER_STATE_FORBIDDEN)
+            $html = '<a class="row-state label label-important" href="%s">' . t('user_forbidden', 'admin') . '</a>';
+        elseif ($this->state == USER_STATE_UNVERIFY)
+            $html = '<a class="row-state label label-warning" href="%s">' . t('user_unverify', 'admin') . '</a>';
         else
-            $html = l('禁用', $url, array('class'=>'label label-important row-state'));
-         
-        return $html;
+            $html = '<a class="label" href="javascript:void(0);">Unkown</a>';
+        
+        return sprintf($html, $url);
     }
     
     public static function fetchList($criteria = null, $sort = true, $pages = true)

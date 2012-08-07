@@ -72,13 +72,16 @@ class AdminComment extends Comment
 
     public function getVerifyUrl()
     {
-        $text = t(($this->state == COMMENT_STATE_DISABLED) ? 'show_comment' : 'hide_comment', 'admin');
-        return l($text, url('admin/comment/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
+        $text = t(($this->state == COMMENT_STATE_DISABLED) ? 'hide_comment' : 'show_comment', 'admin');
+        $class = $this->state == COMMENT_STATE_DISABLED ? 'label label-important' : 'label label-success';
+        return l($text, url('admin/comment/setVerify', array('id'=>$this->id)), array('class'=>'set-verify ' . $class));
     }
 
     public function getRecommendUrl()
     {
-        $text = t(($this->recommend == BETA_NO) ? 'set_recommend_comment' : 'cancel_recommend_comment', 'admin');
-        return l($text, url('admin/comment/setRecommend', array('id'=>$this->id)), array('class'=>'set-recommend'));
+        $text = t(($this->recommend == BETA_NO) ? 'not_recommend_comment' : 'set_recommend_comment', 'admin');
+
+        $class = $this->recommend == COMMENT_STATE_DISABLED ? 'label label-important' : 'label label-success';
+        return l($text, url('admin/comment/setRecommend', array('id'=>$this->id)), array('class'=>'set-recommend ' . $class));
     }
 }
