@@ -28,7 +28,7 @@ return array(
     'language' => $params['language'],
     'layout' => 'main',
     'timezone' => $params['timezone'],
-    'theme' => $params['theme'],
+    'theme' => empty($params['theme']) ? null : $params['theme'],
 
     'import' => array(
 		'application.models.*',
