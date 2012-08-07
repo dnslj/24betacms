@@ -412,7 +412,7 @@ class Post extends CActiveRecord
 	public function getSummaryContainImage()
 	{
 	    $pos = stripos($this->getFilterSummary(), '<img');
-	    return $post !== false;
+	    return $pos !== false;
 	}
 	
 	public function getTopicIconHtml()
