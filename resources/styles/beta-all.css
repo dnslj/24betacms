@@ -134,7 +134,9 @@ pre code{padding:0;background-color:transparent;}
 .beta-nav li {float:left;}
 .beta-nav li a {display:block; padding:3px 10px 2px; margin:5px;}
 .beta-nav a:link, .beta-nav a:visited {text-decoration:none; color:#4F4F4F;}
-.beta-nav a:hover, .beta-nav a.active:link, .beta-nav a.active:visited {text-decoration:none; color:white; background:#C70003;}
+.beta-nav a:hover, .beta-nav a.active:link, .beta-nav a.active:visited, .beta-nav a.gray:hover {text-decoration:none; color:white; background:#C70003;}
+.beta-nav a.gray:link, .beta-nav a.gray:visited {text-decoration:none; color:white; background:gray;}
+.beta-nav a.green:link, .beta-nav a.green:visited {text-decoration:none; color:white; background:green;}
 .beta-nav .user-mini-bar li a {margin-right:0; maring-left:4px;}
 
 /* post summary list */

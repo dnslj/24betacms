@@ -136,7 +136,7 @@ return array(
     'refresh_captcha' => '换一张',
 
     'post_comment' => '发表评论',
-    'view_detail' => '查看详情',
+    'view_detail' => '阅读全文',
     'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;{visit}次阅读&nbsp;&nbsp;|&nbsp;&nbsp;{digg}次推荐',
     'post_author_time' => '{author}&nbsp;发表于&nbsp;{time}',
     'post_show_extra' => '{author}&nbsp;发表于&nbsp;{time}&nbsp;|&nbsp;{visit}次阅读&nbsp;{digg}次推荐',

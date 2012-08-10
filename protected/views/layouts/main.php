@@ -19,10 +19,11 @@
         <ul class="channel-nav fleft">
             <li><a <?php if (empty($this->channel)) echo 'class="active"';?> href="<?php echo app()->homeUrl;?>"><?php echo t('site_home');?></a></li>
             <?php $this->widget('BetaCategoryMenu', array('channel'=>$this->channel));?>
-            <li><a href="<?php echo aurl('topic/list');?>" <?php if ($this->channel == 'topic') echo 'class="active"';?>><?php echo t('nav_topic');?></a></li>
-            <li><a href="<?php echo aurl('post/create');?>" <?php if ($this->channel == 'contribute') echo 'class="active"';?>><?php echo t('nav_contribute');?></a></li>
+            <li class="separator"></li>
+            <li><?php echo l(t('nav_topic'), aurl('topic/list'), array('class'=>($this->channel == 'topic') ? 'active' : 'gray'));?></li>
         </ul>
         <ul class="user-mini-bar fright">
+            <li><?php echo l(t('nav_contribute'), aurl('post/create'), array('class'=>($this->channel == 'contribute') ? 'active' : 'green'));?></li>
             <?php $this->renderDynamic('userMiniToolbar');?>
         </ul>
         <div class="clear"></div>
