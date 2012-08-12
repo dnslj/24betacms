@@ -2,7 +2,7 @@
 class BetaLatestPosts extends CWidget
 {
     const DEFAULT_POST_COUNT = 10;
-    const DEFAULT_TITLE_LEN = 35;
+    const DEFAULT_TITLE_LEN = 33;
     
     /**
      * posts count
