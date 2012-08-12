@@ -24,7 +24,7 @@ class Tag extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{tag}}';
+		return TABLE_TAG;
 	}
 
 	/**
@@ -59,10 +59,62 @@ class Tag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'name' => 'Name',
-			'post_nums' => 'Post Nums',
+			'id' => 'ID',
+			'name' => t('tag_name'),
+			'post_nums' => t('post_nums'),
 		);
 	}
-
+	
+	public static function filterTagsArray($tags)
+	{
+	    if (empty($tags)) return array();
+	    
+	    $tags = str_replace('，', ',', $tags);
+	    $tags = explode(',', $tags);
+	    $tagsArray = array();
+	    foreach ((array)$tags as $tag) {
+	        if (!empty($tag))
+    	        $tagsArray[] = strip_tags(trim($tag));
+	    }
+	    
+	    unset($tags, $tag);
+	    return $tagsArray;
+	}
+	
+	public static function savePostTags($postid, $tags)
+	{
+	    $postid = (int)$postid;
+	    if (0 === $postid || empty($tags))
+	        return false;
+	
+	    if (is_string($tags))
+	        $tags = self::filterTagsArray($tags);
+	
+	    $count = 0;
+	    foreach ((array)$tags as $v) {
+	        $model = self::model()->findByAttributes(array('name'=>$v));
+	        if ($model === null) {
+	            $model = new Tag();
+	            $model->name = $v;
+	            if ($model->save()) $count++;
+	        }
+	        
+	        $row = app()->getDb()->createCommand()
+	            ->select('id')
+    	        ->from(TABLE_POST_TAG)
+    	        ->where(array('and', 'post_id = :postid', 'tag_id = :tagid'), array(':postid'=>$postid, ':tagid'=>$model->id))
+    	        ->queryScalar();
+	            
+            if ($row === false) {
+                $columns = array('post_id'=>$postid, 'tag_id'=>$model->id);
+                $count = app()->getDb()->createCommand()->insert(TABLE_POST_TAG, $columns);
+                if ($count > 0) {
+	                $model->post_nums = $model->post_nums + 1;
+    	            $model->save(true, array('post_nums'));
+                }
+            }
+	        unset($model);
+	    }
+	    return $count;
+	}
 }

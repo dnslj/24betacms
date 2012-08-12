@@ -1,35 +1,86 @@
+<?php if ($hottest):?>
+<div class="beta-hottest-posts">
+<?php foreach ($hottest as $index => $post):?>
+    <?php if ($index != 0):?>
+    <a class="separate" href="javascript:void(0);">x</a>
+    <?php endif;?>
+    <a href="<?php echo $post->absoluteUrl?>" target="_blank">
+        <strong><?php echo $post->title;?></strong>
+        <img src="<?php echo $post->thumbnailUrl?>" alt="<?php echo $post->title;?>" />
+    </a>
+<?php endforeach;?>
+    <div class="clear"></div>
+</div>
+<?php endif;?>
+
 <div class="beta-content">
-    <?php foreach ($posts as $p):?>
-    <dl class="post-item">
-        <dt><h1><?php echo $p->titleLink;?></h1></dt>
-        <dd class="post-extra">ugmbbc发布于 2011-12-15 14:01:26 | 2029 次阅读 | 2次推荐</dd>
-        <dd class="post-summary"><?php echo $p['summary'];?></dd>
-        <dd class="post-item-toolbar">
-            <strong><?php echo l(t('view_detail'), $p->url, array('target'=>'_blank'));?></strong>
-            <?php printf(t('post_toolbar_text'), $p->comment_nums, $p->score_nums, $p->rating);?>
-        </dd>
-    </dl>
-    <?php endforeach;?>
-    <div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages));?></div>
+    <?php $this->renderPartial('/post/_summary_list', array('posts'=>$posts, 'pages'=>$pages));?>
 </div>
 <div class="beta-sidebar">
-    <div class="beta-sidebar-block">
-        <h2>最近发表文章</h2>
-        <ul class="content unstyled">
-            <li>惠普决定保留webOS系统 转向开源项目(122)</li>
-            <li>《时代周报》:失控的腾讯帝国 (121)</li>
-            <li>雷军：用互联网的思想重造手机(118)</li>
-            <li>[组图+视频]惠普公司新版“四道杠”LO...(115)</li>
-        </ul>
+    <div class="beta-block">
+        <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-9725980429199769";
+            /* beta_336x280 */
+            google_ad_slot = "9661689878";
+            google_ad_width = 336;
+            google_ad_height = 280;
+            //-->
+        </script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     </div>
-    <div class="beta-sidebar-block">
-        <h2>最近发表文章</h2>
-        <ul class="content unstyled">
-            <li>惠普决定保留webOS系统 转向开源项目(122)</li>
-            <li>《时代周报》:失控的腾讯帝国 (121)</li>
-            <li>雷军：用互联网的思想重造手机(118)</li>
-            <li>[组图+视频]惠普公司新版“四道杠”LO...(115)</li>
-        </ul>
+    <?php $this->widget('BetaCommentTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
+    <?php $this->widget('BetaVisitTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
+    <div class="beta-block">
+        <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-9725980429199769";
+            /* beta_336x280 */
+            google_ad_slot = "9661689878";
+            google_ad_width = 336;
+            google_ad_height = 280;
+            //-->
+        </script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     </div>
+    <!-- editor recommend posts start -->
+    <?php if ($recommend):?>
+    <div class="beta-block beta-radius3px beta-recommend-posts">
+        <h2><?php echo t('recommend_posts');?></h2>
+        <?php foreach($recommend as $index => $post):?>
+        <dl class="row<?php echo $index%2;?>">
+            <dt><?php echo $post->titleLink;?></dt>
+            <dd><?php echo $post->getSubSummary(90);?></dd>
+        </dl>
+        <?php endforeach;?>
+    </div>
+    <?php endif;?>
+    <!-- editor recommend posts end -->
+    <div class="beta-block">
+        <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-9725980429199769";
+            /* beta_336x280 */
+            google_ad_slot = "9661689878";
+            google_ad_width = 336;
+            google_ad_height = 280;
+            //-->
+        </script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+    </div>
+    <!-- recommend comments start -->
+    <?php if ($comments):?>
+    <div class="beta-block beta-radius3px beta-recommend-comments">
+        <h2><?php echo t('recommend_comments');?></h2>
+        <?php foreach($comments as $index => $comment):?>
+        <dl class="row<?php echo $index%2;?>">
+            <dd><?php echo $comment->filterContent;?></dd>
+            <dt><em><?php echo $comment->post->titleLink;?></em></dt>
+        </dl>
+        <?php endforeach;?>
+    </div>
+    <?php endif;?>
+    <!-- recommend comments end -->
+    <!-- friend links start -->
+    <?php $this->widget('BetaLinks');?>
+    <!-- friend links end -->
 </div>
 <div class="clear"></div>
+

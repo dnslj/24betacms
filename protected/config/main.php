@@ -1,25 +1,43 @@
 <?php
-defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+define('BETA_CONFIG_ROOT', dirname(__FILE__));
+require(BETA_CONFIG_ROOT . DS . 'define.php');
 
-$params = require(dirname(__FILE__) . DS . 'params.php');
-$setting = require(dirname(__FILE__) . DS . 'setting.php');
-$params = array_merge($setting, $params);
+try {
+    $params = require(BETA_CONFIG_ROOT . DS . 'params.php');
+    $defaultSetting = require(BETA_CONFIG_ROOT . DS . 'setting.php');
+    $params = array_merge($defaultSetting, $params);
+    $cachefile = $defaultSetting['dataPath'] . DS . 'setting.config.php';
+    if (file_exists($cachefile)) {
+        $customSetting = require($cachefile);
+        $params = array_merge($params, $customSetting);
+    }
+    
+}
+catch (Exception $e) {
+    echo $e->getMessage();
+    exit(0);
+}
+
+$dbconfig = require($params['dataPath'] . DS . 'db.config.php');
+
 return array(
-    'id' => $params['domain'],
+    'id' => $_SERVER["HTTP_HOST"],
     'name' => $params['sitename'],
-    'basePath' => dirname(__FILE__) . DS . '..',
+    'basePath' => BETA_CONFIG_ROOT . DS . '..',
     'charset' => 'utf-8',
     'language' => $params['language'],
     'layout' => 'main',
     'timezone' => $params['timezone'],
-    'theme' => $params['theme'],
+    'theme' => empty($params['theme']) ? null : $params['theme'],
 
     'import' => array(
 		'application.models.*',
 		'application.components.*',
         'application.extensions.*',
+        'application.widgets.*',
         'application.helpers.*',
         'application.libs.*',
+        'application.apis.*',
 	),
         
     'modules' => array(
@@ -43,53 +61,74 @@ return array(
                 ), */
             ),
         ),
+        'errorHandler' => array(
+            'errorAction' => 'site/error',
+        ),
         'user' => array(
             'allowAutoLogin' => true,
             'loginUrl' => array('site/login'),
+            'returnUrl' => array('site/index')
         ),
         'db' => array(
             'class' => 'CDbConnection',
-			'connectionString' => 'mysql:host=localhost; port=3306; dbname=cd_24beta',
-			'username' => 'root',
-		    'password' => '123',
+			'connectionString' => sprintf('mysql:host=%s; port=%s; dbname=%s', $dbconfig['dbHost'], $dbconfig['dbPort'], $dbconfig['dbName']),
+			'username' => $dbconfig['dbUser'],
+		    'password' => $dbconfig['dbPassword'],
 		    'charset' => 'utf8',
 		    'persistent' => true,
-		    'tablePrefix' => 'cd_',
+		    'tablePrefix' => $dbconfig['tablePrefix'],
             'enableParamLogging' => true,
             'enableProfiling' => true,
-		    'schemaCacheID' => 'fcache',
-		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
-		    'queryCacheID' => 'cache',
-		    'queryCachingDuration' => 60,
+            'attributes' => array(
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ),
+// 		    'schemaCacheID' => 'cache',
+// 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
+// 		    'queryCacheID' => 'cache',
+// 		    'queryCachingDuration' => 60,
         ),
         'cache' => array(
             'class' => 'CFileCache',
             'directoryLevel' => 2,
         ),
-        'fcache' => array(
-		    'class' => 'CFileCache',
-		    'directoryLevel' => 2,
-		),
         'assetManager' => array(
             'basePath' => $params['resourceBasePath'] . 'assets',
             'baseUrl' => $params['resourceBaseUrl'] . 'assets',
         ),
         'themeManager' => array(
-            'basePath' => dirname(__FILE__) . DS . '..' . DS . '..' . DS . 'themes',
+            'basePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'themes',
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),
-        'urlManager' => array(
-            'urlFormat' => 'path',
-		    'showScriptName' => false,
-            'cacheID' => 'fcache',
-            'rules' => array(
-                
-            ),
-        ),
         'session' => array(
+            'autoStart' => true,
             'cookieParams' => array(
                 'lifetime' => $params['autoLoginDuration'],
-                'domain' => $params['domain'],
+            ),
+        ),
+        'widgetFactory'=>array(
+            'enableSkin'=>true,
+        ),
+        'authManager' => array(
+            'class' => 'CDbAuthManager',
+            'assignmentTable' => '{{auth_assignment}}',
+            'itemChildTable' => '{{auth_itemchild}}',
+            'itemTable' => '{{auth_item}}',
+        ),
+        'urlManager' => array(
+            'urlFormat' => $params['urlFormat'],
+		    'showScriptName' => false,
+            'cacheID' => 'cache',
+            'rules' => array(
+                'page/<page:\d+>' => 'site/index',
+                '' => 'site/index',
+                '<id:\d+>' => 'post/goto', // @todo 暂时，发布时去掉
+                'archives/<id:\d+>' => 'post/show',
+                '<_a:(login|signup|logout)>' => 'site/<_a>',
+                '<_c:(category|topic)>/<id:\d+>/page/<page:\d+>' => '<_c>/posts',
+                '<_c:(category|topic)>/<id:\d+>' => '<_c>/posts',
+                'topics' => 'topic/list',
+                'tag/<name:[\w\s\%\-\+\.]+>' => 'tag/posts',
+                'feed/<_a:(category|topic)>/<id:\d+>' => 'feed/<_a>',
             ),
         ),
     ),

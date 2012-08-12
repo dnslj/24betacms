@@ -12,10 +12,15 @@
  * @property string $create_ip
  * @property integer $state
  * @property string $token
- * @property string $createTime
+ * @property string $createTimeText
  */
 class User extends CActiveRecord
 {
+    public static function states()
+    {
+        return array(USER_STATE_ENABLED, USER_STATE_UNVERIFY, USER_STATE_FORBIDDEN);
+    }
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -30,7 +35,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{user}}';
+		return TABLE_USER;
 	}
 
 	/**
@@ -50,6 +55,7 @@ class User extends CActiveRecord
 			array('name', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>32, 'min'=>'5'),
 			array('create_ip', 'length', 'max'=>15, 'min'=>7),
+    		array('state', 'in', 'range'=>self::states()),
 		);
 	}
 
@@ -76,14 +82,14 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'email' => 'Email',
-			'name' => 'Name',
-			'password' => 'Password',
-			'create_time' => 'Create Time',
-			'create_ip' => 'Create Ip',
-			'state' => 'State',
-			'token' => 'Token',
+			'id' => 'ID',
+			'email' => t('user_email'),
+			'name' => t('user_name'),
+			'password' => t('password'),
+			'create_time' => t('create_time'),
+			'create_ip' => t('create_ip'),
+			'state' => t('user_state'),
+			'token' => t('user_token'),
 		);
 	}
 	
@@ -94,15 +100,24 @@ class User extends CActiveRecord
 	
 	    return date($format, $this->create_time);
 	}
+
+	public function encryptPassword()
+	{
+	    $this->password = BetaBase::encryptPassword($this->password);
+	}
 	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
-	        $this->state = !param('userRequiredEmailVerfiy');
 	    }
 	    return true;
+	}
+	
+	public function beforeDelete()
+	{
+	    throw new CException(t('user_not_allow_delete'));
 	}
 
 }

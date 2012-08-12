@@ -1,21 +1,45 @@
 <?php
 
-class DefaultController extends Controller
+class DefaultController extends AdminController
 {
 	public function actionIndex()
 	{
 		$this->renderPartial('index');
 	}
 	
-	public function actionSidebar()
-	{
-	    $menus = require(dirname(__FILE__) . DS . '..' . DS . 'config' . DS . 'sidebar_menu.php');
-	    
-	    $this->render('sidebar', array('menus'=>$menus));
-	}
-	
 	public function actionWelcome()
 	{
-	    $this->render('welcome');
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('t.state'=>POST_STATE_NOT_VERIFY));
+	    $postCount = Post::model()->count($criteria);
+	    
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('t.state'=>USER_STATE_UNVERIFY));
+	    $userCount = User::model()->count($criteria);
+	    
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('t.state'=>COMMENT_STATE_NOT_VERIFY));
+	    $commentCount = Comment::model()->count($criteria);
+	    
+	    $this->render('welcome', array(
+	        'postCount' => $postCount,
+	        'userCount' => $userCount,
+	        'commentCount' => $commentCount,
+	    ));
 	}
+
+	public function actionError()
+	{
+	    $error = app()->errorHandler->error;
+	    if ($error) {
+	        $this->render('/system/error', $error);
+	    }
+	}
+	
+	
+    public function actionTest()
+    {
+        $this->layout = 'test';
+        $this->render('/default/welcome');
+    }
 }

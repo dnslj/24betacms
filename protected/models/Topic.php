@@ -5,16 +5,18 @@
  *
  * The followings are the available columns in table '{{topic}}':
  * @property integer $id
- * @property integer $parent_id
  * @property string $name
  * @property integer $post_nums
  * @property string $icon
  * @property integer $orderid
+ * @property string $postsUrl
+ * @property string $postsLink
+ * @property string $iconUrl
+ * @property string $iconHtml
+ * @property string $iconPostsLink
  */
 class Topic extends CActiveRecord
 {
-    const ROOT_PARENT_ID = 0;
-    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Topic the static model class
@@ -29,7 +31,7 @@ class Topic extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{topic}}';
+		return TABLE_TOPIC;
 	}
 
 	/**
@@ -42,7 +44,7 @@ class Topic extends CActiveRecord
 		return array(
 	        array('name', 'required'),
 	        array('name', 'unique'),
-	        array('parent_id, post_nums, orderid', 'numerical', 'integerOnly'=>true),
+	        array('post_nums, orderid', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('icon', 'length', 'max'=>250),
 			array('icon', 'file', 'allowEmpty'=>true),
@@ -57,9 +59,6 @@ class Topic extends CActiveRecord
 	{
 		return array(
 	        'postCount' => array(self::STAT, 'Post', 'topic_id'),
-	        'subCount' => array(self::STAT, 'Topic', 'parent_id'),
-	        'subs' => array(self::HAS_MANY, 'Topic', 'parent_id'),
-	        'parent' => array(self::BELONGS_TO, 'Topic', 'parent_id'),
 		);
 	}
 
@@ -69,37 +68,92 @@ class Topic extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'parent_id' => 'Parent',
-			'name' => 'Name',
-			'post_nums' => 'Post Nums',
-			'icon' => 'Icon',
-			'orderid' => 'Orderid',
+			'id' => 'ID',
+			'name' => t('topic_name'),
+			'post_nums' => t('post_nums'),
+			'icon' => t('icon'),
+			'orderid' => t('orderid'),
 		);
 	}
 
-	
-	public static function fetchRootList()
+
+	public static function fetchListObjects()
 	{
-	    $models = self::fetchSubList(self::ROOT_PARENT_ID);
+	    $criteria = new CDbCriteria();
+	    $criteria->order = 'orderid desc, id asc';
+	    $models = self::model()->findAll($criteria);
+	
 	    return $models;
 	}
 	
-	public static function fetchSubList($tid)
+	public static function fetchListArray()
 	{
-	    $tid = (int)$tid;
-	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('parent_id'=>$tid));
-	    $criteria->order = 'order asc, id asc';
-	    $models = self::model()->find($criteria);
+	    $cmd = app()->getDb()->createCommand()
+	    ->from(TABLE_TOPIC)
+	    ->order(array('orderid desc', 'id asc'));
 	
-	    return $models;
+	    $rows = $cmd->queryAll();
+	    return $rows;
+	}
+	
+	public static function listData()
+	{
+	    $rows = self::fetchListArray();
+	    $data = CHtml::listData($rows, 'id', 'name');
+	    return $data;
+	}
+	
+	public function getPostsUrl()
+	{
+	    return aurl('topic/posts', array('id'=>$this->id));
+	}
+	
+	public function getPostsLink($target = '_blank')
+	{
+	    return l($this->name, $this->getPostsUrl(), array('target'=>$target));
+	}
+	
+	public function getIconUrl()
+	{
+	    if (empty($this->icon)) return '';
+	    
+	    $pos = stripos($this->icon, 'http://');
+	    if ($pos === false)
+	        $url = fbu($this->icon);
+	    elseif ($pos === 0)
+	        $url = $this->icon;
+	    else
+	        $url = '';
+	    
+	    return $url;
+	}
+	
+	public function getIconHtml()
+	{
+	    $html = '';
+	    if (!empty($this->icon))
+    	    $html = image($this->getIconUrl(), $this->name, array('class'=>'topic-icon', 'title'=>$this->name, 'align'=>'right'));
+	    
+	    return $html;
+	}
+	
+	public function getIconPostsLink($target='_blank')
+	{
+	    $html = '';
+	    $image = $this->getIconHtml();
+	    
+	    if (!empty($image))
+	        $html = l($image, $this->getPostsUrl(), array('title'=>$this->name, 'target'=>$target));
+	    
+	    return $html;
+	        
 	}
 	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
-	        $this->orderid = $this->post_nums = 0;
+	        $this->orderid = (int)$this->orderid;
+	        $this->post_nums = 0;
 	    }
 	
 	    return true;
