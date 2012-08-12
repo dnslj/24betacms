@@ -72,7 +72,7 @@
         <?php foreach($comments as $index => $comment):?>
         <dl class="row<?php echo $index%2;?>">
             <dd><?php echo $comment->filterContent;?></dd>
-            <dt><em><?php echo $comment->post->titleLink;?></em></dt>
+            <dt><?php echo $comment->post->titleLink;?></dt>
         </dl>
         <?php endforeach;?>
     </div>
