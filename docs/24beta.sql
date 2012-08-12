@@ -4,8 +4,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 SET NAMES UTF8;
 
-CREATE SCHEMA IF NOT EXISTS `cd_24beta` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `cd_24beta` ;
+-- CREATE SCHEMA IF NOT EXISTS `cd_24beta` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+-- USE `cd_24beta` ;
 
 -- -----------------------------------------------------
 -- Table `cd_user`
@@ -302,7 +302,7 @@ COMMENT = '敏感关键词库' ;
 -- ----------------------------
 -- Table structure for `cd_link`
 -- ----------------------------
-CREATE TABLE `cd_link` (
+CREATE TABLE IF NOT EXISTS `cd_link` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',

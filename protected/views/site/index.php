@@ -48,7 +48,7 @@
         <?php foreach($recommend as $index => $post):?>
         <dl class="row<?php echo $index%2;?>">
             <dt><?php echo $post->titleLink;?></dt>
-            <dd><?php echo $post->getSubSummary(90);?></dd>
+            <dd><?php echo $post->getSubSummary(85);?></dd>
         </dl>
         <?php endforeach;?>
     </div>

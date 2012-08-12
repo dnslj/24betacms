@@ -108,8 +108,8 @@ pre code{padding:0;background-color:transparent;}
 .beta-container {width:950px; background:#FFFFFF; margin:0 auto; /*-moz-box-shadow:0 0 18px #444; -webkite-box-shadow:0 0 18px #444; box-shadow:0 0 18px #444;*/}
 .beta-entry {width:950px; background:#FFFFFF; margin:0 auto;}
 .beta-footer {margin-top:10px;}
-.beta-sidebar {width:338px; float:right;}
-.beta-content {width:602px; float:left;}
+.beta-sidebar {width:300px; float:right;}
+.beta-content {width:640px; float:left;}
 .beta-pages {font-size:14px;}
 .beta-pages a {font-size:14px;}
 .beta-backtop {position:fixed; right:-1px; bottom:-1px; display:inline-block; font-size:12px; font-weight:bold; height:27px; line-height:27px; padding:0 8px; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px; background:whiteSmoke; border:1px solid rgba(0, 0, 0, 0.1); box-shadow:0 0 6px #808080; min-width:55px; margin:0; text-align:center; z-index:10001;}
@@ -164,7 +164,7 @@ pre code{padding:0;background-color:transparent;}
 
 
 /* content block */
-.beta-block {border:1px solid #BFBFBF; margin-bottom:10px; font-size:14px;}
+.beta-block {border:1px solid #BFBFBF; margin-bottom:10px; font-size:14px; overflow-x:hidden;}
 .beta-block h2, .beta-block .beta-title {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:#CFCFCF; border-bottom:1px solid #BBBBBB; margin:0;}
 .beta-block .beta-block-content {margin:10px; font-size:inherit;}
 .beta-block ul.beta-block-content, .beta-block ol.beta-block-content {margin-left:25px;}
@@ -319,8 +319,9 @@ body.beta-ke-content {padding:5px;}
 .beta-error .error-detail {padding:40px 40px 0 0; line-height:24px;}
 
 /* friend links */
-.beta-links li {float:left; margin:5px 6px; width:93px; overflow:hidden;}
-.beta-links li img {width:93px; height:31px;}
+.beta-links li {float:left; margin:5px 6px; width:125px; overflow:hidden;}
+.beta-links li a {font-size:12px;}
+.beta-links li img {width:81px; height:31px;}
 
 
 

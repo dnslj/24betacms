@@ -3,7 +3,7 @@ class BetaSpecialPosts extends CWidget
 {
     const DEFAULT_POST_COUNT = 10;
     const DEFAULT_DAYS = 7;
-    const DEFAULT_TITLE_LEN = 40;
+    const DEFAULT_TITLE_LEN = 35;
     
     /**
      * specail token
