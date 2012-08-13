@@ -20,10 +20,10 @@
     <div class="beta-block">
         <script type="text/javascript"><!--
             google_ad_client = "ca-pub-9725980429199769";
-            /* beta_336x280 */
-            google_ad_slot = "9661689878";
-            google_ad_width = 336;
-            google_ad_height = 280;
+            /* beta_300x250 */
+            google_ad_slot = "4422400660";
+            google_ad_width = 300;
+            google_ad_height = 250;
             //-->
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
@@ -33,10 +33,10 @@
     <div class="beta-block">
         <script type="text/javascript"><!--
             google_ad_client = "ca-pub-9725980429199769";
-            /* beta_336x280 */
-            google_ad_slot = "9661689878";
-            google_ad_width = 336;
-            google_ad_height = 280;
+            /* beta_300x250 */
+            google_ad_slot = "4422400660";
+            google_ad_width = 300;
+            google_ad_height = 250;
             //-->
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
@@ -57,10 +57,10 @@
     <div class="beta-block">
         <script type="text/javascript"><!--
             google_ad_client = "ca-pub-9725980429199769";
-            /* beta_336x280 */
-            google_ad_slot = "9661689878";
-            google_ad_width = 336;
-            google_ad_height = 280;
+            /* beta_300x250 */
+            google_ad_slot = "4422400660";
+            google_ad_width = 300;
+            google_ad_height = 250;
             //-->
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
