@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=<?php echo app()->charset?>" />
     <title><?php echo $this->pageTitle;?></title>
+    <meta name="MSSmartTagsPreventParsing" content="true" />
     <meta name="author" content="24beta.com" />
     <meta name="generator" content="<?php echo BetaBase::powered();?>" />
     <meta name="copyright" content="Copyright (c) 2009-2012 24beta.com All Rights Reserved." />
