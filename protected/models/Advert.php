@@ -68,15 +68,39 @@ class Advert extends CActiveRecord
 		);
 	}
 
+	/**
+	 * 获取广告位的广告代码数据，返回的是数组数据
+	 * @return array 广告代码数据
+	 */
 	public function getAdcodes()
 	{
 	    return Adcode::fetchAdcode($this->solt);
 	}
 	
+	/**
+	 * 清除当前广告位的广告代码缓存
+	 * @return boolean 执行结果
+	 */
+	public function clearCache()
+	{
+	    return self::clearSoltCache($this->solt);
+	}
+	
+	/**
+	 * 获取某个广告位的广告代码，优先从缓存中读取，如果是直接从数据库中修改的，需要在后台更新一下缓存
+	 * @param string $solt
+	 * @return array 广告代码数组
+	 */
 	public static function fetchAdcodesWithSolt($solt)
 	{
 	    $solt = trim($solt);
-	    
+	     
+	    $cacheID = sprintf(param('cache_adcodes_id') ,$solt);
+	    if (app()->getCache()) {
+	        $cacheData = app()->getCache()->get($cacheID);
+	        if ($cacheData !== false) return $cacheData;
+	    }
+
 	    $data = array();
 	    $cmd = app()->getDb()->createCommand()
 	        ->select('id')
@@ -84,10 +108,50 @@ class Advert extends CActiveRecord
 	        ->where(array('and', 'solt = :adsolt', 'state = :enabled'), array(':adsolt'=>$solt, ':enabled'=>BETA_YES));
 	    
 	    $adid = $cmd->queryScalar();
-	    if ($adid !== false)
+	    if ($adid !== false) {
     	    $data = Adcode::fetchAdcodes($adid);
+    	    if (app()->getCache())
+    	        app()->getCache()->set($cacheID, $data);
+	    }
 	    
 	    return $data;
+	}
+	
+	/**
+	 * 根据solt清除单个广告位的广告代码缓存
+	 * @param string $solt
+	 * @return boolean 清除结果
+	 */
+	public static function clearSoltCache($solt)
+	{
+	    $cacheID = sprintf(param('cache_adcodes_id') ,$solt);
+	    if (app()->getCache()) {
+	        $result = app()->getCache()->delete($cacheID);
+	        return $result;
+	    }
+	    else
+    	    return true;
+	}
+	
+	/**
+	 * 清除所有广告代码的缓存
+	 * @throws CException 如果清除失败，抛出错误
+	 * @return boolean 清除结果，成功true, 失败false
+	 */
+	public static function clearAllCache()
+	{
+	    $solts = app()->getDb()->createCommand()
+	        ->select('solt')
+	        ->from(TABLE_ADVERT)
+	        ->queryColumn();
+	    
+	    foreach ((array)$solts as $solt) {
+	        $result = self::clearSoltCache($solt);
+	        if (!$result)
+	            throw new CException('clear cache error, solt: ' .$solt);
+	    }
+	    
+	    return true;
 	}
 	
 }
