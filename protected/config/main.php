@@ -75,7 +75,7 @@ return array(
 			'username' => $dbconfig['dbUser'],
 		    'password' => $dbconfig['dbPassword'],
 		    'charset' => 'utf8',
-		    'persistent' => true,
+		    'persistent' => false,
 		    'tablePrefix' => $dbconfig['tablePrefix'],
             'enableParamLogging' => true,
             'enableProfiling' => true,

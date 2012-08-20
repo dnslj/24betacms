@@ -159,7 +159,7 @@ return array(
     'recommend_posts' => '编辑推荐',
     'recommend_comments' => '网友精彩点评',
         
-    'source_label' => '来源:',
+    'source_label' => '来源:&nbsp;',
     'tag_label' => '标签:',
     'prev_page_label' => '上一页',
     'next_page_label' => '下一页',

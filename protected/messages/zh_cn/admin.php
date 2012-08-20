@@ -83,6 +83,17 @@ return array(
     'category_show' => '显示',
     'category_hide' => '隐藏',
 
+    /* advert, adcode model */
+    'adver_name' => '广告位名称',
+    'advert_solt' => '广告位标识',
+    'advert_intro' => '广告位说明',
+    'advert_state' => '广告位状态',
+    'advery_id' => '广告位ID',
+    'advert_code' => '广告代码',
+    'adcode_id' => '广告代码ID',
+    'adcode_intro' => '代码说明',
+    'adcode_state' => '广告状态',
+
     /* create post */
     'create_post' => '发表文章',
     'edit_post' => '编辑文章',
