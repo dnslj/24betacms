@@ -9,6 +9,7 @@
  * @property string $solt
  * @property string $intro
  * @property integer $state
+ * @property array $adcodes
  */
 class Advert extends CActiveRecord
 {
@@ -67,5 +68,27 @@ class Advert extends CActiveRecord
 		);
 	}
 
+	public function getAdcodes()
+	{
+	    return Adcode::fetchAdcode($this->solt);
+	}
+	
+	public static function fetchAdcodesWithSolt($solt)
+	{
+	    $solt = trim($solt);
+	    
+	    $data = array();
+	    $cmd = app()->getDb()->createCommand()
+	        ->select('id')
+	        ->from(TABLE_ADVERT)
+	        ->where(array('and', 'solt = :adsolt', 'state = :enabled'), array(':adsolt'=>$solt, ':enabled'=>BETA_YES));
+	    
+	    $adid = $cmd->queryScalar();
+	    if ($adid !== false)
+    	    $data = Adcode::fetchAdcodes($adid);
+	    
+	    return $data;
+	}
+	
 }
 

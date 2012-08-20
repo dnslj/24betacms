@@ -72,5 +72,21 @@ class Adcode extends CActiveRecord
 		);
 	}
 
+	/**
+	 * 获取一个广告位的广告代码数据
+	 * @param integer $adid 广告位ID
+	 * @return array
+	 */
+	public static function fetchAdcodes($adid)
+	{
+	    $data = array();
+	    $cmd = app()->getDb()->createCommand()
+	        ->from(TABLE_ADCODE)
+	        ->where(array('and', 'ad_id = :adid', 'state = :enabled'), array(':adid'=>$adid, ':enabled'=>BETA_YES));
+	     
+	    $data = $cmd->queryAll();
+	     
+	    return $data;
+	}
 }
 
