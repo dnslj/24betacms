@@ -1,4 +1,4 @@
-<h3><?php echo user()->getFlash('table_caption', $this->adminTitle);?></h3>
+<h4><?php echo user()->getFlash('table_caption', $this->adminTitle);?></h4>
 <table class="table table-striped table-bordered post-info">
     <tbody>
         <tr>

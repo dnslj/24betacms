@@ -1,4 +1,4 @@
-<h3><?php echo user()->getFlash('table_caption', t('special_list_table', 'admin'));?></h3>
+<h4><?php echo user()->getFlash('table_caption', t('special_list_table', 'admin'));?></h4>
 
 <table class="table table-striped table-bordered beta-list-table">
     <thead>

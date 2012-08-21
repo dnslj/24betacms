@@ -4,7 +4,7 @@
     <?php echo user()->getFlash('save_config_success');?>
 </div>
 <?php endif;?>
-<h3><?php echo $this->adminTitle;?></h3>
+<h4><?php echo $this->adminTitle;?></h4>
 <table class="table table-striped table-bordered beta-config-table">
     <thead>
         <tr>

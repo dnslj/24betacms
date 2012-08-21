@@ -1,4 +1,4 @@
-<h3><?php echo $this->adminTitle;?></h3>
+<h4><?php echo $this->adminTitle;?></h4>
 <div class="btn-toolbar">
     <a class="btn btn-small btn-danger" href="<?php echo url('admin/user/resetpassword', array('id'=>$model->id));?>"><?php echo t('reset_password', 'admin');?></a>
     <a class="btn btn-small" href="<?php echo url('admin/user/create', array('id'=>$model->id));?>"><?php echo t('edit_user', 'admin');?></a>

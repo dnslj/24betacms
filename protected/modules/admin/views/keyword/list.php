@@ -1,4 +1,4 @@
-<h3><?php echo $this->adminTitle;?></h3>
+<h4><?php echo $this->adminTitle;?></h4>
 <div class="btn-toolbar">
     <a href="<?php echo url('admin/keyword/create');?>" class="btn btn-small"><?php echo t('create_filter_keyword', 'admin');?></a>
     <a class="btn btn-small" href=''><?php echo t('reload_data', 'admin');?></a>

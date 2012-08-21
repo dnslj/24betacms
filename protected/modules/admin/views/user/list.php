@@ -1,4 +1,4 @@
-<h3><?php echo $this->adminTitle;?></h3>
+<h4><?php echo $this->adminTitle;?></h4>
 <div class="btn-toolbar">
     <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
