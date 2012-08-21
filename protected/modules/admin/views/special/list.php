@@ -32,6 +32,6 @@
 <script type="text/javascript">
 $(function(){
 	$(document).on('click', '.row-state', BetaAdmin.ajaxSetBooleanColumn);
-	$(document).on('click', '.set-delete', {confirmText:deleteConfirmText}, BetaAdmin.deleteRow);
+	$(document).on('click', '.set-delete', {confirmText:confirmAlertText}, BetaAdmin.deleteRow);
 });
 </script>
