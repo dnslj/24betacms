@@ -34,7 +34,8 @@ class CategoryController extends Controller
     private static function fetchCategoryPosts($id)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
+        if (param('post_list_type') == POST_LIST_TYPE_TITLE)
+            $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
         $criteria->order = 't.istop, t.create_time desc, t.id desc';
         $criteria->addColumnCondition(array('category_id' => $id))
             ->addCondition('t.state = :state');
