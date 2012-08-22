@@ -20,28 +20,33 @@ class TagController extends Controller
         
         $ids = $cmd->queryColumn();
         
-        if (empty($ids)) {
-            $this->render('posts');
-            app()->end();
+        if (count($ids) > 0) {
+            $criteria = new CDbCriteria();
+            if (param('post_list_type') == POST_LIST_TYPE_TITLE)
+                $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
+            $criteria->order = 't.istop, t.create_time desc, t.id desc';
+            $criteria->addInCondition('t.id', $ids)
+                ->addCondition('t.state = :state');
+            $criteria->params += array(':state'=>POST_STATE_ENABLED);
+            
+            $count = Post::model()->count($criteria);
+            $pages = new CPagination($count);
+            $pages->setPageSize(param('postCountOfTitleListPage'));
+            $pages->applyLimit($criteria);
+            $posts = Post::model()->findAll($criteria);
         }
-        
-        $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
-        $criteria->order = 't.istop, t.create_time desc, t.id desc';
-        $criteria->addInCondition('t.id', $ids)
-            ->addCondition('t.state = :state');
-        $criteria->params += array(':state'=>POST_STATE_ENABLED);
-        
-        $count = Post::model()->count($criteria);
-        $pages = new CPagination($count);
-        $pages->setPageSize(param('postCountOfTitleListPage'));
-        $pages->applyLimit($criteria);
-        $posts = Post::model()->findAll($criteria);
-        
-        $this->render('posts', array(
-            'tagname' => $tag,
+        $listType = param('post_list_type');
+        $view = ($listType == POST_LIST_TYPE_SUMMARY) ? '/post/_summary_list' : '/post/_title_list';
+        $blockTitle = t('tag_posts', 'main', array('{name}'=>$tag));
+        $data = array(
+            'blockTitle' => $blockTitle,
             'posts' => $posts,
             'pages' => $pages,
+        );
+        $postListHtml = $this->renderPartial($view, $data, true);
+        
+        $this->render('posts', array(
+            'postListHtml' => $postListHtml,
         ));
     }
 }
