@@ -62,6 +62,13 @@ define('UPLOAD_TYPE_FILE', 2);
 define('UPLOAD_TYPE_AUDIO', 3);
 define('UPLOAD_TYPE_VIDEO', 4);
 
+/*
+ * category post list type
+ * 0 title and summary type
+ * 1 title type
+ */
+define('POST_LIST_TYPE_SUMMARY', 0);
+define('POST_LIST_TYPE_TITLE', 1);
 
 define('BAIDU_PING_URL', 'http://ping.baidu.com/ping/RPC2');
 

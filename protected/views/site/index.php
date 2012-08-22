@@ -14,7 +14,7 @@
 <?php endif;?>
 
 <div class="beta-content">
-    <?php $this->renderPartial('/post/_summary_list', array('posts'=>$posts, 'pages'=>$pages));?>
+    <?php $this->renderPartial('/post/_home_list', array('posts'=>$posts, 'pages'=>$pages));?>
 </div>
 <div class="beta-sidebar">
     <?php $this->widget('BetaAdvert', array('solt'=>'home_sidebar_ad_01'));?>

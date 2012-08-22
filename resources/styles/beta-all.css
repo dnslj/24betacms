@@ -144,6 +144,7 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 .beta-nav .user-mini-bar li a {margin-right:0; maring-left:4px;}
 
 /* post summary list */
+.beta-block-title {background:#EEEEEE; font-size:18px; line-height:20px; padding:15px; margin:0 0 10px;}
 .beta-post-item {border:1px solid #BFBFBF; margin:0 0 10px; position:relative;}
 .beta-post-item dt, .beta-post-item dd {padding:0 10px; margin:0;}
 .beta-post-item dt {font-size:18px; font-family:微软雅黑; line-height:22px; margin:12px 0;}
