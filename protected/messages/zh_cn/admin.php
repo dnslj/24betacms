@@ -83,8 +83,9 @@ return array(
     'category_show' => '显示',
     'category_hide' => '隐藏',
 
+    'advert_managent' => '广告管理',
     /* advert, adcode model */
-    'adver_name' => '广告位名称',
+    'advert_name' => '广告位名称',
     'advert_solt' => '广告位标识',
     'advert_intro' => '广告位说明',
     'advert_state' => '广告位状态',

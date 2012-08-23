@@ -92,6 +92,7 @@
                         <li class="divider"></li>
                         -->
                         <li><?php echo l(t('friend_link', 'admin'), url('admin/link/list'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('advert_managent', 'admin'), url('admin/advert/list'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
                 <li class="dropdown">
