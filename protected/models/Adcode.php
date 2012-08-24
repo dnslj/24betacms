@@ -34,17 +34,11 @@ class Adcode extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('ad_id', 'required'),
-			array('state', 'numerical', 'integerOnly'=>true),
-			array('ad_id', 'length', 'max'=>10),
+			array('state, ad_id', 'numerical', 'integerOnly'=>true),
 			array('intro', 'length', 'max'=>250),
 			array('adcode', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, ad_id, adcode, intro, state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,11 +58,11 @@ class Adcode extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => t('adcode_id', 'admin'),
-			'ad_id' => t('advert_id', 'admin'),
-			'adcode' => t('advert_code', 'admin'),
-			'intro' => t('adcode_intro', 'admin'),
-			'state' => t('adcode_state', 'admin'),
+			'id' => t('adcode_id'),
+			'ad_id' => t('advert_id'),
+			'adcode' => t('advert_code'),
+			'intro' => t('adcode_intro'),
+			'state' => t('adcode_state'),
 		);
 	}
 

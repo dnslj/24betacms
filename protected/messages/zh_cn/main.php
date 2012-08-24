@@ -78,6 +78,17 @@ return array(
     'post_nums' => '文章数',
     'icon' => '图标',
     'orderid' => '排序ID',
+
+
+    /* advert, adcode model */
+    'advert_name' => '广告位名称',
+    'advert_solt' => '广告位标识',
+    'advert_intro' => '广告位说明',
+    'advert_state' => '状态',
+    'advert_id' => '广告位ID',
+    'advert_code' => '广告代码',
+    'adcode_id' => '广告ID',
+    'adcode_intro' => '代码说明',
         
     /* Upload model */
     'file_type_picture' => '图片',

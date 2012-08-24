@@ -10,6 +10,7 @@
  * @property string $intro
  * @property integer $state
  * @property array $adcodes
+ * @property array $validAdcodes
  */
 class Advert extends CActiveRecord
 {
@@ -35,9 +36,9 @@ class Advert extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
+		    array('name, solt', 'required'),
+		    array('name, solt', 'unique'),
 			array('state', 'numerical', 'integerOnly'=>true),
 			array('name, solt', 'length', 'max'=>50),
 			array('intro', 'length', 'max'=>250),
@@ -60,11 +61,11 @@ class Advert extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => t('advert_id', 'admin'),
-			'name' => t('advert_name', 'admin'),
-			'solt' => t('advert_solt', 'admin'),
-			'intro' => t('advert_intro', 'admin'),
-			'state' => t('advert_state', 'admin'),
+			'id' => t('advert_id'),
+			'name' => t('advert_name'),
+			'solt' => t('advert_solt'),
+			'intro' => t('advert_intro'),
+			'state' => t('advert_state'),
 		);
 	}
 
@@ -72,9 +73,22 @@ class Advert extends CActiveRecord
 	 * 获取广告位的广告代码数据，返回的是数组数据
 	 * @return array 广告代码数据
 	 */
-	public function getAdcodes()
+	public function getAvalidAdcodes()
 	{
-	    return Adcode::fetchAdcode($this->solt);
+	    $solt = trim($solt);
+	     
+	    $cacheID = sprintf(param('cache_adcodes_id') ,$$this->solt);
+	    if (app()->getCache()) {
+	        $cacheData = app()->getCache()->get($cacheID);
+	        if ($cacheData !== false) return $cacheData;
+	    }
+
+	    $data = array();
+	    $data = Adcode::fetchAdcodes($this->id);
+	    if (app()->getCache())
+	        app()->getCache()->set($cacheID, $data);
+	    
+	    return $data;
 	}
 	
 	/**
@@ -106,6 +120,17 @@ class Advert extends CActiveRecord
 	    }
 	    
 	    return $data;
+	}
+	
+	protected function beforeSave()
+	{
+	    $this->intro = strip_tags(trim($this->intro));
+	    return true;
+	}
+	
+	protected function afterFind()
+	{
+	    $this->intro = nl2br($this->intro);
 	}
 }
 

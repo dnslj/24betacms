@@ -84,16 +84,19 @@ return array(
     'category_hide' => '隐藏',
 
     'advert_managent' => '广告管理',
-    /* advert, adcode model */
-    'advert_name' => '广告位名称',
-    'advert_solt' => '广告位标识',
-    'advert_intro' => '广告位说明',
-    'advert_state' => '广告位状态',
-    'advery_id' => '广告位ID',
-    'advert_code' => '广告代码',
-    'adcode_id' => '广告代码ID',
-    'adcode_intro' => '代码说明',
     'adcode_state' => '广告状态',
+    'clear_all_caceh' => '清除所有缓存',
+    'clear_all_cache_tip' => '广告位在编辑过程中会自动处理缓存，如没有必要，不必清除所有缓存。',
+    'clear_advert_all_cache_success' => '清除所有广告代码缓存成功',
+    'delete_advert_tip' => '警告：删除广告位会将该广告位下所有广告代码一并删除！',
+
+    /* create advert */
+    'advert_list_table' => '广告位列表',
+    'create_advert' => '添加广告位',
+    'advert_enabled' => '开启',
+    'advert_disabled' => '关闭',
+    'edit_advert' => '修改广告位',
+    'save_advert_success' => '{name}&nbsp;保存成功',
 
     /* create post */
     'create_post' => '发表文章',
