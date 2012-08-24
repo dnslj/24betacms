@@ -35,7 +35,7 @@ class Adcode extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('ad_id', 'required'),
+			array('ad_id, intro, adcode', 'required'),
 			array('state, ad_id', 'numerical', 'integerOnly'=>true),
 			array('intro', 'length', 'max'=>250),
 			array('adcode', 'safe'),

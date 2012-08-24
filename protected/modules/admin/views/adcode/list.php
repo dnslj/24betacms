@@ -18,10 +18,11 @@
             <td class="align-center">
                 <?php echo $model->id;?><br /><br />
                 <?php echo $model->stateLink;?><br /><br />
+                <?php echo $model->editLink;?><br />
                 <?php echo $model->deleteLink;?>
             </td>
             <td><?php echo $model->intro;?></td>
-            <td><textarea name="adcode" class="span6" rows="10"><?php echo $model->adcode;?></textarea></td>
+            <td><textarea name="adcode" class="span6" rows="10" readonly="readonly"><?php echo $model->adcode;?></textarea></td>
         </tr>
         <?php endforeach;?>
     </tbody>

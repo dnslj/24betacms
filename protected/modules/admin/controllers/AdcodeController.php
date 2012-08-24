@@ -24,7 +24,7 @@ class AdcodeController extends AdminController
     }
     
     
-    public function actionCreate($id = 0, $adid = 0)
+    public function actionCreate($adid = 0, $id = 0)
     {
         $id = (int)$id;
         $adid = (int)$adid;
@@ -33,8 +33,6 @@ class AdcodeController extends AdminController
             if ($advert === null)
                 throw new CHttpException(404, t('advert_is_not_exist', 'admin'));
         }
-        else
-            throw new CHttpException(500, t('advert_is_not_exist', 'admin'));
         
         if ($id > 0) {
             $model = AdminAdcode::model()->findByPk($id);

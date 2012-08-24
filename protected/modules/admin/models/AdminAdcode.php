@@ -2,6 +2,8 @@
 /**
  * AdminAdcode
  * @author Chris
+ * @property string $editUrl
+ * @property string $editLink
  * @property string $stateLink
  * @property string $deleteLink
  */
@@ -16,6 +18,16 @@ class AdminAdcode extends Adcode
         return parent::model($className);
     }
 
+    public function getEditUrl()
+    {
+        return url('admin/adcode/create', array('id'=>$this->id));
+    }
+    
+    public function getEditLink()
+    {
+        return l(t('edit', 'admin'), $this->getEditUrl());
+    }
+    
     public function getStateLink()
     {
         $text = t($this->state == ADCODE_STATE_ENABLED ? 'adcode_enabled' : 'adcode_disabled', 'admin');

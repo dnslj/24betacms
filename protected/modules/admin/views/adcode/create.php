@@ -18,7 +18,7 @@
     <div class="control-group bottom10px <?php if ($model->hasErrors('adcode')) echo 'error';?>">
         <label class="control-label"><?php echo CHtml::activeLabel($model, 'adcode');?></label>
         <div class="controls">
-            <?php echo CHtml::activeTextArea($model, 'adcode', array('class'=>'span7', 'rows'=>6));?>
+            <?php echo CHtml::activeTextArea($model, 'adcode', array('class'=>'span7', 'rows'=>10));?>
             <?php if ($model->hasErrors('adcode')):?><p class="help-block"><?php echo $model->getError('adcode');?></p><?php endif;?>
         </div>
     </div>
