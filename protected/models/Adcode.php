@@ -82,5 +82,10 @@ class Adcode extends CActiveRecord
 	     
 	    return $data;
 	}
+
+    protected function afterFind()
+    {
+        $this->intro = nl2br($this->intro);
+    }
 }
 

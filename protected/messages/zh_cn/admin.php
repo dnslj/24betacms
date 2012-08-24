@@ -89,14 +89,24 @@ return array(
     'clear_all_cache_tip' => '广告位在编辑过程中会自动处理缓存，如没有必要，不必清除所有缓存。',
     'clear_advert_all_cache_success' => '清除所有广告代码缓存成功',
     'delete_advert_tip' => '警告：删除广告位会将该广告位下所有广告代码一并删除！',
+    'multi_adcode_tip' => '如果一个广告位有多个有效的广告，则启用随机显示其中',
 
     /* create advert */
+    'advert_solt' => '广告位：{name} - {solt}',
     'advert_list_table' => '广告位列表',
     'create_advert' => '添加广告位',
     'advert_enabled' => '开启',
     'advert_disabled' => '关闭',
     'edit_advert' => '修改广告位',
     'save_advert_success' => '{name}&nbsp;保存成功',
+    'advert_is_not_exist' => '广告位不存在',
+    'adcode_list_table' => '广告列表',
+    'adcode_enabled' => '有效',
+    'adcode_disabled' => '无效',
+    'return_advert_list' => '返回广告位列表',
+    'create_adcode' => '添加广告',
+    'edit_adcode' => '修改广告',
+    'save_adcode_success' => '广告添加成功',
 
     /* create post */
     'create_post' => '发表文章',

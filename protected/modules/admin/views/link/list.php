@@ -12,7 +12,6 @@
 <?php endif;?>
 
 <h4><?php echo user()->getFlash('table_caption', t('link_list_table', 'admin'));?></h4>
-
 <?php echo CHtml::form(url('admin/link/updateOrderID'), 'post', array('class'=>'form-horizontal'));?>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>

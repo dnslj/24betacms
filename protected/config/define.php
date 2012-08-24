@@ -39,6 +39,9 @@ define('USER_STATE_FORBIDDEN', -1);
 /* advert state */
 define('ADVERT_STATE_DISABLED', 0);
 define('ADVERT_STATE_ENABLED', 1);
+/* advert state */
+define('ADCODE_STATE_DISABLED', 0);
+define('ADCODE_STATE_ENABLED', 1);
 
 /*
  * post type

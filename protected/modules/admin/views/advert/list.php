@@ -4,8 +4,12 @@
     <?php echo user()->getFlash('clear_advert_all_cache_result');?>
 </div>
 <?php endif;?>
-
 <h4><?php echo user()->getFlash('table_caption', t('advert_list_table', 'admin'));?></h4>
+<div class="btn-toolbar">
+    <a class="btn btn-danger btn-small" href="<?php echo url('admin/advert/clearAllCache');?>"><?php echo t('clear_all_caceh', 'admin');?></a>
+    <a class="btn btn-success btn-small" href="<?php echo url('admin/advert/create');?>"><?php echo t('create_advert', 'admin');?></a>
+    <a href="" class="btn btn-small"><?php echo t('reload_data', 'admin');?></a>
+</div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
         <tr>
@@ -33,18 +37,6 @@
 </table>
 <?php if ($pages):?>
 <div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'htmlOptions'=>array('class'=>'pagination')));?></div>
-<?php endif;?>
-
-<?php if (count($models) > 0):?>
-<form class="form-horizontal">
-<fieldset>
-    <div class="form-actions">
-        <a class="btn btn-danger" href="<?php echo url('admin/advert/clearAllCache');?>"><?php echo t('clear_all_caceh', 'admin');?></a>
-        <a class="btn btn-success" href="<?php echo url('admin/advert/create');?>"><?php echo t('create_advert', 'admin');?></a>
-        <a href="" class="btn"><?php echo t('reload_data', 'admin');?></a>
-    </div>
-</fieldset>
-</form>
 <?php endif;?>
 
 <div class="alert alert-block alert-info">

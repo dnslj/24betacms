@@ -85,10 +85,11 @@ return array(
     'advert_solt' => '广告位标识',
     'advert_intro' => '广告位说明',
     'advert_state' => '状态',
-    'advert_id' => '广告位ID',
+    'advert_id' => 'ID',
     'advert_code' => '广告代码',
-    'adcode_id' => '广告ID',
+    'adcode_id' => 'ID',
     'adcode_intro' => '代码说明',
+    'adcode_state' => '状态',
         
     /* Upload model */
     'file_type_picture' => '图片',
