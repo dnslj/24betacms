@@ -19,6 +19,7 @@ switch ($step)
         $data['requirements'] = $requirements;
         break;
     case 2:
+        require PATH_ROOT . 'inc' . DS . 'step2.php';
         break;
     case 3:
         break;
