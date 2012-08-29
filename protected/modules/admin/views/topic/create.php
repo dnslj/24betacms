@@ -25,7 +25,7 @@
     <?php if ($model->icon):?>
     <div class="control-group">
         <div class="controls">
-            <p><?php echo $model->iconHtml;?></p>
+            <p><?php echo $model->getIconHtml('');?></p>
         </div>
     </div>
     <?php endif;?>

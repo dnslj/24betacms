@@ -11,7 +11,6 @@ class TopicController extends Controller
             throw new CHttpException(403, t('topic_is_not_found'));
         
         $data = self::fetchTopicPosts($id);
-        $data['topic'] = $topic;
         
         $this->setSiteTitle(t('topic_posts', 'main', array('{name}'=>$topic->name)));
         $this->setPageKeyWords($topic->name);
@@ -22,13 +21,22 @@ class TopicController extends Controller
         $feedTitle = $topic->name . t('topic_feed');
         cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/topic', array('id'=>$id)), null, array('title'=>$feedTitle));
         
-        $this->render('posts', $data);
+        $listType = param('post_list_type');
+        $view = ($listType == POST_LIST_TYPE_SUMMARY) ? '/post/_summary_list' : '/post/_title_list';
+        $data['blockTitle'] = t('topic_posts', 'main', array('{name}'=>$topic->name));
+        $postListHtml = $this->renderPartial($view, $data, true);
+        
+        $this->render('posts', array(
+            'topic' => $topic,
+            'postListHtml' => $postListHtml,
+        ));
     }
     
     private static function fetchTopicPosts($id)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
+        if (param('post_list_type') == POST_LIST_TYPE_TITLE)
+            $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
         $criteria->order = 't.istop desc, t.create_time desc';
         $criteria->addColumnCondition(array('t.topic_id' => $id))
             ->addCondition('t.state = :state');

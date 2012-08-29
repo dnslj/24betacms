@@ -9,7 +9,6 @@ class CategoryController extends Controller
             throw new CHttpException(403, t('category_is_not_found'));
         
         $data = self::fetchCategoryPosts($id);
-        $data['category'] = $category;
         
         $this->setSiteTitle(t('category_posts', 'main', array('{name}'=>$category->name)));
         $this->setPageKeyWords($category->name);
@@ -18,16 +17,25 @@ class CategoryController extends Controller
         $this->channel = $id;
         cs()->registerMetaTag('all', 'robots');
         
+        $listType = param('post_list_type');
+        $view = ($listType == POST_LIST_TYPE_SUMMARY) ? '/post/_summary_list' : '/post/_title_list';
+        $data['blockTitle'] = t('category_posts', 'main', array('{name}'=>$category->name));
+        $postListHtml = $this->renderPartial($view, $data, true);
+        
         $feedTitle = $category->name . t('category_feed');
         cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/category', array('id'=>$id)), null, array('title'=>$feedTitle));
         
-        $this->render('posts', $data);
+        $this->render('posts', array(
+            'category' => $category,
+            'postListHtml' => $postListHtml,
+        ));
     }
     
     private static function fetchCategoryPosts($id)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
+        if (param('post_list_type') == POST_LIST_TYPE_TITLE)
+            $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
         $criteria->order = 't.istop, t.create_time desc, t.id desc';
         $criteria->addColumnCondition(array('category_id' => $id))
             ->addCondition('t.state = :state');

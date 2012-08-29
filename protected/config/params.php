@@ -13,4 +13,6 @@ return array(
 
     'beta_digg_cookie_name' => 'beta_digg',
     'beta_digg_cookie_expire' => 24 * 60 * 60 *7,
+
+    'cache_adcodes_id' => 'adcodes_%s',
 );

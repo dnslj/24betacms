@@ -7,7 +7,7 @@
 <?php if (count($errorNames) > 0):?>
 <div class="alert alert-error">
     <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
-    <h3><?php echo t('the_following_names_error', 'admin');?></h3>
+    <h4><?php echo t('the_following_names_error', 'admin');?></h4>
     <ul class="config-error-names">
         <?php foreach ($errorNames as $name):?>
         <li><?php echo $name;?></li>
@@ -16,7 +16,7 @@
 </div>
 <?php endif;?>
 
-<h3><?php echo $this->adminTitle;?></h3>
+<h4><?php echo $this->adminTitle;?></h4>
 <form action='' method="post" class="form-horizontal">
 <table class="table table-striped table-bordered beta-config-table">
     <thead>

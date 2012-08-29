@@ -11,7 +11,7 @@
 </div>
 <?php endif;?>
 
-<h3><?php echo user()->getFlash('table_caption', t('category_list_table', 'admin'));?></h3>
+<h4><?php echo user()->getFlash('table_caption', t('category_list_table', 'admin'));?></h4>
 
 <?php echo CHtml::form(url('admin/category/updateOrderID'), 'post', array('class'=>'form-horizontal'));?>
 <table class="table table-striped table-bordered beta-list-table">

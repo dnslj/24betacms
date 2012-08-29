@@ -3,8 +3,8 @@
     <div class="beta-block-content">
         <?php foreach ($topics as $topic):?>
         <dl>
-            <dd><?php echo l($topic->iconHtml, $topic->postsUrl);?></dd>
-            <dt><?php echo l($topic->name, $topic->postsUrl);?></dt>
+            <dd><?php echo l($topic->iconHtml, $topic->postsUrl, array('title'=>$topic->name));?></dd>
+            <dt><?php echo l($topic->name, $topic->postsUrl, array('title'=>$topic->name));?></dt>
         </dl>
         <?php endforeach;?>
         <div class="clear"></div>

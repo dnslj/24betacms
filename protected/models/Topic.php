@@ -128,11 +128,15 @@ class Topic extends CActiveRecord
 	    return $url;
 	}
 	
-	public function getIconHtml()
+	public function getIconHtml($align = 'right')
 	{
 	    $html = '';
-	    if (!empty($this->icon))
-    	    $html = image($this->getIconUrl(), $this->name, array('class'=>'topic-icon', 'title'=>$this->name, 'align'=>'right'));
+	    if (!empty($this->icon)) {
+	        $options = array('class'=>'topic-icon', 'title'=>$this->name);
+	        if ($align)
+	            $options['align'] = $align;
+    	    $html = image($this->getIconUrl(), $this->name, $options);
+	    }
 	    
 	    return $html;
 	}

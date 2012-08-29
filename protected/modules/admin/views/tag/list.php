@@ -1,4 +1,4 @@
-<h3><?php echo user()->getFlash('table_caption', t('tag_list_table', 'admin'));?></h3>
+<h4><?php echo user()->getFlash('table_caption', t('tag_list_table', 'admin'));?></h4>
 <div class="btn-toolbar">
     <button class="btn btn-small">全选</button>
     <button class="btn btn-small">反选</button>

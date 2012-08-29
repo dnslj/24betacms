@@ -11,7 +11,7 @@
 
 <channel>
 	<title><?php echo $feedname;?> - <?php echo param('shortdesc');?></title>
-	<atom:link href="<?php echo aurl('feed/timeline');?>" rel="self" type="application/rss+xml" />
+	<atom:link href="<?php echo aurl('feed');?>" rel="self" type="application/rss+xml" />
 	<link><?php echo abu('/');?></link>
 	<description><?php echo param('shortdesc');?></description>
 	<lastBuildDate><?php echo date('D, d M Y H:i:s O', $_SERVER['REQUEST_TIME']);?></lastBuildDate>

@@ -1,4 +1,4 @@
-<h3><?php echo user()->getFlash('table_caption', $this->adminTitle);?></h3>
+<h4><?php echo user()->getFlash('table_caption', $this->adminTitle);?></h4>
 <div class="btn-toolbar">
     <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
@@ -14,7 +14,7 @@
     <?php else:?>
     <button class="btn btn-small btn-danger" id="batch-trash" data-src="<?php echo url('admin/post/multiTrash');?>"><?php echo t('trash_post', 'admin');?></button>
     <?php endif;?>
-    <a class="btn btn-small btn-success" href=''><?php echo t('reload_data', 'admin');?></a>
+    <a class="btn btn-small btn-success" href=""><?php echo t('reload_data', 'admin');?></a>
 </div>
 <table class="table table-striped table-bordered beta-list-table table-post-list">
     <thead>

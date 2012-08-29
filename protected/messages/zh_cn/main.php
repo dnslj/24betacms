@@ -78,6 +78,18 @@ return array(
     'post_nums' => '文章数',
     'icon' => '图标',
     'orderid' => '排序ID',
+
+
+    /* advert, adcode model */
+    'advert_name' => '广告位名称',
+    'advert_solt' => '广告位标识',
+    'advert_intro' => '广告位说明',
+    'advert_state' => '状态',
+    'advert_id' => 'ID',
+    'advert_code' => '广告代码',
+    'adcode_id' => 'ID',
+    'adcode_intro' => '代码说明',
+    'adcode_state' => '状态',
         
     /* Upload model */
     'file_type_picture' => '图片',
@@ -159,7 +171,7 @@ return array(
     'recommend_posts' => '编辑推荐',
     'recommend_comments' => '网友精彩点评',
         
-    'source_label' => '来源:',
+    'source_label' => '来源:&nbsp;',
     'tag_label' => '标签:',
     'prev_page_label' => '上一页',
     'next_page_label' => '下一页',

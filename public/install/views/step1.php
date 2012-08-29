@@ -1,32 +1,30 @@
 <?php require dirname(__FILE__) . '/header.php';?>
 
-<p>本网页用于确认您的服务器配置是否能满足运行<a href="http://www.yiiframework.com/">Yii</a> Web应用的要求。它将检查服务器所运行的PHP版本，查看是否安装了合适的PHP扩展模块，以及确认php.ini文件是否正确设置。</p>
+<p class="page-desc">本网页用于确认您的服务器配置是否能满足运行<a href="http://24blog.24beta.com/">24Blog</a> Web应用的要求。它将检查服务器所运行的PHP版本，查看是否安装了合适的PHP扩展模块，以及确认php.ini文件是否正确设置。</p>
 <h2>检查结果</h2>
-<p>
-<?php if($result>0):?>
-恭喜！您的服务器配置完全符合Yii的要求。
-<?php elseif($result<0): ?>
-您的服务器配置符合Yii的最低要求。如果您需要使用特定的功能，请关注如下警告。
+<?php if($result > 0):?>
+<p class="beta-alert alert-block alert-success">恭喜！您的服务器配置完全符合24Blog的要求。</p>
+<?php elseif($result < 0): ?>
+<p class="beta-alert alert-block alert-info">您的服务器配置符合24Blog的最低要求。如果您需要使用特定的功能，请关注如下警告。</p>
 <?php else: ?>
-您的服务器配置未能满足Yii的要求。
+<p class="beta-alert alert-block alert-error">您的服务器配置未能满足24Blog的要求。</p>
 <?php endif; ?>
-</p>
 
 <h2>具体结果</h2>
-<table class="result">
-    <tr><th width="200" align="left">项目名称</th><th width="100" align="left">结果</th><th align="left">备注</th></tr>
+<table class="check-result">
+    <tr><th width="200" align="left">项目名称</th><th width="50" align="left">结果</th><th align="left">备注</th></tr>
     <?php foreach($requirements as $requirement): ?>
     <tr>
     	<td><?php echo $requirement[0]; ?></td>
     	<td class="<?php echo $requirement[2] ? 'passed' : ($requirement[1] ? 'failed' : 'warning'); ?>">
-    	<?php echo $requirement[2] ? '通过' : '未通过'; ?>
+    	<?php echo $requirement[2] ? '通过' : ($requirement[1]? '未通过' : '警告'); ?>
     	</td>
-    	<td><?php echo $requirement[4];?></td>
+    	<td><?php echo $requirement[3];?></td>
     </tr>
     <?php endforeach; ?>
 </table>
 
-<table>
+<table class="check-result result-mark">
     <tr>
         <td class="passed">&nbsp;</td><td>通过</td>
         <td class="failed">&nbsp;</td><td>未通过</td>

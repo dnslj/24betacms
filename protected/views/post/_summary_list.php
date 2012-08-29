@@ -1,3 +1,4 @@
+<h2 class="beta-block-title"><?php echo $blockTitle;?></h2>
 <?php foreach ((array)$posts as $model):?>
 <dl class="beta-post-item beta-radius3px">
     <dt><?php echo $model->titleLink;?></dt>

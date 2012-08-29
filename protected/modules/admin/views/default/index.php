@@ -13,7 +13,6 @@
         <div class="container admin-nav-container">
             <a class="brand" href="<?php echo url('admin/default/welcome');?>" target="main"><?php echo t('control_center', 'admin');?></a>
             <ul class="nav">
-                <li class="divider-vertical"></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('post_manage', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -66,7 +65,6 @@
                         <li><?php echo l(t('tag_search', 'admin'), url('admin/tag/search'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
-                <li class="divider-vertical"></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('user_manage', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -94,6 +92,7 @@
                         <li class="divider"></li>
                         -->
                         <li><?php echo l(t('friend_link', 'admin'), url('admin/link/list'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('advert_managent', 'admin'), url('admin/advert/list'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -153,7 +152,7 @@
 
 <script type="text/javascript">
 $(function(){
-	$(document).on('click', '.admin-sidebar li a', function(event){
+	$('.admin-sidebar').on('click', 'li a', function(event){
 		var li = $(this).parent();
 		if (li.hasClass('active')) return true;
 
@@ -162,15 +161,19 @@ $(function(){
 		li.siblings().removeClass('active');
 		li.addClass('active');
 	});
-	$(document).on('click', '.dropdown-menu li a', function(event){
+	$('.dropdown-menu').on('click', 'li a', function(event){
 		var li = $(this).parent();
+		$(this).parents('.dropdown').removeClass('open');
 		if (li.hasClass('active')) return true;
 
-		$('.admin-sidebar li').removeClass('active');
-		$('li.dropdown').removeClass('active');
-		$('.dropdown-menu  li').removeClass('active');
-		$(this).parents('.dropdown').addClass('active');
+		$('li').removeClass('active');
 		li.addClass('active');
+		$(this).parents('.dropdown').addClass('active');
+	});
+
+	$(document).on('mouseenter', '#admin-iframe', function(){
+		$('li.dropdown').removeClass('open');
+		$(this).focus();
 	});
 });
 </script>

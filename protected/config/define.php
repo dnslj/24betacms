@@ -15,6 +15,8 @@ define('TABLE_UPLOAD', '{{upload}}');
 define('TABLE_USER', '{{user}}');
 define('TABLE_FILTER_KEYWORD', '{{filter_keyword}}');
 define('TABLE_LINK', '{{link}}');
+define('TABLE_ADVERT', '{{advert}}');
+define('TABLE_ADCODE', '{{adcode}}');
 
 /* category state */
 define('CATEGORY_STATE_IN_NAV', 1);
@@ -34,6 +36,13 @@ define('SPECIAL_STATE_ENABLED', 1);
 define('USER_STATE_UNVERIFY', 0);
 define('USER_STATE_ENABLED', 1);
 define('USER_STATE_FORBIDDEN', -1);
+/* advert state */
+define('ADVERT_STATE_DISABLED', 0);
+define('ADVERT_STATE_ENABLED', 1);
+/* advert state */
+define('ADCODE_STATE_DISABLED', 0);
+define('ADCODE_STATE_ENABLED', 1);
+
 /*
  * post type
 * 0 post
@@ -60,6 +69,13 @@ define('UPLOAD_TYPE_FILE', 2);
 define('UPLOAD_TYPE_AUDIO', 3);
 define('UPLOAD_TYPE_VIDEO', 4);
 
+/*
+ * category post list type
+ * 0 title and summary type
+ * 1 title type
+ */
+define('POST_LIST_TYPE_SUMMARY', 0);
+define('POST_LIST_TYPE_TITLE', 1);
 
 define('BAIDU_PING_URL', 'http://ping.baidu.com/ping/RPC2');
 

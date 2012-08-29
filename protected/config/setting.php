@@ -19,11 +19,6 @@ return array(
     // URL 格式，get|path，如果设置为path，需要在web服务端设置rewrite重定向
     'urlFormat' => 'path',
 
-    // 注册用户是否需要邮件激活
-    'userRequiredEmailVerfiy' => false,
-    // 敏感关键词被替换为
-    'filterKeywordReplacement' => '文明用语',
-
     // 每页显示的文章数量
     'postCountOfPage' => 12,
     // 标题显示列表每页显示的文章数量
@@ -75,5 +70,22 @@ return array(
     
     // 简述中可以使用的html标签
     'summaryHtmlTags' => '<b><strong><img><p>',
+    
+    // default param and value
+    'post_list_type' => 0,
+    'beian_code' => '',
+    'tongji_code' => '',
+    'header_html' => '',
+    'footer_after_html' => '',
+    'footer_before_html' => '',
+    'site_keywords' => '',
+    'site_description' => '',
+    'filterKeywordReplacement' => '文明用语',
+    'enable_lazyload_img' => 1,
+    'post_list_show_topic_icon' => 1,
+    'visit_nums_init_min' => 1,
+    'visit_nums_init_max' => 1,
+    'user_required_email_verfiy' => 0,
+    'user_required_admin_verfiy' => 0,
 );
 

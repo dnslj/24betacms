@@ -30,6 +30,7 @@ class PostController extends Controller
         $comment = new CommentForm();
         $comment->post_id = $id;
         
+        $this->channel = $post->category_id;
         $this->setSiteTitle($post->title);
         $this->setPageDescription($post->summary);
         $this->setPageKeyWords($post->tagText);

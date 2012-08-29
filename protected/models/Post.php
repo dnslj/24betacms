@@ -316,7 +316,7 @@ class Post extends CActiveRecord
 	    $title = ($len === 0) ? $this->title : $this->getSubTitle($len);
 	    if ($this->istop == BETA_YES)
 	        $title = '<strong>' . $title . '</strong>';
-	    return l($title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target));
+	    return l($title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target, 'title'=>$this->title));
 	}
 	
 	public function getPostToolbar()
