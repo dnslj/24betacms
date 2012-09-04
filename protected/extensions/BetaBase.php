@@ -165,6 +165,43 @@ class BetaBase
         return $newText;
     }
 
+    public static function megerHttpUrl($baseurl, $relativeUrl)
+    {
+        $baseurl = trim($baseurl);
+        $relativeUrl = trim($relativeUrl);
+        
+        if (empty($baseurl) || empty($relativeUrl))
+            throw new Exception('$baseurl and $relativeUrl is null');
+        
+        $result = filter_var($baseurl, FILTER_VALIDATE_URL);
+        if ($result === false)
+            throw new Exception('$baseurl is not a valid url');
+        
+        $pos = stripos($baseurl, 'http://');
+        if ($pos !== 0)
+            throw new Exception('$baseurl is not a valid http protocol url');
+        
+        $parts = parse_url($baseurl);
+        unset($parts['query'], $parts['fragment']);
+        $pos = stripos($relativeUrl, '/');
+        if ($pos === 0)
+            $parts['path'] = $relativeUrl;
+        else
+            $parts['path'] = dirname($parts['path']) . '/' . ltrim($relativeUrl, './');
+        
+        $url = self::httpBuildUrl($baseurl, $parts);
+        return $url;
+    }
+    
+    public function httpBuildUrl($url, $parts)
+    {
+        if (function_exists('http_build_url'))
+            return http_build_url($url, $parts);
+        else {
+            return 'xxx';
+        }
+    }
+    
     public static function ping($sitename, $siteurl, $page, $rss = '')
     {
         $pingXml= '<?xml version="1.0" encoding="UTF-8"?>';
@@ -183,4 +220,5 @@ class BetaBase
         $result = simplexml_load_string($data);
         return !(bool)(int)$result;
     }
+
 }

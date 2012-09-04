@@ -205,5 +205,34 @@ class SiteController extends Controller
         $result = $client->__soapCall('weblogUpdates.extendedPing', $arguments);
         var_dump($result);
     }
+
+    public function actionPics()
+    {
+        $url = 'http://www.cnbeta.com/articles/aaa/204285.htm?id=1000#comments';
+        $image = 'images/bb/feed.gif';
+        $parts = BetaBase::megerHttpUrl($url, $image);
+        print_r($parts);
+        exit;
+        
+        
+        
+        $host = parse_url($url, PHP_URL_HOST);
+        $curl = new CDCurl();
+        $curl->referer($host);
+        $curl->user_agent($agent);
+        $curl->get($url);
+        $errno = $curl->errno();
+        $error = $curl->error();
+        var_dump($errno);
+        var_dump($error);
+        $data = $curl->rawdata();
+        
+        $pattern = '/<img.*?src="?(.+?)["\s]{1}?.*?>/is';
+        $result = preg_match_all($pattern, $data, $matches);
+        if ($result) {
+            array_shift($matches);
+            var_dump($matches);
+        }
+    }
 }
 
