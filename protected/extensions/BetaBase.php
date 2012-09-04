@@ -165,21 +165,25 @@ class BetaBase
         return $newText;
     }
 
-    public static function megerHttpUrl($baseurl, $relativeUrl)
+    public static function mergeHttpUrl($baseurl, $relativeUrl)
     {
-        $baseurl = trim($baseurl);
-        $relativeUrl = trim($relativeUrl);
+        $baseurl = trim($baseurl, ' \'\"');
+        $relativeUrl = trim($relativeUrl, ' \'\"');
         
+        // $baseurl and $relativeUrl is null
         if (empty($baseurl) || empty($relativeUrl))
-            throw new Exception('$baseurl and $relativeUrl is null');
+            return false;
         
+        if (filter_var($relativeUrl, FILTER_VALIDATE_URL) !== false && stripos($relativeUrl, 'http://') === 0)
+            return $relativeUrl;
+        
+        // $baseurl is not a valid url
         $result = filter_var($baseurl, FILTER_VALIDATE_URL);
-        if ($result === false)
-            throw new Exception('$baseurl is not a valid url');
+        if ($result === false) return false;
         
+        // $baseurl is not a valid http protocol url
         $pos = stripos($baseurl, 'http://');
-        if ($pos !== 0)
-            throw new Exception('$baseurl is not a valid http protocol url');
+        if ($pos !== 0) return false;
         
         $parts = parse_url($baseurl);
         unset($parts['query'], $parts['fragment']);
@@ -189,17 +193,28 @@ class BetaBase
         else
             $parts['path'] = dirname($parts['path']) . '/' . ltrim($relativeUrl, './');
         
-        $url = self::httpBuildUrl($baseurl, $parts);
+        if (function_exists('http_build_url'))            $url = http_build_url($url, $parts);
+        else
+            $url = self::httpBuildUrl($parts);
         return $url;
     }
     
-    public function httpBuildUrl($url, $parts)
+    public function httpBuildUrl(array $parts)
     {
-        if (function_exists('http_build_url'))
-            return http_build_url($url, $parts);
-        else {
-            return 'xxx';
-        }
+        if (array_key_exists('scheme', $parts))
+            $url = $parts['scheme'] . '://';
+        
+        if (array_key_exists('user', $parts))
+            $url .= $parts['user'] . ':' . $parts['pass'] . '@';
+        
+        $url .= $parts['host'];
+        if (array_key_exists('port', $parts))
+            $url .= ':' . $parts['port'];
+        
+        if (array_key_exists('path', $parts))
+            $url .= $parts['path'];
+        
+        return $url;
     }
     
     public static function ping($sitename, $siteurl, $page, $rss = '')

@@ -208,13 +208,7 @@ class SiteController extends Controller
 
     public function actionPics()
     {
-        $url = 'http://www.cnbeta.com/articles/aaa/204285.htm?id=1000#comments';
-        $image = 'images/bb/feed.gif';
-        $parts = BetaBase::megerHttpUrl($url, $image);
-        print_r($parts);
-        exit;
-        
-        
+        $url = 'http://www.cnbeta.com/articles/204285.htm';
         
         $host = parse_url($url, PHP_URL_HOST);
         $curl = new CDCurl();
@@ -231,7 +225,14 @@ class SiteController extends Controller
         $result = preg_match_all($pattern, $data, $matches);
         if ($result) {
             array_shift($matches);
-            var_dump($matches);
+        }
+        
+        foreach ($matches[0] as $row) {
+            $newurl = BetaBase::mergeHttpUrl($url, $row);
+            if ($newurl === false) continue;
+            
+            echo '<li><b>' . $row . '</b></li>';
+            echo '<li>' . $newurl . '</li>';
         }
     }
 }
