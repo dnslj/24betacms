@@ -46,7 +46,8 @@ class PostController extends AdminController
 	        }
 	        if ($model->save()) {
 	            $this->afterPostSave($model);
-	            $this->imagesLocal($model);
+	            if (param('auto_remote_image_local'))
+    	            $this->imagesLocal($model);
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
                 $this->redirect(request()->getUrl());
 	        }
