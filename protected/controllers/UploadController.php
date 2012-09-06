@@ -5,16 +5,24 @@ class UploadController extends Controller
     {
         if (request()->getIsPostRequest() && user()->checkAccess('upload_file')) {
             $upload = CUploadedFile::getInstanceByName('imgFile');
-            $this->uploadImage($upload, UPLOAD_TYPE_PICTURE, 'images');
+            if ($upload->hasError) {
+                $data = array(
+                    'error' => 1,
+                    'message' => 'upload file error: ' . $upload->error,
+                );
+            }
+            else
+                $data = $this->uploadImage($upload, UPLOAD_TYPE_PICTURE, 'images');
         }
         else {
             $data = array(
                 'error' => 1,
                 'message' => t('you_do_not_have_enough_permissions'),
             );
-            echo CJSON::encode($data);
-            exit(0);
         }
+        
+        echo CJSON::encode($data);
+        exit(0);
     }
     
     private function uploadImage(CUploadedFile $upload, $fileType = UPLOAD_TYPE_UNKNOWN, $additional = 'images')
@@ -32,8 +40,7 @@ class UploadController extends Controller
                 'url' => fbu($filename['url']),
             );
         }
-        echo CJSON::encode($data);
-        exit(0);
+        return $data;
     }
     
     private function uploadFile(CUploadedFile $upload, $fileType = UPLOAD_TYPE_UNKNOWN, $additional = 'files')
@@ -51,8 +58,7 @@ class UploadController extends Controller
                 'url' => fbu($filename['url']),
             );
         }
-        echo CJSON::encode($data);
-        exit(0);
+        return $data;
     }
     
     private function afterUploaded(CUploadedFile $upload, $fileUrl, $fileType = UPLOAD_TYPE_UNKNOWN)
@@ -68,3 +74,4 @@ class UploadController extends Controller
         return $model->save();
     }
 }
+

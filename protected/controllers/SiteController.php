@@ -208,32 +208,18 @@ class SiteController extends Controller
 
     public function actionPics()
     {
-        $url = 'http://www.cnbeta.com/articles/204285.htm';
+        $url = 'http://www.24beta.cn/archives/89';
         
-        $host = parse_url($url, PHP_URL_HOST);
         $curl = new CDCurl();
-        $curl->referer($host);
+        $curl->referer($url);
         $curl->user_agent($agent);
         $curl->get($url);
         $errno = $curl->errno();
         $error = $curl->error();
-        var_dump($errno);
-        var_dump($error);
-        $data = $curl->rawdata();
+        $html = $curl->rawdata();
         
-        $pattern = '/<img.*?src="?(.+?)["\s]{1}?.*?>/is';
-        $result = preg_match_all($pattern, $data, $matches);
-        if ($result) {
-            array_shift($matches);
-        }
-        
-        foreach ($matches[0] as $row) {
-            $newurl = BetaBase::mergeHttpUrl($url, $row);
-            if ($newurl === false) continue;
-            
-            echo '<li><b>' . $row . '</b></li>';
-            echo '<li>' . $newurl . '</li>';
-        }
+        $data = CDFileLocal::fetchAndReplaceMultiWithHtml($html);
+        echo $data;
     }
 }
 

@@ -46,6 +46,7 @@ class PostController extends AdminController
 	        }
 	        if ($model->save()) {
 	            $this->afterPostSave($model);
+	            $this->imagesLocal($model);
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
                 $this->redirect(request()->getUrl());
 	        }
@@ -78,6 +79,15 @@ class PostController extends AdminController
                 app()->session->remove($key);
             }
         }
+	}
+	
+	private function imagesLocal(AdminPost $post)
+	{
+	    $content = CDFileLocal::fetchAndReplaceMultiWithHtml($post->content);
+	    if ($content === false) return false;
+	    
+	    $post->content = $content;
+	    return $post->save(true, array('content'));
 	}
 	
 	public function actionLatest($cid = 0, $tid = 0)

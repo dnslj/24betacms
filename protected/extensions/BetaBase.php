@@ -34,11 +34,13 @@ class BetaBase
      * -1 目录不存在并且无法创建
      * -2 目录不可写
      */
-    public static function makeUploadPath($basePath, $additional = null)
+    public static function makeUploadPath($additional = null, $basePath = null)
     {
         $relativeUrl = (($additional === null) ? '' : $additional . '/') . date('Y/m/d/', $_SERVER['REQUEST_TIME']);
         $relativePath = (($additional === null) ? '' : $additional . DS) . date(addslashes(sprintf('Y%sm%sd%s', DS, DS, DS)), $_SERVER['REQUEST_TIME']);
 
+        if (empty($basePath))
+            $basePath = param('uploadBasePath');
         $path = $basePath . $relativePath;
 
         if ((file_exists($path) || mkdir($path, 0755, true)) && is_writable($path))
@@ -65,9 +67,9 @@ class BetaBase
         return $file;
     }
     
-    public static function makeUploadFilePath($basePath, $extension, $additional = null)
+    public static function makeUploadFilePath($extension, $additional = null, $basePath = null)
     {
-        $path = self::makeUploadPath($basePath, $additional);
+        $path = self::makeUploadPath($additional, $basePath);
         $file = self::makeUploadFileName($extension);
         
         $data = array(
@@ -102,7 +104,7 @@ class BetaBase
             return $result;
         }
         
-        $path = self::makeUploadPath(param('uploadBasePath'), $additional);
+        $path = self::makeUploadPath($additional, $basePath = null);
         $file = self::makeUploadFileName(null);
         $filename = $path['path'] . $file;
         $im = new CDImage();
@@ -123,7 +125,7 @@ class BetaBase
     
     public static function uploadFile(CUploadedFile $upload, $additional = null, $deleteTempFile = true)
     {
-        $filename = self::makeUploadFilePath(param('uploadBasePath'), $upload->extensionName);
+        $filename = self::makeUploadFilePath($upload->extensionName, $additional, $basePath = null);
         $result = $upload->saveAs($filename['path'], $deleteTempFile);
         if ($result)
             return $filename;
@@ -237,3 +239,4 @@ class BetaBase
     }
 
 }
+
