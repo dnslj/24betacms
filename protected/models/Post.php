@@ -213,8 +213,9 @@ class Post extends CActiveRecord
 	
 	public function getFilterSummary()
 	{
-	    $html = $this->summary;
-	    if (stripos(strtolower(param('summaryHtmlTags')), 'img') !== false)
+	    $tags = param('summaryHtmlTags');
+	    $html = strip_tags($this->summary, $tags);
+	    if (stripos(strtolower($tags), 'img') !== false)
 	        $html = self::processImgTag($html);
 	    
 	    return $html;

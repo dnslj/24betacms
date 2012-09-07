@@ -44,6 +44,9 @@ return array(
         'admin' => array(
             'layout' => 'main',
         ),
+        'mobile' => array(
+            'layout' => 'main',
+        ),
     ),
     'preload' => array('log'),
     'components' => array(
@@ -117,6 +120,7 @@ return array(
         'urlManager' => array(
             'urlFormat' => $params['urlFormat'],
 		    'showScriptName' => false,
+            'caseSensitive' => false,
             'cacheID' => 'cache',
             'rules' => array(
                 'page/<page:\d+>' => 'site/index',
