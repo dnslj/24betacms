@@ -18,7 +18,7 @@
 <?php endforeach;?>
 
 <?php if ($pages->pageCount > 1):?>
-<div class="pagination pagination-centered"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'skin'=>'classic'));?></div>
+<div class="pagination pagination-centered"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'skin'=>'mobile'));?></div>
 <?php else:?>
 <div class="no-more-content"><?php echo t('no_more_posts', 'mobile');?></div>
 <?php endif;?>
