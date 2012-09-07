@@ -4,6 +4,6 @@
     <dd class="clearfix">
         <?php echo $model->topicIconHtml;?><?php echo $model->filterSummary;?>
     </dd>
-    <dt class="extra"><?php echo $model->shortDate;?></dt>
+    <dd class="extra"><?php echo $model->authorName;?>&nbsp;|&nbsp;<?php echo $model->createTime;?></dd>
 </dl>
 <?php endforeach;?>
