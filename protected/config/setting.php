@@ -87,5 +87,7 @@ return array(
     'visit_nums_init_max' => 1,
     'user_required_email_verfiy' => 0,
     'user_required_admin_verfiy' => 0,
+    'auto_remote_image_local' => 0,
+    'mobile_post_list_page_count' => 8,
 );
 
