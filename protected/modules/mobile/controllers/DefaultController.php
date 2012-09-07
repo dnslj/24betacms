@@ -18,7 +18,7 @@ class DefaultController extends MobileController
 	
 	    $count = MobilePost::model()->count($criteria);
 	    $pages = new CPagination($count);
-	    $pages->setPageSize(param('postCountOfPage'));
+	    $pages->setPageSize(param('mobile_post_list_page_count'));
 	    $pages->applyLimit($criteria);
 	    $posts = MobilePost::model()->findAll($criteria);
 	
