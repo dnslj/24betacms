@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+body {margin:0; padding:0;}
 a {color:#1F3B7B; text-decoration:none;}
 a:hover {color:#D14836; text-decoration:none;}
 
