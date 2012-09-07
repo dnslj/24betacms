@@ -5,6 +5,11 @@
  */
 class MobileController extends CController
 {
+    public function getModuleHomeUrl()
+    {
+        return aurl('mobile');
+    }
+    
 	public function setSiteTitle($value)
 	{
         $titles = array(param('sitename'));

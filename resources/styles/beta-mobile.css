@@ -3,10 +3,25 @@
 body {padding:0 10px;}
 a {color:#1F3B7B; text-decoration:none;}
 a:hover {color:#D14836; text-decoration:none;}
+
+.pagination .selected a{background-color:#f5f5f5;}
+.pagination .selected a{color:#999999;cursor:default;}
+.pagination .hidden span,.pagination .hidden a,.pagination .hidden a:hover{color:#999999;background-color:transparent;cursor:default;visibility:visible;}
+
+header {background:url(../images/header_bg.jpg) no-repeat; overflow:hidden; margin-bottom:10px;}
+header a {width:250px; height:60px; text-indent:-9999px; display:block;}
+
 .post-item {margin:0 0 10px; border:1px solid #EEEEEE; border-radius:8px; box-shadow:1px 1px 1px #CCCCCC; padding:10px; display:block;}
-.post-item dt {margin:0; pa2dding:0;}
+.post-item dt {margin:0; pa2dding:0; position:relative;}
 .post-item dt h1 {margin:0; line-height:18px; padding:0;}
-.post-item dt a {font-size:18px; display:block; padding:5px 0 15px; line-height:22px;}
-.post-item dd {margin:0 0 10px; line-height:22px; font-size:14px; word-wrap:break-word;}
-.post-item dd img {margin:0 10px 10px 0;}
-.post-item dd.extra {font-size:12px; color:#CCCCCC; font-weight:normal; margin:0 0 10px; text-align:right; margin:0;}
+.post-item dt h1 a {font-size:18px; display:block; padding:5px 0 15px; line-height:22px;}
+.post-item dd.summary {margin:0 0 10px; line-height:22px; font-size:14px; word-wrap:break-word;}
+.post-item dd.summary img {margin:0 10px 10px 0;}
+.post-item dd.extra {font-size:12px; color:#CCCCCC; font-weight:normal; margin:0 0 10px; text-align:right;}
+.post-item dd.read-more {border-top:1px solid #EEEEEE; margin:0; position:relative;}
+.post-item dd.read-more a {display:block; padding:10px 0 0; margin:0;}
+.post-item dd.read-more span {right:0;}
+
+/* 首页评论按钮 */
+.comment-number {position:absolute; width:30px; height:24px; color:white; top:2px; right:1px;}
+.comment-number a {text-align:center; width:30px; height:20px; display:block; background:#D14836; font-size:14px; font-weight:normal; line-height:20px; color:white; margin:0px; padding:0px; z-index:2;}

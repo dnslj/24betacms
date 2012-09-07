@@ -5,7 +5,8 @@ class DefaultController extends MobileController
 	public function actionIndex()
 	{
 	    $data = self::fetchLatestPosts();
-		$this->render('index', $data);
+	    
+	    $this->render('/post/list', $data);
 	}
 	
 	private static function fetchLatestPosts()
