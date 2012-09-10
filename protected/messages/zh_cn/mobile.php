@@ -6,4 +6,6 @@ return array(
     'return_top' => '回到顶部',
     'switch_desktop_version' => '切换到桌面版',
     'mobile_comment_extra' => '<strong>{author}</strong>&nbsp;发表于&nbsp;{time}',
+    'more_categories' => '更多',
+    'home' => '首页',
 );

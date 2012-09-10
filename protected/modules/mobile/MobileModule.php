@@ -11,6 +11,7 @@ class MobileModule extends CWebModule
 		$this->setImport(array(
 			'mobile.models.*',
 			'mobile.components.*',
+			'mobile.widgets.*',
 		));
 		
 		app()->errorHandler->errorAction = 'mobile/default/error';

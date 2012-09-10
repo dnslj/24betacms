@@ -7,10 +7,6 @@ a:hover {color:#D14836; text-decoration:none;}
 .beta-alert {font-size:12px; margin:1px; padding:4px 35px 4px 10px;}
 .beta-alert .close {top:-1px; right:-25px;}
 
-.pagination .selected a {background-color:#f5f5f5;}
-.pagination .selected a {color:#999999;cursor:default;}
-.pagination .hidden span,.pagination .hidden a,.pagination .hidden a:hover {color:#999999;background-color:transparent;cursor:default;visibility:visible;}
-
 header {background:black url(../images/header_bg.jpg) no-repeat; overflow:hidden; margin-bottom:10px;}
 header a {width:250px; height:60px; text-indent:-9999px; display:block;}
 footer {font-size:14px; margin:20px 0 0; position:relative; background:#AAAAAA;}

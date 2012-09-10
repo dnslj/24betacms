@@ -14,6 +14,7 @@
 <header>
     <a href="<?php echo $this->moduleHomeUrl;?>"><?php echo app()->name;?></a>
 </header>
+<?php $this->widget('BetaCategoryNavbar');?>
 <div class="beta-container">
 <?php echo $content;?>
 </div>
