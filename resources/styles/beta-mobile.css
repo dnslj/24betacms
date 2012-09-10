@@ -15,6 +15,11 @@ footer a:link, footer a:hover, footer a:visited {color:white;}
 footer a.return-top {float:left;}
 footer a.switch-version {float:right;}
 
+/* category nav */
+.category-nav {margin:0 0 10px;}
+.category-nav .icon-chevron-right {float:right; color:white; opacity:.25;}
+#show-category-nav {margin-bottom:5px;}
+
 .beta-container {padding:0 10px;}
 
 h1.post-title {margin:0; line-height:18px; padding:0;}

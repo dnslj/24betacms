@@ -8,4 +8,6 @@ return array(
     'mobile_comment_extra' => '<strong>{author}</strong>&nbsp;发表于&nbsp;{time}',
     'more_categories' => '更多',
     'home' => '首页',
+    'expand_category_list' => '展开分类',
+    'close_category_list' => '关闭分类',
 );
