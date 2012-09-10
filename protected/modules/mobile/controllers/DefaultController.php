@@ -8,6 +8,14 @@ class DefaultController extends MobileController
 	    
 	    $this->render('/post/list', $data);
 	}
+
+	public function actionError()
+	{
+	    $error = app()->errorHandler->error;
+	    if ($error) {
+	        $this->render('/system/error', $error);
+	    }
+	}
 	
 	private static function fetchLatestPosts()
 	{

@@ -12,6 +12,8 @@ class MobileModule extends CWebModule
 			'mobile.models.*',
 			'mobile.components.*',
 		));
+		
+		app()->errorHandler->errorAction = 'mobile/default/error';
 	}
 
 	public function beforeControllerAction($controller, $action)

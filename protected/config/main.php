@@ -132,6 +132,10 @@ return array(
                 'topics' => 'topic/list',
                 'tag/<name:[\w\s\%\-\+\.]+>' => 'tag/posts',
                 'feed/<_a:(category|topic)>/<id:\d+>' => 'feed/<_a>',
+            
+                'mobile/page/<page:\d+>' => 'mobile/default/index',
+                'mobile' => 'mobile/default/index',
+                'mobile/archives/<id:\d+>' => 'mobile/post/show',
             ),
         ),
     ),

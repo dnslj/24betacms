@@ -243,6 +243,13 @@ class Post extends CActiveRecord
 	    return $this->getCreateTime($format);
 	}
 	
+	public function getShortTime()
+	{
+	    $format = param('formatShortTime');
+	    
+	    return $this->getCreateTime($format);
+	}
+	
 	public function getAuthorName()
 	{
 	    static $name;

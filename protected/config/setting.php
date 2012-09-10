@@ -70,6 +70,7 @@ return array(
     
     // 简述中可以使用的html标签
     'summaryHtmlTags' => '<b><strong><img><p>',
+    'mobileSummaryHtmlTags' => '<img>',
     
     // default param and value
     'post_list_type' => 0,
