@@ -8,7 +8,7 @@ class DefaultController extends MobileController
 	    
 	    $this->setSiteTitle('');
 	    cs()->registerMetaTag('all', 'robots');
-	    $this->render('/post/list', $data);
+	    $this->render('index', $data);
 	}
 
 	public function actionError()

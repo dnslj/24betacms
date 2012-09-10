@@ -18,7 +18,7 @@ footer a.switch-version {float:right;}
 /* category nav */
 .category-nav {margin:0 0 10px;}
 .category-nav .icon-chevron-right {float:right; color:white; opacity:.25;}
-#show-category-nav {margin-bottom:5px;}
+.show-category-nav {margin-bottom:5px;}
 
 .beta-container {padding:0 10px;}
 
