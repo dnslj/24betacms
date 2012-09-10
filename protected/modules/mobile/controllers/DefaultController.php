@@ -6,6 +6,7 @@ class DefaultController extends MobileController
 	{
 	    $data = self::fetchLatestPosts();
 	    
+	    $this->setSiteTitle('');
 	    $this->render('/post/list', $data);
 	}
 
@@ -13,6 +14,7 @@ class DefaultController extends MobileController
 	{
 	    $error = app()->errorHandler->error;
 	    if ($error) {
+	        $this->pageTitle = 'Error ' . $error['code'];
 	        $this->render('/system/error', $error);
 	    }
 	}
