@@ -1,6 +1,6 @@
 <?php foreach ($models as $model):?>
 <dl class="post-item">
-    <dt>
+    <dt class="beta-title">
         <h1 class="post-title"><?php echo $model->titleLink;?></h1>
         <span class="comment-number"><?php echo l($model->comment_nums, $model->url, array('title'=>$model->title));?></span>
     </dt>

@@ -7,6 +7,7 @@ class DefaultController extends MobileController
 	    $data = self::fetchLatestPosts();
 	    
 	    $this->setSiteTitle('');
+	    cs()->registerMetaTag('all', 'robots');
 	    $this->render('/post/list', $data);
 	}
 

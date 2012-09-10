@@ -25,4 +25,5 @@
 </html>
 
 <?php cs()->registerCoreScript('jquery');?>
+<?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);?>
 <?php cs()->registerScriptFile(tbu('scripts/beta-mobile.js'), CClientScript::POS_END);?>

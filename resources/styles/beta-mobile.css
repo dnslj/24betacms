@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-body {margin:0; padding:0; font-family:auto; font-size:14px;}
+body {margin:0; padding:0; font-family:auto; font-size:14px; color:black;}
 a {color:#1F3B7B; text-decoration:none;}
 a:hover {color:#D14836; text-decoration:none;}
 
@@ -25,7 +25,7 @@ h1.post-title a:hover {color:#D14836;}
 .post-extra {font-size:12px; color:#AAAAAA; font-weight:normal; margin:0 0 10px;}
 
 .post-item {margin:0 0 10px; border:1px solid #EEEEEE; border-radius:8px; box-shadow:1px 1px 1px #CCCCCC; padding:10px; display:block;}
-.post-item dt {margin:0; padding:0 35px 0 0; position:relative;}
+.beta-title {margin:0; padding:0 35px 0 0; position:relative;}
 .post-item dd.summary {margin:0 0 10px; line-height:22px; font-size:14px; word-wrap:break-word;}
 .post-item dd.summary img {margin:5px 0;}
 .post-item .post-extra {text-align:right;}
@@ -48,6 +48,11 @@ h1.post-title a:hover {color:#D14836;}
 #beta-post-content li {margin-bottom:5px; line-height:22px;}
 #beta-post-content table {border-spacing:0; border-collapse:collapse; border:0; margin:10px 0;}
 #beta-post-content table th, #beta-post-content table td {border:1px solid #CFCFCF; padding:5px;}
+.beta-post-share {text-align:right; margin-bottom:10px;}
+.beta-digg-button {display:block; float:right; background:#D14836; padding:5px 8px; color:white; overflow:hidden; height:14px; font-size:12px; line-height:12px;}
+.beta-digg-button:hover {background:black; color:white; text-decoration:none;}
+.beta-digg-button .digg-plus {font-family:Helvetica,Arial,sans-serif; text-transform:uppercase; letter-spacing:-0.05em; font-size:16px; margin-right:5px;}
+
 
 /* comment/list */
 .beta-post-extra {font-size:12px; margin-bottom:5px; padding:0 0 3px; color:#555555;}
@@ -63,5 +68,7 @@ h1.post-title a:hover {color:#D14836;}
 .beta-comment-quote {border:1px solid #CFCFCF; padding:8px; margin:0 0 10px; line-height:20px;}
 .beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; margin:0; padding:0 5px; width:auto; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid #CFCFCF;}
 .beta-hot-comment {border:1px solid #FC0; background:#FFE57F;}
-.beta-no-comments, .beta-no-hot-comments {font-size:12px; text-align:center; color:gray;}
-.disable_comment {font-size:12px; text-align:center; co
+.beta-no-comments, .beta-no-hot-comments {font-size:12px; text-align:center; color:gray; padding:5px;}
+.disable_comment {font-size:12px; text-align:center; color:red; padding:5px;}
+
+
