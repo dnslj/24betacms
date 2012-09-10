@@ -1,5 +1,5 @@
 <div class="beta-comments">
-    <div class="alert beta-alert beta-alert-message hide" id="beta-comment-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text"></span></div>
+    <div class="alert beta-alert hide" id="beta-comment-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text"></span></div>
     <div class="beta-mini-title" id="beta-comment-list"><?php echo t('comment_list');?></div>
     <?php foreach ((array)$comments as $key => $comment):?>
     <dl class="beta-comment-item">
