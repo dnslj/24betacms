@@ -1,4 +1,4 @@
-<div class="post-detail">
+<div class="beta-post-detail">
     <h1 class="post-title"><?php echo $post->titleLink;?></h1>
     <p class="post-extra"><?php echo $post->authorName;?>&nbsp;|&nbsp;<?php echo $post->shortTime;?></p>
     <div id="beta-post-content"><?php echo $post->filterContent;?></div>

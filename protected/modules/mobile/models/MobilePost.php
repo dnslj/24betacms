@@ -3,6 +3,8 @@
  * MobilePost
  * @author chendong
  * @property string $url
+ * @property string $filterSummary
+ * @property string $titleLink
  */
 class MobilePost extends Post
 {
@@ -26,5 +28,10 @@ class MobilePost extends Post
         $html = strip_tags($this->summary, $tags);
          
         return $html;
+    }
+    
+    public function getTitleLink($len = 0)
+    {
+       return parent::getTitleLink($len, '_self');
     }
 }
