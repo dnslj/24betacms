@@ -8,9 +8,9 @@
 <script type="text/javascript">
 $('.show-category-nav').toggle(function(event){
 	$(this).button('expand').button('toggle');
-	$(this).next('.category-nav').slideDown('fast');
+	$(this).next('.category-nav').show();
 }, function(){
 	$(this).button('reset').button('toggle');
-	$(this).next('.category-nav').slideUp('fast');
+	$(this).next('.category-nav').hide();
 });
 </script>
