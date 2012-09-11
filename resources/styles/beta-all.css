@@ -160,7 +160,7 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 .beta-post-summary .beta-post-content p {margin:0;}
 .beta-post-content {word-wrap:break-word; overflow-x:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:24px; margin-bottom:18px;}
-.beta-post-content img {margin:10px; max-width:560px; overflow:hidden;}
+.beta-post-content img {margin:10px; max-width:600px; overflow:hidden;}
 .beta-post-content blockquote {padding: 10px; background:#EFEFEF; color:#555; font-size:14px; margin:15px 10px; -wekkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
 .beta-post-content blockquote p {font-size:14px;}
 .beta-post-content ul {margin:1px 0 15px 30px;}
