@@ -1,4 +1,4 @@
-<button data-toggle="button" data-expand-text="<?php echo t('close_category_list', 'mobile');?>" class="show-category-nav btn btn-block"><?php echo t('expand_category_list', 'mobile');?></button>
+<button data-toggle="button" data-expand-text="<?php echo t('close_category_list', 'mobile');?>" class="show-category-nav btn btn-block btn-large btn-success"><?php echo t('expand_category_list', 'mobile');?></button>
 <ul class="nav nav-tabs nav-stacked category-nav hide">
 <?php foreach ($models as $model):?>
     <li><?php echo l('<i class="icon-chevron-right"></i>' . $model->name, $model->getPostsUrl());?></li>
