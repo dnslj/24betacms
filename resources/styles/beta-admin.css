@@ -33,7 +33,7 @@ select.select-mini {width:auto;height:auto;line-height:auto; padding:0;}
 
 .control-group.bottom10px {margin-bottom:10px;}
 
-#summary, #content, #special-desc {width:610px;}
+#summary, #content, #special-desc {width:620px;}
 #summary {height:180px;}
 #content {height:450px;}
 #special-desc {height:200px;}
