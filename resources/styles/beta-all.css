@@ -110,11 +110,11 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 
 /* global layout */
 /*body {background:#CACACA;}*/
-.beta-container {width:950px; background:#FFFFFF; margin:0 auto; /*-moz-box-shadow:0 0 18px #444; -webkite-box-shadow:0 0 18px #444; box-shadow:0 0 18px #444;*/}
-.beta-entry {width:950px; background:#FFFFFF; margin:0 auto;}
+.beta-container {width:990px; background:#FFFFFF; margin:0 auto; /*-moz-box-shadow:0 0 18px #444; -webkite-box-shadow:0 0 18px #444; box-shadow:0 0 18px #444;*/}
+.beta-entry {background:#FFFFFF; margin:0 auto;}
 .beta-footer {margin-top:10px;}
 .beta-sidebar {width:338px; float:right;}
-.beta-content {width:602px; float:left;}
+.beta-content {width:642px; float:left;}
 .beta-pages {font-size:14px;}
 .beta-pages a {font-size:14px;}
 .beta-backtop {position:fixed; right:-1px; bottom:-1px; display:inline-block; font-size:12px; font-weight:bold; height:27px; line-height:27px; padding:0 8px; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px; background:whiteSmoke; border:1px solid rgba(0, 0, 0, 0.1); box-shadow:0 0 6px #808080; min-width:55px; margin:0; text-align:center; z-index:10001;}
@@ -184,8 +184,8 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 
 /* post show detail */
 .beta-post-show {border:1px solid #BFBFBF; overflow:hidden;}
-.beta-post-detail {overflow:hidden; padding:10px;}
-.beta-post-detail h1 {font-family:微软雅黑;font-size:20px; text-align:center; line-height:26px; margin-bottom:25px;}
+.beta-post-detail {overflow:hidden; padding:10px 15px;}
+.beta-post-detail h1 {font-family:微软雅黑;font-size:20px; line-height:26px; margin-bottom:25px;}
 .beta-post-detail .beta-post-content {margin:20px 0 10px; word-wrap:break-word; overflow:hidden;}
 .beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {font-size:12px; margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
 .beta-post-detail .beta-post-tags a, .beta-post-detail .beta-post-source a {margin-left:5px; font-size:12px!important;}
