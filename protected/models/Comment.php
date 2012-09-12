@@ -225,15 +225,17 @@ class Comment extends CActiveRecord
 	
 	protected function afterSave()
 	{
-	    $counters = array('comment_nums' => 1);
-	    Post::model()->updateCounters($counters, 'id = :pid', array(':pid'=>$this->post_id));
+	    if ($this->getIsNewRecord()) {
+    	    $counters = array('comment_nums' => 1);
+    	    Post::model()->updateCounters($counters, 'id = :pid', array(':pid'=>$this->post_id));
+	    }
 	}
 	
 	protected function afterDelete()
 	{
 	    $counters = array('comment_nums' => -1);
 	    Post::model()->updateCounters($counters, 'id = :pid', array(':pid'=>$this->post_id));
-	    // @todo 此处还需要删除评论的支持及反对记录
+	    // @todo 此处还需要删除评论的支持及反对记录，目前还没有这些记录
 	}
 	
 }
