@@ -27,7 +27,7 @@ class CDFileLocal extends CComponent
         if ($result === false) return false;
         
         array_shift($matches);
-        $urls = (array)$matches[0];
+        $urls = array_unique((array)$matches[0]);
         if (count($urls) == 0) return false;
         
         foreach ($urls as $index => $url) {

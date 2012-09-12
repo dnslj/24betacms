@@ -86,10 +86,10 @@ class PostController extends AdminController
 	{
 	    $summary = CDFileLocal::fetchAndReplaceMultiWithHtml($post->summary);
 	    $content = CDFileLocal::fetchAndReplaceMultiWithHtml($post->content);
-	    if ($summary === false && $content === false) return false;
+	    if ($summary === false and $content === false) return false;
 	    
-	    $post->summary = $summary;
-	    $post->content = $content;
+	    $summary === false or $post->summary = $summary;
+	    $content === false or $post->content = $content;
 	    return $post->save(true, array('summary', 'content'));
 	}
 	
