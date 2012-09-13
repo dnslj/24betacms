@@ -21,7 +21,7 @@
     <?php endif;?>
 </div>
 
-<?php if ($post->comment_nums >= count($comments)):?>
+<?php if ($post->comment_nums > count($comments)):?>
 <button data-page="1" id="load-more-comments" type="button" data-toggle="toggle" data-url="<?php echo $post->commentsUrl;?>" class="btn btn-block btn-inverse"><?php echo t('load_more_comments', 'mobile');?></button>
 <?php endif;?>
 
