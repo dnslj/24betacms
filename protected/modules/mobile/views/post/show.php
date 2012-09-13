@@ -10,6 +10,7 @@
             <span class="digg-plus">+</span><span class="digg-count"><?php echo $post->digg_nums;?></span>
         </a>
     </div>
+    <div class="beta-create-form"><?php $this->renderPartial('/comment/_create_form', array('comment'=>$comment));?></div>
     <?php $this->renderPartial('/comment/list', array('comments'=>$comments));?>
 </div>
 
