@@ -117,6 +117,7 @@ class Post extends CActiveRecord
 	        'category'=>array(self::BELONGS_TO, 'Category', 'category_id'),
 	        'topic'=>array(self::BELONGS_TO, 'Topic', 'topic_id'),
 		    'uploadCount' => array(self::STAT, 'Upload', 'post_id'),
+		    'commentCount' => array(self::STAT, 'Comment', 'post_id'),
 		    'picture' => array(self::HAS_MANY, 'Upload', 'post_id',
 		        'condition' => 'file_type = :filetype',
 		        'params' => array(':filetype' => UPLOAD_TYPE_PICTURE),

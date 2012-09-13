@@ -10,4 +10,7 @@ return array(
     'home' => '首页',
     'expand_category_list' => '展开分类',
     'close_category_list' => '收起分类',
+    'submit_comment' => '发布',
+    'submiting' => '发布中...',
+    'load_more_comments' => '载入更多评论',
 );

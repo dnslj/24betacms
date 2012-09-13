@@ -167,7 +167,7 @@ class Comment extends CActiveRecord
             'state' => COMMENT_STATE_ENABLED,
 	    ));
 	
-	    $comments = Comment::model()->findAll($criteria);
+	    $comments = self::model()->findAll($criteria);
 	    return $comments;
 	}
 	
@@ -185,7 +185,7 @@ class Comment extends CActiveRecord
             )
             ->addCondition('up_nums >= ' . param('upNumsOfCommentIsHot'));
 	
-	    $comments = Comment::model()->findAll($criteria);
+	    $comments = self::model()->findAll($criteria);
 	    return $comments;
 	}
 	

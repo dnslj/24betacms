@@ -5,6 +5,7 @@
  * @property string $url
  * @property string $filterSummary
  * @property string $titleLink
+ * @property string $commentsUrl
  */
 class MobilePost extends Post
 {
@@ -33,5 +34,10 @@ class MobilePost extends Post
     public function getTitleLink($len = 0)
     {
        return parent::getTitleLink($len, '_self');
+    }
+
+    public function getCommentsUrl()
+    {
+        return aurl('mobile/comment/list', array('pid'=>$this->id));
     }
 }

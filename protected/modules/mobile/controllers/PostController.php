@@ -9,7 +9,8 @@ class PostController extends MobileController
             throw new CHttpException(403, t('post_is_not_found'));
         
         $comments = MobileComment::fetchList($id);
-        $comment = new CommentForm();
+        $comment = new MobileCommentForm();
+        $comment->post_id = $id;
         
         if ($post->getContainCode()) {
             cs()->registerScriptFile(sbu('libs/prettify/prettify.js'), CClientScript::POS_END);
@@ -24,6 +25,7 @@ class PostController extends MobileController
             'comment' => $comment,
         ));
     }
+    
     
     
 }

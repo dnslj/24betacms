@@ -11,7 +11,7 @@
         </a>
     </div>
     <div class="beta-create-form"><?php $this->renderPartial('/comment/_create_form', array('comment'=>$comment));?></div>
-    <?php $this->renderPartial('/comment/list', array('comments'=>$comments));?>
+    <?php $this->renderPartial('/comment/list', array('comments'=>$comments, 'post'=>$post));?>
 </div>
 
 <div class="hide ajax-jsstr">
@@ -26,8 +26,6 @@ $(function(){
 	<?php if ($post->getContainCode()) echo 'prettyPrint();';?>
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
 	$(document).one('click', '#beta-digg-button', BetaPost.digg);
-	$(document).on('click', '.beta-comment-rating', BetaComment.rating);
-	$(document).on('click', '.beta-comment-reply', BetaComment.reply);
 });
 </script>
 

@@ -1,4 +1,4 @@
-<?php if ($comment):?>
+<?php foreach ((array)$comments as $comment):?>
 <dl class="beta-comment-item">
     <dt class="beta-post-extra"><span><?php echo t('comment_extra', 'main', array('{floor}'=>'x', '{author}'=>$comment->authorName, '{time}'=>$comment->createTime));?></span></dt>
     <dd class="beta-comment-content"><?php echo $comment->filterContent;?></dd>
@@ -9,4 +9,4 @@
         <a class="beta-comment-rating" href="javascript:void(0);" data-url="<?php echo $comment->reportUrl;?>" rel="nofollow"><?php echo t('report_comment');?></a>
     </dd>
 </dl>
-<?php endif;?>
+<?php endforeach;?>

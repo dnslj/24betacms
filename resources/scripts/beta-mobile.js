@@ -59,9 +59,11 @@ var BetaComment = {
 		var msgtext = msg.find('.text');
 		form.after(msg);
 
-		form.find('input.beta-captcha').blur();
+		var captchaEl = form.find('.beta-captcha');
+		if (captchaEl.length > 0)
+			form.find('input.beta-captcha').blur();
 
-		if (form.find('.beta-control-group.error').length > 0) {
+		if (form.find('.help-block.error').length > 0) {
 			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('alert-success').addClass('alert-error').show();
 			return false;
@@ -77,16 +79,18 @@ var BetaComment = {
 				contentEl.focus();
 				return false;
 			}
-			var captchaEl = form.find('.beta-captcha');
-			var captcha = $.trim(captchaEl.val());
-			if (captcha.length != 4) {
-				msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
-				msg.removeClass('alert-success').addClass('alert-error').show();
-				captchaEl.focus();
-				return false;
+			if (captchaEl.length > 0) {
+				var captcha = $.trim(captchaEl.val());
+				if (captcha.length != 4) {
+					msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
+					msg.removeClass('alert-success').addClass('alert-error').show();
+					captchaEl.focus();
+					return false;
+				}
 			}
 		}
 
+		var button = form.find('button[type=submit]');
 		var jqXhr = $.ajax({
 			type: 'post',
 			url: form.attr('action'),
@@ -94,6 +98,7 @@ var BetaComment = {
 			dataType: 'jsonp',
 			cache: false,
 			beforeSend: function(jqXhr){
+				button.button('loading');
 				msgtext.html($('.ajax-jsstr .ajax-send').text());
 				msg.removeClass('alert-error').addClass('alert-success').show();
 			}
@@ -105,7 +110,7 @@ var BetaComment = {
 				form.find('.beta-control-group').removeClass('success error');
 				form.find('.beta-control-group').removeClass('alert-success alert-error');
 				msg.removeClass('alert-error').addClass('alert-success').show();
-				var lastComment = $('.beta-post-show .beta-comment-item:last');
+				var lastComment = $('.beta-comment-item:last');
 				if (lastComment.length == 0)
 					lastComment = $('#beta-comment-list');
 				lastComment.after(data.html);
@@ -123,6 +128,9 @@ var BetaComment = {
 			jqXhr.abort();
 			msgtext.html($('.ajax-jsstr .ajax-fail').text());
 			msg.removeClass('alert-success').addClass('alert-error').show();
+		});
+		jqXhr.always(function(){
+			button.button('reset');
 		});
 		return false;
 	},
@@ -222,14 +230,14 @@ var BetaComment = {
 		var tthis = $(this);
 		var content = $.trim(tthis.val());
 		var minlen = parseInt(tthis.attr('minlen'));
-		var group = tthis.parents('.beta-control-group');
+		var help = tthis.parents('form').find('.help-block');
 		minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 		if (content.length > minlen) {
-			group.removeClass('error').addClass('success');
+			help.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
-			group.removeClass('success').addClass('error');
+			help.removeClass('success').addClass('error');
 			if (content.length == 0) tthis.addClass('mini');
 			return false;
 		}
@@ -258,6 +266,41 @@ var BetaComment = {
 			$('body').data('captcha.hash', [data['hash1'], data['hash2']]);
 		});
 		return false;
+	},
+	loadMore: function(event){
+		var tthis = $(this);
+		var page = parseInt(tthis.attr('data-page')) + 1;
+		var url = tthis.attr('data-url');
+		var data = {page: page};
+		
+		var jqXhr = $.ajax({
+			url: url,
+			dataType: 'jsonp',
+			type: 'get',
+			data: data,
+			cache: false,
+			beforeSend: function(jqXhr) {
+				tthis.button('loading');
+			}
+		});
+		
+		jqXhr.done(function(data){
+			if (data.errno == 0) {
+				var lastComment = $('.beta-comment-item:last');
+				if (lastComment.length == 0)
+					lastComment = $('#beta-comment-list');
+				lastComment.after(data.html);
+				
+				if (data.html.length > 0)
+					tthis.attr('data-page', page);
+			}
+			else
+				alert('Load more comments error');
+		});
+		
+		jqXhr.always(function(){
+			tthis.button('reset');
+		});
 	}
 };
 
