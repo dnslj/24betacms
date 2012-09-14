@@ -11,6 +11,8 @@ class PostController extends Controller
     
     public function actionShow($id)
     {
+        $this->autoSwitchMobile();
+        
         $id = (int)$id;
         if ($id <= 0)
             throw new CHttpException(404, t('post_is_not_found'));
@@ -178,3 +180,5 @@ class PostController extends Controller
     }
 
 }
+
+

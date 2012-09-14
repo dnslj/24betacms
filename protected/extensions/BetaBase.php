@@ -195,9 +195,8 @@ class BetaBase
         else
             $parts['path'] = dirname($parts['path']) . '/' . ltrim($relativeUrl, './');
         
-        if (function_exists('http_build_url'))            $url = http_build_url($url, $parts);
-        else
-            $url = self::httpBuildUrl($parts);
+        $url = function_exists('http_build_url') ? http_build_url($url, $parts) : self::httpBuildUrl($parts);
+        
         return $url;
     }
     
@@ -238,5 +237,16 @@ class BetaBase
         return !(bool)(int)$result;
     }
 
+    public static function userIsMobileBrower()
+    {
+        $browers = array('iPhone', 'Android', 'hpwOS', 'Windows Phone OS', 'BlackBerry');
+        $agent = $_SERVER['HTTP_USER_AGENT'];
+        foreach ($browers as $brower) {
+            $pos = stripos($agent, $brower);
+            if ($pos !== false) return true;
+        }
+        
+        return false;
+    }
 }
 

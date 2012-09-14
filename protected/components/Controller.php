@@ -6,6 +6,7 @@
 class Controller extends CController
 {
     public $channel;
+    public $breadcrumbs = array();
     
 	public function actions()
 	{
@@ -23,8 +24,6 @@ class Controller extends CController
 			),
 		);
 	}
-	
-	public $breadcrumbs = array();
 	
 	protected function setPageKeyWords($value)
 	{
@@ -77,4 +76,18 @@ class Controller extends CController
 	    return $html;
 	}
 	
+	protected function autoSwitchMobile($url = null)
+	{
+	    $mark = strip_tags(trim($_GET['f']));
+	    if (empty($mark) and BetaBase::userIsMobileBrower()) {
+	        if (empty($url)) {
+    	        $route = 'mobile/' . $this->id . '/' . $this->action->id;
+    	        $url = url($route, $this->actionParams);
+	        }
+	        $this->redirect($url);
+	        exit(0);
+	    }
+	}
 }
+
+

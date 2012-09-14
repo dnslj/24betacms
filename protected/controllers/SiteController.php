@@ -3,6 +3,8 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
+        $this->autoSwitchMobile(url('mobile/default/index'));
+        
         $data = self::fetchLatestPosts();
         $data['hottest'] = self::fetchHottestPosts();
         $data['recommend'] = self::fetchRecommendPosts();
@@ -221,5 +223,6 @@ class SiteController extends Controller
         $data = CDFileLocal::fetchAndReplaceMultiWithHtml($html);
         echo $data;
     }
+
 }
 
