@@ -27,8 +27,8 @@ class PostController extends Controller
         if (null === $post)
             throw new CHttpException(403, t('post_is_not_found'));
 
-        $comments = Comment::fetchList($id);
-        $hotComments = Comment::fetchHotList($id);
+        $comments = Comment::model()->fetchList($id);
+        $hotComments = Comment::model()->fetchHotList($id);
         $comment = new CommentForm();
         $comment->post_id = $id;
         

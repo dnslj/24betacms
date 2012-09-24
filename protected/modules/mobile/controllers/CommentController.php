@@ -47,7 +47,7 @@ class CommentController extends MobileController
         if ($post === null)
             throw new CHttpException(403, t('post_is_not_found'));
         
-        $comments = MobileComment::fetchList($pid, $page);
+        $comments = MobileComment::model()->fetchList($pid, $page);
         
         $data['errno'] = 0;
         $data['text'] = t('ajax_comment_done');

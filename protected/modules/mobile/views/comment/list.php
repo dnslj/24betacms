@@ -7,7 +7,7 @@
         <dd class="beta-comment-content"><?php echo $comment->filterContent;?></dd>
         <dd class="beta-comment-toolbar">
             <?php if (!$post->disable_comment):?>
-            <a class="beta-comment-reply" href="javascript:void(0);" data-url="<?php echo aurl('comment/create', array('id'=>$comment->id));?>" rel="nofollow"><?php echo t('reply_comment');?></a>
+            <a class="beta-comment-reply" href="javascript:void(0);" data-url="<?php echo $comment->replyUrl;?>" rel="nofollow"><?php echo t('reply_comment');?></a>
             <?php endif;?>
             <a class="beta-comment-rating" href="javascript:void(0);" data-url="<?php echo $comment->supportUrl;?>" rel="nofollow"><?php echo t('support_comment', 'main', array($comment->up_nums));?></a>
             <a class="beta-comment-rating" href="javascript:void(0);" data-url="<?php echo $comment->againstUrl;?>" rel="nofollow"><?php echo t('against_comment', 'main', array($comment->down_nums));?></a>
@@ -27,8 +27,8 @@
 
 <script type="text/javascript">
 $(function(){
-	$('.beta-comment-item').on('click', '.beta-comment-rating', BetaComment.rating);
-	$('.beta-comment-item').on('click', '.beta-comment-reply', BetaComment.reply);
+	$(document).on('click', '.beta-comment-rating', BetaComment.rating);
+	$(document).on('click', '.beta-comment-reply', BetaComment.reply);
 	$(document).on('click', '#load-more-comments', BetaComment.loadMore);
 });
 </script>

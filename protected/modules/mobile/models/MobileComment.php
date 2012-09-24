@@ -9,4 +9,9 @@ class MobileComment extends Comment
     {
         return parent::model($className);
     }
+    
+    public function getReplyUrl()
+    {
+        return aurl('mobile/comment/create', array('id'=>$this->id));
+    }
 }

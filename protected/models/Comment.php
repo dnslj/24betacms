@@ -19,6 +19,7 @@
  * @property string $filterContent
  * @property string $createTime
  * @property string $authorName
+ * @property string $replytUrl
  * @property string $supportUrl
  * @property string $againstUrl
  * @property string $reportUrl
@@ -154,7 +155,7 @@ class Comment extends CActiveRecord
         return (int)$this->up_nums >= (int)param('upNumsOfCommentIsHot');
 	}
 	
-	public static function fetchList($postid, $page = 1)
+	public function fetchList($postid, $page = 1)
 	{
 	    $postid = (int)$postid;
 	    $criteria = new CDbCriteria();
@@ -167,11 +168,11 @@ class Comment extends CActiveRecord
             'state' => COMMENT_STATE_ENABLED,
 	    ));
 	
-	    $comments = self::model()->findAll($criteria);
+	    $comments = $this->findAll($criteria);
 	    return $comments;
 	}
 	
-	public static function fetchHotList($postid, $page = 1)
+	public function fetchHotList($postid, $page = 1)
 	{
 	    $postid = (int)$postid;
 	    $criteria = new CDbCriteria();
@@ -185,8 +186,13 @@ class Comment extends CActiveRecord
             )
             ->addCondition('up_nums >= ' . param('upNumsOfCommentIsHot'));
 	
-	    $comments = self::model()->findAll($criteria);
+	    $comments = $this->findAll($criteria);
 	    return $comments;
+	}
+	
+	public function getReplyUrl()
+	{
+	    return aurl('post/comment', array('id'=>$this->id));
 	}
 	
 	public function getSupportUrl()
