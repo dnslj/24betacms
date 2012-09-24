@@ -80,9 +80,9 @@ h1.post-title a:hover {color:#D14836;}
 /* comment create form */
 .beta-alert-message {display:none;}
 .beta-create-form {margin-bottom:20px;}
-.beta-comment-form {font-size:12px; background:white; margin:10px 0 2px;}
+.beta-comment-form {font-size:12px; background:white; margin:10px 0 2px; text-align:center;}
 .beta-comment-form textarea {width:96%; height:40px; padding:4px; line-height:16px; font-size:12px; margin-bottom:2px;}
-.beta-comment-form .help-block {margin-bottom:5px;}
+.beta-comment-form .help-block {margin-bottom:5px; text-align:left;}
 .help-block.error {color:#b94a48;}
 .help-block.success {color:#468847;}
 #load-more-comments {margin-top:10px;}
