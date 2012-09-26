@@ -81,7 +81,7 @@ class PostController extends AdminController
         
         // save remote images to local
         if (param('auto_remote_image_local'))
-            $this->imagesLocal($model);
+            $this->imagesLocal($post);
 	}
 	
 	private function imagesLocal(AdminPost $post)
