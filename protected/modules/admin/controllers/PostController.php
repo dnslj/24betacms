@@ -46,8 +46,6 @@ class PostController extends AdminController
 	        }
 	        if ($model->save()) {
 	            $this->afterPostSave($model);
-	            if (param('auto_remote_image_local'))
-    	            $this->imagesLocal($model);
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
                 $this->redirect(request()->getUrl());
 	        }
@@ -80,6 +78,10 @@ class PostController extends AdminController
                 app()->session->remove($key);
             }
         }
+        
+        // save remote images to local
+        if (param('auto_remote_image_local'))
+            $this->imagesLocal($model);
 	}
 	
 	private function imagesLocal(AdminPost $post)
