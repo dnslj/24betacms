@@ -15,7 +15,7 @@ class CommentController extends AdminController
 	    $hours = (int)$hours;
 	    
 	    $criteria = new CDbCriteria();
-	    $data = AdminComment::fetchList($criteria);
+	    $data = AdminComment::model()->fetchList($criteria);
 	    
 	    $this->adminTitle = t('latest_comment', 'admin');
 	    
@@ -33,7 +33,7 @@ class CommentController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('post_id' => $postid));
 	    
-	    $data = AdminComment::fetchList($criteria);
+	    $data = AdminComment::model()->fetchList($criteria);
 	    $data['post'] = $post;
 	    $this->adminTitle = t('latest_comment', 'admin');
 	    
@@ -47,7 +47,7 @@ class CommentController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->scopes = 'noverify';
 	    
-	    $data = AdminComment::fetchList($criteria);
+	    $data = AdminComment::model()->fetchList($criteria);
 	    
 	    $this->adminTitle = t('verify_comment', 'admin');
 	    
@@ -75,7 +75,7 @@ class CommentController extends AdminController
 	    $criteria->scopes = 'recommend';
 	    $criteria->limit = $count;
 	     
-	    $data = AdminComment::fetchList($criteria);
+	    $data = AdminComment::model()->fetchList($criteria);
 	     
 	    $this->adminTitle = t('recommend_comment', 'admin');
 	     

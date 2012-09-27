@@ -8,7 +8,7 @@ class CommentController extends Controller
         if (null === $post)
             throw new CHttpException(403, t('post_is_not_found'));
         
-        $comments = Comment::fetchList($postid, $page);
+        $comments = Comment::model()->fetchList($postid, $page);
         
         $this->renderPartial('list', array(
             'comments' => $comments,
@@ -22,7 +22,7 @@ class CommentController extends Controller
         if (null === $post)
             throw new CHttpException(403, t('post_is_not_found'));
         
-        $comments = Comment::fetchHotList($postid, $page);
+        $comments = Comment::model()->fetchHotList($postid, $page);
         
         $this->renderPartial('list', array(
             'comments' => $comments,

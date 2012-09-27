@@ -16,4 +16,16 @@ return array(
         'prevPageLabel' => '&lt;',
         'cssFile' => false,
     ),
+    'mobile' => array(
+        'header' => '',
+        'footer' => '',
+        'maxButtonCount' => 3,
+        'nextPageLabel' => '&gt;',
+        'prevPageLabel' => '&lt;',
+        'firstPageLabel' => '&lt;&lt;',
+        'lastPageLabel' => '&gt;&gt;',
+        'cssFile' => false,
+        'hiddenPageCssClass' => 'disabled',
+        'selectedPageCssClass' => 'active',
+    ),
 );

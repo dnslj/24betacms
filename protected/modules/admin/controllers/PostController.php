@@ -78,6 +78,21 @@ class PostController extends AdminController
                 app()->session->remove($key);
             }
         }
+        
+        // save remote images to local
+        if (param('auto_remote_image_local'))
+            $this->imagesLocal($post);
+	}
+	
+	private function imagesLocal(AdminPost $post)
+	{
+	    $summary = CDFileLocal::fetchAndReplaceMultiWithHtml($post->summary);
+	    $content = CDFileLocal::fetchAndReplaceMultiWithHtml($post->content);
+	    if ($summary === false and $content === false) return false;
+	    
+	    $summary === false or $post->summary = $summary;
+	    $content === false or $post->content = $content;
+	    return $post->save(true, array('summary', 'content'));
 	}
 	
 	public function actionLatest($cid = 0, $tid = 0)

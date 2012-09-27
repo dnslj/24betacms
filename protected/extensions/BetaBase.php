@@ -1,7 +1,7 @@
 <?php
 class BetaBase
 {
-    const VERSION = '1.2';
+    const VERSION = '1.3';
     
     const FILE_NO_EXIST = -1; // '目录不存在并且无法创建';
     const FILE_NO_WRITABLE = -2; // '目录不可写';
@@ -34,11 +34,13 @@ class BetaBase
      * -1 目录不存在并且无法创建
      * -2 目录不可写
      */
-    public static function makeUploadPath($basePath, $additional = null)
+    public static function makeUploadPath($additional = null, $basePath = null)
     {
         $relativeUrl = (($additional === null) ? '' : $additional . '/') . date('Y/m/d/', $_SERVER['REQUEST_TIME']);
         $relativePath = (($additional === null) ? '' : $additional . DS) . date(addslashes(sprintf('Y%sm%sd%s', DS, DS, DS)), $_SERVER['REQUEST_TIME']);
 
+        if (empty($basePath))
+            $basePath = param('uploadBasePath');
         $path = $basePath . $relativePath;
 
         if ((file_exists($path) || mkdir($path, 0755, true)) && is_writable($path))
@@ -65,9 +67,9 @@ class BetaBase
         return $file;
     }
     
-    public static function makeUploadFilePath($basePath, $extension, $additional = null)
+    public static function makeUploadFilePath($extension, $additional = null, $basePath = null)
     {
-        $path = self::makeUploadPath($basePath, $additional);
+        $path = self::makeUploadPath($additional, $basePath);
         $file = self::makeUploadFileName($extension);
         
         $data = array(
@@ -102,7 +104,7 @@ class BetaBase
             return $result;
         }
         
-        $path = self::makeUploadPath(param('uploadBasePath'), $additional);
+        $path = self::makeUploadPath($additional, $basePath = null);
         $file = self::makeUploadFileName(null);
         $filename = $path['path'] . $file;
         $im = new CDImage();
@@ -123,7 +125,7 @@ class BetaBase
     
     public static function uploadFile(CUploadedFile $upload, $additional = null, $deleteTempFile = true)
     {
-        $filename = self::makeUploadFilePath(param('uploadBasePath'), $upload->extensionName);
+        $filename = self::makeUploadFilePath($upload->extensionName, $additional, $basePath = null);
         $result = $upload->saveAs($filename['path'], $deleteTempFile);
         if ($result)
             return $filename;
@@ -165,6 +167,57 @@ class BetaBase
         return $newText;
     }
 
+    public static function mergeHttpUrl($baseurl, $relativeUrl)
+    {
+        $baseurl = trim($baseurl, ' \'\"');
+        $relativeUrl = trim($relativeUrl, ' \'\"');
+        
+        // $baseurl and $relativeUrl is null
+        if (empty($baseurl) || empty($relativeUrl))
+            return false;
+        
+        if (filter_var($relativeUrl, FILTER_VALIDATE_URL) !== false && stripos($relativeUrl, 'http://') === 0)
+            return $relativeUrl;
+        
+        // $baseurl is not a valid url
+        $result = filter_var($baseurl, FILTER_VALIDATE_URL);
+        if ($result === false) return false;
+        
+        // $baseurl is not a valid http protocol url
+        $pos = stripos($baseurl, 'http://');
+        if ($pos !== 0) return false;
+        
+        $parts = parse_url($baseurl);
+        unset($parts['query'], $parts['fragment']);
+        $pos = stripos($relativeUrl, '/');
+        if ($pos === 0)
+            $parts['path'] = $relativeUrl;
+        else
+            $parts['path'] = dirname($parts['path']) . '/' . ltrim($relativeUrl, './');
+        
+        $url = function_exists('http_build_url') ? http_build_url($url, $parts) : self::httpBuildUrl($parts);
+        
+        return $url;
+    }
+    
+    public function httpBuildUrl(array $parts)
+    {
+        if (array_key_exists('scheme', $parts))
+            $url = $parts['scheme'] . '://';
+        
+        if (array_key_exists('user', $parts))
+            $url .= $parts['user'] . ':' . $parts['pass'] . '@';
+        
+        $url .= $parts['host'];
+        if (array_key_exists('port', $parts))
+            $url .= ':' . $parts['port'];
+        
+        if (array_key_exists('path', $parts))
+            $url .= $parts['path'];
+        
+        return $url;
+    }
+    
     public static function ping($sitename, $siteurl, $page, $rss = '')
     {
         $pingXml= '<?xml version="1.0" encoding="UTF-8"?>';
@@ -183,4 +236,17 @@ class BetaBase
         $result = simplexml_load_string($data);
         return !(bool)(int)$result;
     }
+
+    public static function userIsMobileBrower()
+    {
+        $browers = array('iPhone', 'Android', 'hpwOS', 'Windows Phone OS', 'BlackBerry');
+        $agent = $_SERVER['HTTP_USER_AGENT'];
+        foreach ($browers as $brower) {
+            $pos = stripos($agent, $brower);
+            if ($pos !== false) return true;
+        }
+        
+        return false;
+    }
 }
+

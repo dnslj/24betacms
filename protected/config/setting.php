@@ -52,7 +52,7 @@ return array(
      * datetime format
     */
     'formatDateTime' => 'Y-m-d H:i:s',
-    'formatShortDateTime' => 'Y-m-d H:i',
+    'formatShortDateTime' => 'm-d H:i',
     'formatDate' => 'Y-m-d',
     'formatShortDate' => 'm-d',
     'formatTime' => 'H:i:s',
@@ -70,6 +70,7 @@ return array(
     
     // 简述中可以使用的html标签
     'summaryHtmlTags' => '<b><strong><img><p>',
+    'mobileSummaryHtmlTags' => '<img>',
     
     // default param and value
     'post_list_type' => 0,
@@ -87,5 +88,7 @@ return array(
     'visit_nums_init_max' => 1,
     'user_required_email_verfiy' => 0,
     'user_required_admin_verfiy' => 0,
+    'auto_remote_image_local' => 0,
+    'mobile_post_list_page_count' => 8,
 );
 

@@ -3,6 +3,8 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
+        $this->autoSwitchMobile(url('mobile/default/index'));
+        
         $data = self::fetchLatestPosts();
         $data['hottest'] = self::fetchHottestPosts();
         $data['recommend'] = self::fetchRecommendPosts();
@@ -205,5 +207,22 @@ class SiteController extends Controller
         $result = $client->__soapCall('weblogUpdates.extendedPing', $arguments);
         var_dump($result);
     }
+
+    public function actionPics()
+    {
+        $url = 'http://www.24beta.cn/archives/89';
+        
+        $curl = new CDCurl();
+        $curl->referer($url);
+        $curl->user_agent($agent);
+        $curl->get($url);
+        $errno = $curl->errno();
+        $error = $curl->error();
+        $html = $curl->rawdata();
+        
+        $data = CDFileLocal::fetchAndReplaceMultiWithHtml($html);
+        echo $data;
+    }
+
 }
 

@@ -43,7 +43,7 @@
                 <textarea class="span6" name="AdminConfig[<?php echo $model['config_name'];?>]"><?php echo h($model['config_value']);?></textarea>
             <?php endif;?>
             </td>
-            <td><?php echo nl2br($model['desc']);?></td>
+            <td><?php echo nl2br(h($model['desc']));?></td>
             <td>&nbsp;</td>
         </tr>
         <?php endforeach;?>
