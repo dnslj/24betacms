@@ -22,10 +22,5 @@
 </div>
 
 <?php cs()->registerCoreScript('jquery');?>
-<?php cs()->registerScriptFile(sbu('libs/jquery.pagecontrol.js'), CClientScript::POS_HEAD);?>
-<script type="text/javascript">
-$(function(){
-	$('#<?php echo $this->id;?>').pagecontrol();
-});
-</script>
-
+<?php cs()->registerScriptFile(sbu('libs/jquery.pagecontrol.js'), CClientScript::POS_END);?>
+<?php cs()->registerScript($this->id, sprintf('$("#%s").pagecontrol();', $this->id), CClientScript::POS_END);?>

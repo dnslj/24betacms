@@ -19,9 +19,4 @@
 <?php endif;?>
 
 <?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>
-
-<script type="text/javascript">
-$(function(){
-	Beta24.imageLazyLoad($('img.lazy'));
-});
-</script>
+<?php cs()->registerScript('beta-lazyload', "Beta24.imageLazyLoad($('img.lazy'));", CClientScript::POS_END);?>
