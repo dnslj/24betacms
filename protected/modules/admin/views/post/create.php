@@ -160,11 +160,11 @@ $(function(){
 	$(':text:first').focus();
 	
     KindEditor.ready(function(K) {
-        var cssurl = '<?php echo tbu('styles/beta-all.css');?>';
+    	var cssPath = ['<?php echo tbu('styles/beta-common.css');?>', '<?php echo tbu('styles/beta-all.css');?>'];
     	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
-        KEConfig.adminmini.cssPath = [cssurl];
+        KEConfig.adminmini.cssPath = cssPath;
     	KEConfig.adminmini.uploadJson = imageUploadUrl;
-        KEConfig.adminfull.cssPath = [cssurl];
+        KEConfig.adminfull.cssPath = cssPath;
     	KEConfig.adminfull.uploadJson = imageUploadUrl;
     	var betaContent = K.create('#content', KEConfig.adminfull);
     	var betaSummary = K.create('#summary', KEConfig.adminmini);
