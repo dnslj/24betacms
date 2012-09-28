@@ -39,7 +39,7 @@ class BetaHottestPosts extends CWidget
         $this->cid = abs((int)$this->cid);
         
         if (empty($this->id))
-            $this->id = 'beta-hottest-container-' . uniqid();
+            $this->id = 'beta-hottest-' . uniqid();
         
     }
     
