@@ -1,5 +1,4 @@
 <?php $this->widget('BetaHottestPosts');?>
-
 <div class="beta-content">
     <?php $this->renderPartial('/post/_home_list', array('posts'=>$posts, 'pages'=>$pages));?>
 </div>

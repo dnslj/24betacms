@@ -22,33 +22,10 @@
 </div>
 
 <?php cs()->registerCoreScript('jquery');?>
+<?php cs()->registerScriptFile(sbu('libs/jquery.pagecontrol.js'), CClientScript::POS_END);?>
 <script type="text/javascript">
 $(function(){
-	var interval = window.setInterval(slideScreen, 5000);
-	$(document).on('mouseenter', '.page-nav a', function(event){
-		window.clearInterval(interval);
-	});
-	$(document).on('mouseleave', '.page-nav a', function(event){
-		interval = window.setInterval(slideScreen, 5000);
-	});
-	$(document).on('click', '.page-nav a', function(event){
-		event.preventDefault();
-		var container = $(this).parents('.beta-hottest-posts');
-		var index = container.find('.page-nav a').index($(this));
-		if (index < 0) return;
-
-		var active = container.find('.beta-hottest-items.active');
-		var activeIndex = container.find('.beta-hottest-items').index(active);
-		if (index == activeIndex) return false;
-
-		var clicked = container.find('.beta-hottest-items').eq(index);
-		active.fadeOut('slow', function(){
-		    $(this).removeClass('active');
-		});
-		clicked.fadeIn('slow', function(){
-		    $(this).addClass('active');
-		});
-	});
+	$('#<?php echo $this->id;?>').pagecontrol();
 });
 
 function slideScreen()
@@ -60,35 +37,24 @@ function slideScreen()
 		next = container.find('.beta-hottest-items').first();
 
 	var nextIndex = container.find('.beta-hottest-items').index(next);
-	container.find('.page-nav a.active').removeClass('active');
-	container.find('.page-nav a').eq(nextIndex).addClass('active');
-	
-	active.fadeOut('slow', function(){
-	    $(this).removeClass('active');
-	});
-	next.fadeIn('slow', function(){
-	    $(this).addClass('active');
-	});
+	switchToScreen(nextIndex);
 }
 
 function switchToScreen(index)
 {
 	var container = $('#<?php echo $this->id;?>');
-	var active = container.find('.beta-hottest-items.active');
-	var next = active.next('.beta-hottest-items');
-	if (next.length == 0)
-		next = container.find('.beta-hottest-items').first();
+	var activeItem = container.find('.beta-hottest-items.active');
+	var nextItem = container.find('.beta-hottest-items').eq(index);
 
-	var nextIndex = container.find('.beta-hottest-items').index(next);
-	container.find('.page-nav a.active').removeClass('active');
-	container.find('.page-nav a').eq(nextIndex).addClass('active');
-	
-	active.fadeOut('slow', function(){
+	activeItem.fadeOut('slow', function(){
 	    $(this).removeClass('active');
 	});
-	next.fadeIn('slow', function(){
+	nextItem.fadeIn('slow', function(){
 	    $(this).addClass('active');
 	});
+	
+	container.find('.page-nav a.active').removeClass('active');
+	container.find('.page-nav a').eq(index).addClass('active');
 }
 
 </script>

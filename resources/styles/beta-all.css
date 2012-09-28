@@ -90,7 +90,7 @@ body.beta-ke-content {padding:5px;}
 .beta-hottest-items a:link, .beta-hottest-items a:hover, .beta-hottest-items a:visited {text-decoration:none;}
 .beta-hottest-items a:last-child {margin-right:0;}
 .beta-hottest-items span.separate {display:block; float:left; overflow:hidden; width:20px; height:140px;}
-.beta-hottest-items strong {position:absolute; bottom:0; background-color:rgba(0, 0, 0, 0.5); color:white; width:212px; max-height:36px; line-height:16px; font-weight:normal; padding:3px 5px; font-size:12px; overflow:hidden;}
+.beta-hottest-items strong {position:absolute; bottom:0; background-color:rgba(0, 0, 0, 0.5); color:white; width:222px; max-height:36px; line-height:16px; font-weight:normal; padding:3px 5px; font-size:12px; overflow:hidden;}
 .beta-hottest-items img {width:100%; height:100%;}
 .beta-hottest-items {position:absolute; background:white; display:none; height:140px;}
 .beta-hottest-items.active {display:block;}
