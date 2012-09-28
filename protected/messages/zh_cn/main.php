@@ -9,6 +9,7 @@ return array(
     'category_is_not_found' => '分类不存在',
     'cateogry_has_posts' => '该分类下有文章存在，不能直接删除',
     'topic_has_posts' => '该主题下有文章存在，不能直接删除',
+    'click_switch_page' => '点击切换',
         
     /*
      * model User attributeLabels

@@ -1,17 +1,4 @@
-<?php if ($hottest):?>
-<div class="beta-hottest-posts">
-<?php foreach ($hottest as $index => $post):?>
-    <?php if ($index != 0):?>
-    <a class="separate" href="javascript:void(0);">x</a>
-    <?php endif;?>
-    <a href="<?php echo $post->absoluteUrl?>" target="_blank">
-        <strong><?php echo $post->title;?></strong>
-        <img src="<?php echo $post->thumbnailUrl?>" alt="<?php echo $post->title;?>" />
-    </a>
-<?php endforeach;?>
-    <div class="clear"></div>
-</div>
-<?php endif;?>
+<?php $this->widget('BetaHottestPosts');?>
 
 <div class="beta-content">
     <?php $this->renderPartial('/post/_home_list', array('posts'=>$posts, 'pages'=>$pages));?>

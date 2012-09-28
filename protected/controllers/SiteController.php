@@ -6,7 +6,6 @@ class SiteController extends Controller
         $this->autoSwitchMobile(url('mobile/default/index'));
         
         $data = self::fetchLatestPosts();
-        $data['hottest'] = self::fetchHottestPosts();
         $data['recommend'] = self::fetchRecommendPosts();
         $data['comments'] = self::fetchRecommendComments();
         
@@ -18,17 +17,6 @@ class SiteController extends Controller
         
         
         $this->render('index', $data);
-    }
-    
-    private static function fetchHottestPosts()
-    {
-        $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.thumbnail', 't.state', 't.hottest');
-        $criteria->limit = 4;
-        $criteria->scopes = array('hottest', 'published');
-        $models = Post::model()->findAll($criteria);
-        
-        return (array)$models;
     }
     
     private static function fetchRecommendPosts()
