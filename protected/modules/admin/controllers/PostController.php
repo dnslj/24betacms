@@ -86,6 +86,7 @@ class PostController extends AdminController
 	
 	private function imagesLocal(AdminPost $post)
 	{
+	    set_time_limit(0);
 	    $summary = CDFileLocal::fetchAndReplaceMultiWithHtml($post->summary);
 	    $content = CDFileLocal::fetchAndReplaceMultiWithHtml($post->content);
 	    if ($summary === false and $content === false) return false;
