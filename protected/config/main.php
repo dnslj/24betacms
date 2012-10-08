@@ -47,6 +47,9 @@ return array(
         'mobile' => array(
             'layout' => 'main',
         ),
+        'member' => array(
+            'layout' => 'main',
+        ),
     ),
     'preload' => array('log'),
     'components' => array(
@@ -136,6 +139,8 @@ return array(
                 'mobile/page/<page:\d+>' => 'mobile/default/index',
                 'mobile' => 'mobile/default/index',
                 'mobile/archives/<id:\d+>' => 'mobile/post/show',
+            
+                'account' => 'member/default/index',
             ),
         ),
     ),

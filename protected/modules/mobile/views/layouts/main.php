@@ -12,7 +12,7 @@
 <body>
 <noscript><div id="noscript"><h2>Notice</h2><p>JavaScript is currently off.</p><p>Turn it on in browser settings to view this mobile website.</p></div></noscript>
 <header>
-    <a href="<?php echo $this->moduleHomeUrl;?>"><?php echo app()->name;?></a>
+    <a href="<?php echo $this->homeUrl;?>"><?php echo app()->name;?></a>
 </header>
 <div class="beta-container">
 <?php echo $content;?>

@@ -24,7 +24,7 @@ class MobileController extends CController
         );
     }
     
-    public function getModuleHomeUrl()
+    public function getHomeUrl()
     {
         return aurl('mobile');
     }
