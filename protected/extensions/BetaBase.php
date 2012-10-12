@@ -82,10 +82,11 @@ class BetaBase
     
     public static function encryptPassword($password)
     {
-        if (empty($password))
-            return '';
-        else
-            return md5($password);
+        $pwd = '';
+        if (!empty($password))
+            $pwd = md5($password);
+        
+        return $pwd;
     }
 
     public static function jsonp($callback, $data, $exit = true)
