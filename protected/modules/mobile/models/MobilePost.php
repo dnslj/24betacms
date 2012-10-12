@@ -31,9 +31,9 @@ class MobilePost extends Post
         return $html;
     }
     
-    public function getTitleLink($len = 0)
+    public function getTitleLink($len = 0, $target = '_self')
     {
-       return parent::getTitleLink($len, '_self');
+       return parent::getTitleLink($len, $target);
     }
 
     public function getCommentsUrl()
