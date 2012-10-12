@@ -253,7 +253,7 @@ class Post extends CActiveRecord
 	
 	public function getAuthorName()
 	{
-	    static $name;
+	    static $name = null;
 	
 	    if (null !== $name) return $name;
 	
