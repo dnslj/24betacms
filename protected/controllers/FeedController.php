@@ -9,6 +9,22 @@ class FeedController extends Controller
         header('Content-Type:application/xml; charset=' . app()->charset);
     }
     
+    public function filters()
+    {
+        $duration = 300;
+        return array(
+            array(
+                'COutputCache + index',
+                'duration' => $duration,
+            ),
+            array(
+                'COutputCache + category, topic',
+                'duration' => $duration,
+                'varyByParam' => array('id'),
+            ),
+        );
+    }
+    
     public function actionIndex()
     {
         $cmd = app()->getDb()->createCommand()
