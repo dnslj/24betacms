@@ -19,7 +19,7 @@ class TopicController extends Controller
         cs()->registerMetaTag('all', 'robots');
         
         $feedTitle = $topic->name . t('topic_feed');
-        cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/topic', array('id'=>$id)), null, array('title'=>$feedTitle));
+        cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/category', array('id'=>$id)), null, array('title'=>app()->name . " » {$topic->name} Topic Feed"));
         
         $listType = param('post_list_type');
         $view = ($listType == POST_LIST_TYPE_SUMMARY) ? '/post/_summary_list' : '/post/_title_list';

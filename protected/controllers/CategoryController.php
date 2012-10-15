@@ -23,8 +23,8 @@ class CategoryController extends Controller
         $postListHtml = $this->renderPartial($view, $data, true);
         
         $feedTitle = $category->name . t('category_feed');
-        cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/category', array('id'=>$id)), null, array('title'=>$feedTitle));
-        
+        cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/category', array('id'=>$id)), null, array('title'=>app()->name . " » {$category->name} Category Feed"));
+
         $this->render('posts', array(
             'category' => $category,
             'postListHtml' => $postListHtml,
