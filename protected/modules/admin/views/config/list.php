@@ -19,8 +19,8 @@
         <?php foreach ($models as $model):?>
         <tr>
             <td class="align-center"><?php echo $model['id'];?></td>
-            <td class="align-right">
-                <h5><?php echo h($model['name']);?></h5>
+            <td class="align-right config-name">
+                <strong><?php echo h($model['name']);?></strong>
                 <span class="cgray f12px"><?php echo $model['config_name'];?></span>
             </td>
             <td><?php echo h($model['config_value']);?></td>
