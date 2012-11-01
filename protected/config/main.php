@@ -133,7 +133,7 @@ return array(
                 '<_c:(category|topic)>/<id:\d+>/page/<page:\d+>' => '<_c>/posts',
                 '<_c:(category|topic)>/<id:\d+>' => '<_c>/posts',
                 'topics' => 'topic/list',
-                'tag/<name:[\w\s\%\-\+\.]+>' => 'tag/posts',
+                'tag/<name:.+>' => 'tag/posts',
                 'feed/<_a:(category|topic)>/<id:\d+>' => 'feed/<_a>',
             
                 'mobile/page/<page:\d+>' => 'mobile/default/index',

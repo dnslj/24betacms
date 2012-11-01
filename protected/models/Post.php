@@ -371,7 +371,7 @@ class Post extends CActiveRecord
 	    if (empty($tags)) return '';
 	
 	    foreach ($tags as $tag)
-	        $data[] = l($tag, aurl('tag/posts', array('name'=>urlencode($tag))), array('target'=>$target, 'class'=>$class));
+	        $data[] = l($tag, aurl('tag/posts', array('name'=>$tag)), array('target'=>$target, 'class'=>$class));
 	    
 	    return join($operator, $data);
 	}
