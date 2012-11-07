@@ -1,6 +1,6 @@
 <?php
 return array(
-    'def2ault' => array(
+    'default' => array(
         'header' => '',
         'footer' => '',
         'maxButtonCount' => 8,
