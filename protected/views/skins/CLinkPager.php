@@ -1,6 +1,6 @@
 <?php
 return array(
-    'default' => array(
+    'def2ault' => array(
         'header' => '',
         'footer' => '',
         'maxButtonCount' => 8,
@@ -24,6 +24,15 @@ return array(
         'prevPageLabel' => '&lt;',
         'firstPageLabel' => '&lt;&lt;',
         'lastPageLabel' => '&gt;&gt;',
+        'cssFile' => false,
+        'hiddenPageCssClass' => 'disabled',
+        'selectedPageCssClass' => 'active',
+    ),
+    'admin' => array(
+        'header' => '',
+        'footer' => '',
+        'nextPageLabel' => t('next_page_label'),
+        'prevPageLabel' => t('prev_page_label'),
         'cssFile' => false,
         'hiddenPageCssClass' => 'disabled',
         'selectedPageCssClass' => 'active',
