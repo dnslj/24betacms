@@ -1,5 +1,5 @@
 <?php if (user()->hasFlash('user_create_result')):?>
-<div class="alert alert-success fade in">
+<div class="alert alert-success fade in" data-dismiss="alert">
     <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
     <?php echo user()->getFlash('user_create_result');?>
 </div>
