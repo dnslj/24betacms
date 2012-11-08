@@ -14,12 +14,12 @@ class Controller extends CController
 			'captcha'=>array(
 				'class'=>'application.extensions.BetaCaptchaAction.BetaCaptchaAction',
 				'backColor' => 0xFFFFFF,
-				'height' => 22,
-				'width' => 70,
+				'height' => 30,
+				'width' => 100,
 				'maxLength' => 4,
 				'minLength' => 4,
 		        'foreColor' => 0xFF0000,
-		        'padding' => 3,
+		        'padding' => 5,
 		        'testLimit' => 3,
 			),
 		);
