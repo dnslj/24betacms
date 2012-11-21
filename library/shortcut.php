@@ -155,8 +155,8 @@ function tbu($url = null, $useDefault = true)
     if (empty(Yii::app()->theme))
         return sbu($url);
     
-    static $themeBasePath;
-    static $themeBaseUrl;
+    static $themeBasePath = null;
+    static $themeBaseUrl = null;
     $themeBasePath = rtrim(param('themeResourceBasePath'), DS) . DS . Yii::app()->theme->name . DS;
     $filename = realpath($themeBasePath . $url);
     if (file_exists($filename)) {
@@ -219,7 +219,7 @@ function sbp($file = null)
 {
     static $resourcePath = null;
     if ($resourcePath === null)
-        $resourcePath = rtrim(param('resourcePath'), DS) . DS;
+        $resourcePath = rtrim(param('resourceBasePath'), DS) . DS;
 
     return empty($file) ? $resourcePath : $resourcePath . ltrim($file, DS);
 }
