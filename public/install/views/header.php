@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>24Blog 安装向导</title>
     <link media="screen" rel="stylesheet" type="text/css" href="./res/beta-install.css" />
-    <script type="text/javascript" src="./res/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="./res/jquery.min.js"></script>
     <script type="text/javascript" src="./res/beta-install.js"></script>
 </head>
 <body>

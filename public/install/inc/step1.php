@@ -131,14 +131,14 @@ function getPreferredLanguage()
     return false;
 }
 
-$result = 1;  // 1: all pass, 0: fail, -1: pass with warnings
+$result = REQUIREMENT_PASSED;  // 1: all pass, 0: fail, -1: pass with warnings
 
 foreach($requirements as $i=>$requirement)
 {
     if ($requirement[1] && !$requirement[2])
-        $result = 0;
+        $result = REQUIREMENT_ERROR;
     else if ($result > 0 && !$requirement[1] && !$requirement[2])
-        $result = -1;
+        $result = REQUIREMENT_WARNING;
     if ($requirement[4] === '')
         $requirements[$i][4]='&nbsp;';
 }

@@ -8,6 +8,7 @@ if ($step >= 1 && $step <= 3)
     $file = 'step' . $step . '.php';
 else
     $file = 'index.php';
+
 $viewFile =  PATH_ROOT . 'views' . DS . $file;
 $data = array('step' => $step);
 
@@ -22,6 +23,7 @@ switch ($step)
         require PATH_ROOT . 'inc' . DS . 'step2.php';
         break;
     case 3:
+        require PATH_ROOT . 'inc' . DS . 'step3.php';
         break;
     default:
         break;
