@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+body {background-color:white;}
+.beta-member {background-color:#FFFFFF;}
+#ajax-tip {font-size:12px; font-weight:normal;}
+
+.member-form .control-label {width:100px;}
+.member-form .controls {margin-left:120px;}
+.member-form .form-actions {padding-left:120px;}
+.member-sidebar {width:180px;}
+.member-content {width:800px;}
+
+.sidebar-nav {background:#EFF2F4; padding:20px 0; overflow-x:hidden; border-radius:5px 0 0 5px; -webkit-border-radius:5px 0 0 5px; -moz-border-radius:5px 0 0 5px; -o-border-radius:5px 0 0 5px; -ms-border-radius:5px 0 0 5px;}
+.user-avatar {margin-bottom:10px; text-align:center; overflow-x:hidden;}
+.large-avatar {width:130px;}
+.small-avatar {width:50px; height:50px; vertical-align:bottom;}
+.user-avatar h4 {margin:10px 0;}
+.user-avatar a {display:block;}
+.member-nav {list-style:none; margin:0;}
+.member-nav li a {display:block; height:30px; line-height:30px; margin-left:10px; text-indent:15px;}
+.member-nav li a:hover, .member-nav li a.active {background:#FFFFFF; text-decoration:none;}
+table.mypost-table .label {margin-right:5px;}
