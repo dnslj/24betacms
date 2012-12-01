@@ -73,6 +73,7 @@ class User extends CActiveRecord
 	        'latestComments' => array(self::HAS_MANY, 'Comment', 'user_id',
                 'limit' => 10,
             ),
+            'profile' => array(self::HAS_ONE, 'UserProfile', 'user_id'),
 		);
 	}
 

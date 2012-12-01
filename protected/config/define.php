@@ -13,6 +13,7 @@ define('TABLE_POST_TAG', '{{post_tag}}');
 define('TABLE_TOPIC', '{{topic}}');
 define('TABLE_UPLOAD', '{{upload}}');
 define('TABLE_USER', '{{user}}');
+define('TABLE_USER_PROFILE', '{{user_profile}}');
 define('TABLE_FILTER_KEYWORD', '{{filter_keyword}}');
 define('TABLE_LINK', '{{link}}');
 define('TABLE_ADVERT', '{{advert}}');

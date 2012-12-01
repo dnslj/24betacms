@@ -102,6 +102,7 @@ return array(
             'baseUrl' => $params['resourceBaseUrl'] . 'assets',
         ),
         'themeManager' => array(
+            'themeClass' => 'application.extensions.CDTheme',
             'basePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'themes',
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),

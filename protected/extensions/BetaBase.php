@@ -249,5 +249,54 @@ class BetaBase
         
         return false;
     }
+
+    public static function isHttpUrl($url)
+    {
+        $url = trim($url);
+        $pos = stripos($url, 'http://');
+        return $pos === 0;
+    }
+
+    public static function siteHomeUrl()
+    {
+        return aurl('site/index');
+    }
+    
+    public static function memberHomeUrl()
+    {
+        return aurl('member/default/index');
+    }
+    
+    public static function wapHomeUrl()
+    {
+        return aurl('wap/index');
+    }
+    
+    public static function adminHomeUrl()
+    {
+        return aurl('admin/default/index');
+    }
+    
+    
+    public static function mobileHomeUrl()
+    {
+        return aurl('mobile/default/index');
+    }
+    
+    public static function loginUrl()
+    {
+        return aurl('site/login');
+    }
+    
+    public static function logoutUrl()
+    {
+        return aurl('site/logout');
+    }
+    
+    public static function singupUrl()
+    {
+        return aurl('site/signup');
+    }
+    
 }
 

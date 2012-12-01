@@ -15,7 +15,7 @@ return array(
     // 记住用户登录状态的cookie时间
     'autoLoginDuration' => 3600 * 24 * 7,
     // 当前theme，不要在此修改，这是默认值，请在后台中修改
-    'theme' => null,
+    'theme' => 'classic',
     // URL 格式，get|path，如果设置为path，需要在web服务端设置rewrite重定向
     'urlFormat' => 'path',
 
