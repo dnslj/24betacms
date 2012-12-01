@@ -1,6 +1,6 @@
-var CDMember = {};
+var BetaMember = {};
 
-CDMember.executeAjax = function(url, data, before, success, fail){
+BetaMember.executeAjax = function(url, data, before, success, fail){
 	var jqXhr = $.ajax({
 		type: 'POST',
 		dataType: 'jsonp',
@@ -21,13 +21,13 @@ CDMember.executeAjax = function(url, data, before, success, fail){
 	});
 };
 
-CDMember.executeAjaxDelete = function(event, success, fail){
+BetaMember.executeAjaxDelete = function(event, success, fail){
     var confirm = window.confirm('确定要执行删除操作吗？');
     if (!confirm) return false;
 	
 	var tthis = $(event.currentTarget);
 	var url = tthis.attr('data-url');
-	CDMember.executeAjax(url, null, null, success || function(data){
+	BetaMember.executeAjax(url, null, null, success || function(data){
 		if (data.errno == 0)
 			tthis.parents('tr').fadeOut('slow');
 		else

@@ -118,6 +118,10 @@ class Controller extends CController
 	    return $user;
 	}
 	
+	/**
+	 * 获取用户资料
+	 * @return UserProfile
+	 */
 	public function getProfile()
 	{
 	    return $this->user->profile;

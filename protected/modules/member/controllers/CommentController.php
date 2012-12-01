@@ -29,18 +29,18 @@ class CommentController extends MemberController
         if ($id > 0) {
             $model = MemberComment::model()->findByPk($id, 'user_id = :userid', array(':userid'=>$this->userID));
             if ($model === null) {
-                $data['errno'] = CD_YES;
+                $data['errno'] = BETA_YES;
                 $data['error'] = '段子不存在';
             }
             else {
-                $data['errno'] = $model->delete() ? CD_NO : CD_YES;
+                $data['errno'] = $model->delete() ? BETA_NO : BETA_YES;
             }
         }
         else {
-            $data['errno'] = CD_YES;
+            $data['errno'] = BETA_YES;
             $data['error'] = '非法请求';
         }
     
-        CDBase::jsonp($callback, $data);
+        BetaBase::jsonp($callback, $data);
     }
 }

@@ -21,6 +21,7 @@ class MemberComment extends Comment
         $classes = array(
             COMMENT_STATE_ENABLED => 'label label-success',
             COMMENT_STATE_DISABLED => 'label',
+            COMMENT_STATE_NOT_VERIFY => 'label label-warning',
         );
         $class = $classes[$this->state];
     
@@ -30,7 +31,7 @@ class MemberComment extends Comment
     public function getDeleteLink()
     {
         $html = '';
-        if ($this->state == COMMENT_STATE_DISABLED) {
+        if ($this->state == COMMENT_STATE_NOT_VERIFY) {
             $url = aurl('member/comment/delete', array('id'=>$this->id));
             $html = l('<i class="icon-trash icon-white"></i>', 'javascript:void(0);', array('class'=>'btn btn-mini btn-danger btn-delete', 'data-url'=>$url));
         }

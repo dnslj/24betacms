@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+/* reset bootstrap */
+.table .label {font-weight:normal;}
+
 body {background-color:white;}
 .beta-member {background-color:#FFFFFF;}
 #ajax-tip {font-size:12px; font-weight:normal;}

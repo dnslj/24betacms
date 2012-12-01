@@ -7,9 +7,9 @@
 
 <?php echo CHtml::form('', 'post', array('class'=>'form-horizontal member-form'));?>
 <div class="control-group">
-    <?php echo CHtml::activeLabel($model, 'username', array('class'=>'control-label'));?>
+    <?php echo CHtml::activeLabel($model, 'email', array('class'=>'control-label'));?>
     <div class="controls">
-        <?php echo CHtml::activeTextField($model, 'username', array('readonly'=>'readonly', 'class'=>'uneditable-input'));?>
+        <?php echo CHtml::activeTextField($model, 'email', array('readonly'=>'readonly', 'class'=>'uneditable-input'));?>
     </div>
 </div>
 <div class="control-group <?php if($model->hasErrors('password')) echo 'error';?>">

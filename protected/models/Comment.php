@@ -31,6 +31,22 @@ class Comment extends CActiveRecord
     {
         return array(COMMENT_STATE_ENABLED, COMMENT_STATE_DISABLED, COMMENT_STATE_NOT_VERIFY);
     }
+
+    public static function stateLabels($state = null)
+    {
+        $labels = array(
+            COMMENT_STATE_ENABLED => t('comment_state_enabled', 'basic'),
+            COMMENT_STATE_DISABLED => t('comment_state_disabled', 'basic'),
+            COMMENT_STATE_NOT_VERIFY => t('comment_state_not_verify', 'basic'),
+        );
+    
+        return $state === null ? $labels : $labels[$state];
+    }
+
+    public function getStateLabel()
+    {
+        return self::stateLabels($this->state);
+    }
     
     public static function rateTypes()
     {

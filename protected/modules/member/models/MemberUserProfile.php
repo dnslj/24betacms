@@ -16,8 +16,8 @@ class MemberUserProfile extends UserProfile
         if ($this->avatar_large === null || $this->avatar_large->error != UPLOAD_ERR_OK)
             return false;
         
-        $path = CDBase::makeUploadPath('avatars');
-        $file = CDBase::makeUploadFileName('');
+        $path = BetaBase::makeUploadPath('avatars');
+        $file = BetaBase::makeUploadFileName('');
         $largeFile = $path['path'] . 'large_' . $file;
         $smallFile = $path['path'] . 'small_' . $file;
         

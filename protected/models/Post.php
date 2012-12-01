@@ -16,6 +16,7 @@
  * @property integer $comment_nums
  * @property integer $digg_nums
  * @property integer $visit_nums
+ * @property integer $favorite_nums
  * @property integer $user_id
  * @property string $user_name
  * @property string $source
@@ -57,12 +58,33 @@
  * @property string $containCode
  * @property Topic $topic
  * @property Category $category
+ * @property User $user
+ * @property array $comments
+ * @property array$files
  */
 class Post extends CActiveRecord
 {
     public static function states()
     {
         return array(POST_STATE_ENABLED, POST_STATE_DISABLED, POST_STATE_REJECTED, POST_STATE_NOT_VERIFY, POST_STATE_TRASH);
+    }
+
+    public static function stateLabels($state = null)
+    {
+        $labels = array(
+            POST_STATE_ENABLED => t('post_state_enabled', 'basic'),
+            POST_STATE_DISABLED => t('post_state_disabled', 'basic'),
+            POST_STATE_NOT_VERIFY => t('post_state_not_verify', 'basic'),
+            POST_STATE_REJECTED => t('post_state_rejected', 'basic'),
+            POST_STATE_TRASH => t('post_state_trash', 'basic'),
+        );
+    
+        return $state === null ? $labels : $labels[$state];
+    }
+    
+    public function getStateLabel()
+    {
+        return self::stateLabels($this->state);
     }
     
     public static function types()
@@ -96,7 +118,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, summary, content', 'required'),
-	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, homeshow, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
+	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, favorite_nums, user_id, create_time, state, istop, homeshow, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
@@ -142,6 +164,9 @@ class Post extends CActiveRecord
 		        'params' => array(':filetype' => UPLOAD_TYPE_FILE),
 		        'order' => 'id asc',
 		    ),
+		    'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+		    'comments' => array(self::HAS_MANY, 'Comment', 'post_id'),
+		    'files' => array(self::HAS_MANY, 'Upload', 'post_id'),
 		    
 		);
 	}
@@ -164,6 +189,7 @@ class Post extends CActiveRecord
 			'comment_nums' => t('comment_nums'),
 			'digg_nums' => t('digg_nums'),
 			'visit_nums' => t('visit_nums'),
+			'favorite_nums' => t('favorite_nums'),
 			'user_id' => t('user_id'),
 			'user_name' => t('user_name'),
 	        'source' => t('source'),
@@ -503,14 +529,13 @@ class Post extends CActiveRecord
 	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
 	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
 	     
-	    $comments = Comment::model()->findAllByAttributes(array('post_id'=>$this->id));
-	    foreach ($comments as $c) $c->delete();
+	    foreach ($this->comments as $c) $c->delete();
 	     
-	    app()->db->createCommand()->delete(TABLE_POST_TAG, 'post_id = :pid', array(':pid'=>$this->id));
-	    app()->db->createCommand()->delete(TABLE_SPECIAL_POST, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->getDb()->createCommand()->delete(TABLE_POST_TAG, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->getDb()->createCommand()->delete(TABLE_SPECIAL_POST, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->getDb()->createCommand()->delete(TABLE_POST_FAVORITE, 'post_id = :postid', array(':postid' => $this->id));
 	     
-	    $files = Upload::model()->findAllByAttributes(array('post_id'=>$this->id));
-	    foreach ($files as $file) $file->delete();
+	    foreach ($this->files as $file) $file->delete();
 	}
 	
 	protected function afterFind()

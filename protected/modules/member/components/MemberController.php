@@ -19,6 +19,10 @@ class MemberController extends Controller
 	    $this->pageTitle = $text . '_' . app()->name;
 	}
 
+	/**
+	 * 获取当前登录用户模型
+	 * @return MemberUser 如果找不到当前登录用户，则返回null
+	 */
     public function getUser()
     {
         $user = MemberUser::model()->findByPk($this->getUserID());

@@ -68,8 +68,7 @@
 
 <?php
 cs()->registerCoreScript('jquery');
+cs()->registerScriptFile(sbu('scripts/beta-member.js'), CClientScript::POS_END);
 cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);
-cs()->registerScriptFile(sbu('scripts/beta-main.js'), CClientScript::POS_END);
-cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed'), null, array('title'=>app()->name . ' » Feed'));
 ?>
 

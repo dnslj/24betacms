@@ -22,11 +22,11 @@ class ProfileController extends MemberController
     
     public function actionNickname()
     {
-        $model = $this->user;
+        $model = $this->getUser();
         if (request()->getIsPostRequest() && isset($_POST['MemberUser'])) {
             $model->attributes = $_POST['MemberUser'];
 
-            if ($model->save(true, array('screen_name'))) {
+            if ($model->save(true, array('name'))) {
                 user()->setFlash('user_save_result', '昵称修改成功');
                 $this->redirect(request()->getUrl());
             }

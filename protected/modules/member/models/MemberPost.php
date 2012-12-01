@@ -17,11 +17,12 @@ class MemberPost extends Post
     {
         return parent::model($className);
     }
-
+    
     public function getDeleteLink()
     {
         $html = '';
-        if ($this->state == POST_STATE_UNVERIFY) {
+        $states = array(POST_STATE_NOT_VERIFY, POST_STATE_REJECTED, POST_STATE_TRASH);
+        if (in_array($this->state, $states)) {
             $url = aurl('member/post/delete', array('id'=>$this->id));
             $html = l('<i class="icon-trash icon-white"></i>', 'javascript:void(0);', array('class'=>'btn btn-mini btn-danger btn-delete', 'data-url'=>$url));
         }
@@ -32,7 +33,8 @@ class MemberPost extends Post
     public function getEditLink()
     {
         $html = '';
-        if ($this->state == POST_STATE_UNVERIFY) {
+        $states = array(POST_STATE_NOT_VERIFY, POST_STATE_REJECTED);
+        if (in_array($this->state, $states)) {
             $url = aurl('member/post/create', array('id'=>$this->id));
             $html = l('<i class="icon-edit icon-white"></i>', $url, array('class'=>'btn btn-mini btn-primary'));
         }
@@ -45,7 +47,9 @@ class MemberPost extends Post
         $classes = array(
             POST_STATE_ENABLED => 'label label-success',
             POST_STATE_DISABLED => 'label',
-            POST_STATE_UNVERIFY => 'label label-important',
+            POST_STATE_NOT_VERIFY => 'label label-warning',
+            POST_STATE_REJECTED => 'label label-important',
+            POST_STATE_TRASH => 'label label-inverse',
         );
         $class = $classes[$this->state];
         

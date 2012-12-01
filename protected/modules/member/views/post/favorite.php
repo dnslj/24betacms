@@ -29,7 +29,7 @@
 $(function(){
 	$('table').on('click', '.btn-delete', function(event){
 		event.preventDefault();
-		CDMember.executeAjaxDelete(event);
+		BetaMember.executeAjaxDelete(event);
 	});
 });
 </script>

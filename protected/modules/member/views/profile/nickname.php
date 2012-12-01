@@ -7,16 +7,16 @@
 
 <?php echo CHtml::form('', 'post', array('class'=>'form-horizontal member-form'));?>
 <div class="control-group">
-    <?php echo CHtml::activeLabel($model, 'username', array('class'=>'control-label'));?>
+    <?php echo CHtml::activeLabel($model, 'email', array('class'=>'control-label'));?>
     <div class="controls">
-        <?php echo CHtml::activeTextField($model, 'username', array('readonly'=>'readonly', 'class'=>'uneditable-input'));?>
+        <?php echo CHtml::activeTextField($model, 'email', array('readonly'=>'readonly', 'class'=>'uneditable-input'));?>
     </div>
 </div>
-<div class="control-group <?php if($model->hasErrors('screen_name')) echo 'error';?>">
-    <?php echo CHtml::activeLabel($model, 'screen_name', array('class'=>'control-label'));?>
+<div class="control-group <?php if($model->hasErrors('name')) echo 'error';?>">
+    <?php echo CHtml::activeLabel($model, 'name', array('class'=>'control-label'));?>
     <div class="controls">
-        <?php echo CHtml::activeTextField($model, 'screen_name');?>
-        <?php if($model->hasErrors('screen_name')):?><p class="help-block"><?php echo $model->getError('screen_name');?></p><?php endif;?>
+        <?php echo CHtml::activeTextField($model, 'name');?>
+        <?php if($model->hasErrors('screen_name')):?><p class="help-block"><?php echo $model->getError('name');?></p><?php endif;?>
     </div>
 </div>
 <div class="form-actions">

@@ -9,12 +9,13 @@
     <tbody>
         <?php foreach ($comments as $model):?>
         <tr>
-            <td class="acenter"><p><?php echo $model->id;?></p><?php echo $model->stateHtml;?></td>
+            <td class="acenter"><?php echo $model->id;?></td>
             <td>
                 <p><?php echo $model->post->getTitleLink(0);?></p>
                 <?php echo $model->filterContent;?>
             </td>
             <td class="acenter">
+                <p><?php echo $model->stateHtml;?></p>
                 <?php echo $model->deleteLink;?>
             </td>
         </tr>
@@ -32,7 +33,7 @@
 $(function(){
 	$('table').on('click', '.btn-delete', function(event){
 		event.preventDefault();
-		CDMember.executeAjaxDelete(event);
+		BetaMember.executeAjaxDelete(event);
 	});
 });
 </script>

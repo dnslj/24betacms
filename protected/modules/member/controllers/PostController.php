@@ -52,19 +52,19 @@ class PostController extends MemberController
         if ($id > 0) {
             $model = MemberPost::model()->findByPk($id, 'user_id = :userid', array(':userid'=>$this->getUserID()));
             if ($model === null) {
-                $data['errno'] = CD_YES;
+                $data['errno'] = BETA_YES;
                 $data['error'] = '段子不存在';
             }
             else {
-                $data['errno'] = $model->delete() ? CD_NO : CD_YES;
+                $data['errno'] = $model->delete() ? BETA_NO : BETA_YES;
             }
         }
         else {
-            $data['errno'] = CD_YES;
+            $data['errno'] = BETA_YES;
             $data['error'] = '非法请求';
         }
         
-        CDBase::jsonp($callback, $data);
+        BetaBase::jsonp($callback, $data);
     }
 
     public function actionUnlike($id, $callback)
@@ -76,16 +76,16 @@ class PostController extends MemberController
             ->delete(TABLE_POST_FAVORITE, $conditions, $params);
     
         if ($result > 0) {
-            $counters = array('favorite_count' => 1);
+            $counters = array('favorite_nums' => 1);
             $result = Post::model()->updateCounters($counters, 'id = :postid', array(':postid' => $id));
-            $data = array('errno' => CD_NO);
+            $data = array('errno' => BETA_NO);
         }
         
         $data = array(
-            'errno' => $result ? CD_NO : CD_YES,
+            'errno' => $result ? BETA_NO : BETA_YES,
         );
     
-        CDBase::jsonp($callback, $data);
+        BetaBase::jsonp($callback, $data);
     }
     
 }
