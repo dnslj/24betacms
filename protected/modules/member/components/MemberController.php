@@ -2,26 +2,33 @@
 /**
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
+ *
+ * @property integer $userID
+ * @property string $username
+ * @property string $nickname
+ * @property MemberUser $user
+ * @property UserProfile $profile
  */
-class MemberController extends CController
+class MemberController extends Controller
 {
-    public $channel;
-    public $breadcrumbs = array();
+    public $title;
+    public $menu;
     
-    public function getHomeUrl()
-    {
-        return aurl('member/default/index');
-    }
-    
-	public function setSiteTitle($value)
+	public function setSiteTitle($text)
 	{
-        $titles = array(param('sitename'));
-        if (param('shortdesc'))
-            array_push($titles, param('shortdesc'));
-        if (!empty($value))
-    	    array_unshift($titles, $value);
-
-        $text = strip_tags(trim(join(' - ', $titles)));
-	    $this->pageTitle = $text;
+	    $this->pageTitle = $text . '_' . app()->name;
 	}
+
+	/**
+	 * 获取当前登录用户模型
+	 * @return MemberUser 如果找不到当前登录用户，则返回null
+	 */
+    public function getUser()
+    {
+        $user = MemberUser::model()->findByPk($this->getUserID());
+        if ($user === null)
+            throw new CHttpException(500, '未找到用户');
+        
+        return $user;
+    }
 }

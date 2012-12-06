@@ -53,6 +53,7 @@ return array(
     'comment_nums' => '评论数',
     'digg_nums' => '支持数',
     'visit_nums' => '浏览数',
+    'favorite_nums' => '收藏数',
     'user_id' => '用户ID',
     'source' => '来源',
     'tags' => '标签',

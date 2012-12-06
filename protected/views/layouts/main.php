@@ -10,8 +10,9 @@
     <meta name="robots" content="all" />
     <link rel="start" href="<?php echo $this->homeUrl;?>" title="Home" />
     <link rel="home" href="<?php echo $this->homeUrl;?>" title="Home" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-common.css');?>" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-all.css');?>" />
+    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>" />
+    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo sbu('styles/beta-common.css');?>" />
+    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo sbu('styles/beta-all.css');?>" />
     <?php echo param('header_html');?>
 </head>
 <body>
@@ -53,7 +54,7 @@
 <?php
 cs()->registerCoreScript('jquery');
 cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);
-cs()->registerScriptFile(tbu('scripts/beta-main.js'), CClientScript::POS_END);
+cs()->registerScriptFile(sbu('scripts/beta-main.js'), CClientScript::POS_END);
 cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed'), null, array('title'=>app()->name . ' » Feed'));
 ?>
 

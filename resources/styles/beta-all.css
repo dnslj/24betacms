@@ -59,7 +59,7 @@
 /* comment create form */
 .beta-comment-form {font-size:12px; margin:5px; padding:5px; background:white;}
 .beta-comment-form .beta-control-group {margin:0 0 6px;}
-.beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:5px;}
+.beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:5px; font-size:12px;}
 .beta-comment-form .beta-control-group.stacked .beta-controls {margin-left:0; width:100%;}
 .beta-comment-form .beta-controls input.beta-text, .beta-comment-form .beta-controls textarea {height:16px; padding:4px; line-height:16px; font-size:12px;}
 .beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px;}

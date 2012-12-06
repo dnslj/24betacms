@@ -1,0 +1,93 @@
+<?php
+class PostController extends MemberController
+{
+    public function filters()
+    {
+        return array(
+            'ajaxOnly  + delete, unlike',
+            'postOnly + delete, unlike',
+        );
+    }
+    
+    public function actionIndex()
+    {
+        $count = 15;
+        $pages = new CPagination($this->user->postCount);
+        $pages->setPageSize($count);
+        $offset = ($pages->currentPage - 1) * $count;
+        
+        $posts = $this->user->posts(array(
+            'offset' => $offset,
+            'limit' => $count,
+            'order' => 'posts.create_time desc',
+        ));
+        
+        $this->breadcrumbs[] = $this->title = $this->siteTitle = '我的段子';
+        $this->menu = 'post';
+        $this->render('list', array(
+            'posts' => $posts,
+            'pages' => $pages,
+        ));
+    }
+    
+    public function actionFavorite()
+    {
+        $count = 15;
+        $pages = new CPagination($this->user->favoritePostsCount);
+        $pages->setPageSize($count);
+        
+        $posts = $this->user->getFavoritePosts($pages->currentPage, $count);
+        
+        $this->breadcrumbs[] = $this->title = $this->siteTitle = '我的收藏';
+        $this->menu = 'favorite';
+        $this->render('favorite', array(
+            'posts' => $posts,
+            'pages' => $pages,
+        ));
+    }
+    
+    public function actionDelete($id, $callback)
+    {
+        $id = (int)$id;
+        if ($id > 0) {
+            $model = MemberPost::model()->findByPk($id, 'user_id = :userid', array(':userid'=>$this->getUserID()));
+            if ($model === null) {
+                $data['errno'] = BETA_YES;
+                $data['error'] = '段子不存在';
+            }
+            else {
+                $data['errno'] = $model->delete() ? BETA_NO : BETA_YES;
+            }
+        }
+        else {
+            $data['errno'] = BETA_YES;
+            $data['error'] = '非法请求';
+        }
+        
+        BetaBase::jsonp($callback, $data);
+    }
+
+    public function actionUnlike($id, $callback)
+    {
+        $id = (int)$id;
+        $conditions = array('and', 'user_id = :userid', 'post_id = :postid');
+        $params = array(':userid'=>$this->getUserID(), ':postid'=>$id);
+        $result = app()->getDb()->createCommand()
+            ->delete(TABLE_POST_FAVORITE, $conditions, $params);
+    
+        if ($result > 0) {
+            $counters = array('favorite_nums' => 1);
+            $result = Post::model()->updateCounters($counters, 'id = :postid', array(':postid' => $id));
+            $data = array('errno' => BETA_NO);
+        }
+        
+        $data = array(
+            'errno' => $result ? BETA_NO : BETA_YES,
+        );
+    
+        BetaBase::jsonp($callback, $data);
+    }
+    
+}
+
+

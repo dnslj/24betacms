@@ -16,7 +16,7 @@
 </dl>
 <?php endforeach;?>
 <?php if ($pages->pageCount > 1):?>
-<div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages));?></div>
+<div class="pagination"><?php $this->widget('CLinkPager', array('pages'=>$pages));?></div>
 <?php endif;?>
 
 <?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>

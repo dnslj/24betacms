@@ -16,6 +16,7 @@ class BetaCaptchaAction extends CCaptchaAction
         }
         return $code;
     }
+    
     /**
      * Renders the CAPTCHA image based on the code.
      * @param string the verification code
