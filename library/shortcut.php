@@ -20,7 +20,7 @@ function app()
 {
     return Yii::app();
 }
- 
+
 /**
  * This is the shortcut to Yii::app()->clientScript
  * @return CClientScript Yii::app()->clientScript
@@ -159,7 +159,7 @@ function tbu($file = null, $checkExist = false, $themeName = null)
     elseif ($themeName instanceof CDTheme)
         $theme = $themeName;
 
-    $url = null;
+    $url = sbu($file);
     if ($theme !== null) {
         $url = $theme->getBaseUrl() . '/' . ltrim($file, '/');
         if ($checkExist) {
