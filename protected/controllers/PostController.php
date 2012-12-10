@@ -9,6 +9,11 @@ class PostController extends Controller
         );
     }
     
+    public function actionDetail($id)
+    {
+        $this->redirect(aurl('post/show', array('id'=>$id)), true, 301);
+    }
+    
     public function actionShow($id)
     {
         $this->autoSwitchMobile();
