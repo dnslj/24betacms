@@ -140,8 +140,9 @@ body.beta-ke-content {padding:5px;}
 
 /* error page */
 .beta-error {color:gray;}
-.beta-error .error-icon {font-size:200px; color:#CFCFCF; margin-right:20px; line-height:300px; font-weight:bold;}
-.beta-error .error-detail {padding:40px 40px 0 0; line-height:24px;}
+.beta-error .error-icon {font-size:200px; color:#CFCFCF; margin-right:20px; line-height:220px; font-weight:bold;}
+.beta-error .error-detail {padding:0px 0 0; line-height:24px;}
+.beta-error .error-detail p {margin-bottom:30px;}
 
 /* friend links */
 .beta-links li {float:left; margin:5px 6px; width:93px; overflow:hidden;}
