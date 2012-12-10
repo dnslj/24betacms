@@ -37,7 +37,7 @@
             <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
             </label>
-            <label class="checkbox inline" rel="tooltip" title="<?php echo t('set_hot_post_tip', 'admin');?>">
+            <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'hottest');?><?php echo t('hottest_show', 'admin');?>
             </label>
             <label class="checkbox inline">

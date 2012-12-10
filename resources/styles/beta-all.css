@@ -62,7 +62,7 @@
 .beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:5px; font-size:12px;}
 .beta-comment-form .beta-control-group.stacked .beta-controls {margin-left:0; width:100%;}
 .beta-comment-form .beta-controls input.beta-text, .beta-comment-form .beta-controls textarea {height:16px; padding:4px; line-height:16px; font-size:12px;}
-.beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px;}
+.beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px; margin:0;}
 .beta-comment-form .beta-control-group .beta-controls textarea.mini {width:98%; height:24px;}
 .beta-hot-comment .beta-comment-form .beta-control-group .beta-controls textarea {width:96%;}
 input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkred;}

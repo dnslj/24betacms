@@ -8,7 +8,7 @@
     </div>
     <div class="clear"></div>
 </div>
-<div class="beta-control-group comment-captcha hide">
+<div class="beta-control-group comment-captcha" style="display:none;">
     <div class="beta-controls comment-input">
         <?php echo CHtml::activeTextField($comment, 'captcha', array('class'=>'beta-text beta-captcha'));?>
         <?php $this->widget('BetaCaptcha', array('skin'=>'comment'));?>

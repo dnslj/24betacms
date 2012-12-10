@@ -44,7 +44,7 @@
         <div class="clear"></div>
     </div>
     <div class="action-buttons">
-        <?php echo CHtml::submitButton(t('user_signup'), array('class'=>'beta-btn btn-primary', 'tabindex'=>6));?>
+        <?php echo CHtml::submitButton(t('user_signup'), array('class'=>'btn btn-primary', 'tabindex'=>6));?>
     </div>
     <?php echo chtml::endForm();?>
 </div>
