@@ -28,7 +28,7 @@ return array(
     'language' => $params['language'],
     'layout' => 'main',
     'timezone' => $params['timezone'],
-    'theme' => empty($params['theme']) ? null : $params['theme'],
+    'theme' => $params['theme'],
 
     'import' => array(
 		'application.models.*',
@@ -71,6 +71,7 @@ return array(
             'errorAction' => 'site/error',
         ),
         'user' => array(
+            'class' => 'CDWebUser',
             'allowAutoLogin' => true,
             'loginUrl' => array('site/login'),
             'returnUrl' => array('site/index')
@@ -102,7 +103,7 @@ return array(
             'baseUrl' => $params['resourceBaseUrl'] . 'assets',
         ),
         'themeManager' => array(
-            'themeClass' => 'application.extensions.CDTheme',
+            'themeClass' => 'CDTheme',
             'basePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'themes',
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),

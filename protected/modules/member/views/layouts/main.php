@@ -43,8 +43,8 @@
                 <li><a href="<?php echo aurl('member/profile/index');?>" <?php if ($this->menu == 'profile') echo 'class="active"';?>>基本资料</a></li>
                 <li><a href="<?php echo aurl('member/profile/avatar');?>" <?php if ($this->menu == 'avatar') echo 'class="active"';?>>修改头像</a></li>
                 <li><a href="<?php echo aurl('member/profile/nickname');?>" <?php if ($this->menu == 'nickname') echo 'class="active"';?>>修改昵称</a></li>
-                <li><a href="<?php echo aurl('member/profile/passwd');?>" <?php if ($this->menu == 'passwd') echo 'class="active"';?>>修改密码</a></li>
-                <li><a href="<?php echo BetaBase::logoutUrl();?>">退出登录</a></li>
+                <li><?php echo l(t('edit_password', 'member'), aurl('member/profile/passwd'), array('class'=>$this->menu == 'passwd' ? 'active' : ''));?></li>
+                <li><?php echo l(t('user_logout', 'member'), BetaBase::logoutUrl());?>"</li>
             </ul>
         </div>
         <div class="member-content fright">
