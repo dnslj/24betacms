@@ -88,7 +88,7 @@ a:hover {color:#D14836;text-decoration:underline;}
 .beta-control-group.success input,.beta-control-group.success select,.beta-control-group.success textarea{color:#468847;border-color:#468847;}.beta-control-group.success input:focus,.beta-control-group.success select:focus,.beta-control-group.success textarea:focus{border-color:#356635;-webkit-box-shadow:0 0 6px #7aba7b;-moz-box-shadow:0 0 6px #7aba7b;box-shadow:0 0 6px #7aba7b;}
 
 .beta-control-group .beta-control-label {display:block; float:left; width:100px; text-align:right; padding-top:5px;}
-.beta-control-group .beta-controls {float:left;}
+.beta-control-group .beta-controls {float:left; margin-left:15px;}
 .beta-form-actions {padding:15px 18px 16px;margin:10px 0 0 0;background-color:#f5f5f5;border-top:1px solid #DDDDDD;}
 
 

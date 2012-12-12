@@ -10,4 +10,9 @@ return array(
     'comment_state_disabled' => '隐藏',
     'comment_state_not_verify' => '待审',
         
+    'create_time' => '添加时间',
+    'create_ip' => 'IP地址',
+    
+    'captcha' => '验证码',
+    'refresh_captcha' => '换一张',
 );

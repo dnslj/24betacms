@@ -40,7 +40,7 @@ class Config extends CActiveRecord
 		return array(
 	        array('name, config_name', 'required'),
 	        array('config_name', 'unique'),
-	        array('config_name', 'match', 'pattern'=>'/^[a-z][\w\d\_]{4,99}/i', 'message'=>t('config_name_pattern')),
+	        array('config_name', 'match', 'pattern'=>'/^[a-z][\w\d\_]{4,99}/i', 'message'=>t('config_name_pattern', 'model')),
 	        array('category_id', 'numerical', 'integerOnly'=>true),
 			array('config_name', 'length', 'max'=>100),
 			array('config_value, desc', 'safe'),
@@ -65,11 +65,11 @@ class Config extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-	        'name' => t('config_nickname'),
-			'category_id' => t('config_category'),
-			'config_name' => t('config_var_name'),
-			'config_value' => t('config_value'),
-			'desc' => t('config_description'),
+	        'name' => t('config_nickname', 'model'),
+			'category_id' => t('config_category', 'model'),
+			'config_name' => t('config_var_name', 'model'),
+			'config_value' => t('config_value', 'model'),
+			'desc' => t('config_description', 'model'),
 		);
 	}
 

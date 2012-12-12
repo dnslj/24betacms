@@ -18,9 +18,9 @@ class CommentForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'post_id' => t('post_id'),
-            'content' => t('content'),
-            'captcha' => t('captcha'),
+            'post_id' => t('comment_post_id', 'model'),
+            'content' => t('comment_content', 'model'),
+            'captcha' => t('captcha', 'basic'),
         );
     }
     

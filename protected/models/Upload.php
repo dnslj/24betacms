@@ -22,11 +22,11 @@ class Upload extends CActiveRecord
     public static function typeLabels()
     {
         return array(
-            UPLOAD_TYPE_PICTURE => t('file_type_picture'),
-            UPLOAD_TYPE_FILE => t('file_type_file'),
-            UPLOAD_TYPE_AUDIO => t('file_type_audio'),
-            UPLOAD_TYPE_VIDEO => t('file_type_video'),
-            UPLOAD_TYPE_UNKNOWN => t('file_type_unknown'),
+            UPLOAD_TYPE_PICTURE => t('file_type_picture', 'model'),
+            UPLOAD_TYPE_FILE => t('file_type_file', 'model'),
+            UPLOAD_TYPE_AUDIO => t('file_type_audio', 'model'),
+            UPLOAD_TYPE_VIDEO => t('file_type_video', 'model'),
+            UPLOAD_TYPE_UNKNOWN => t('file_type_unknown', 'model'),
         );
     }
     
@@ -83,14 +83,14 @@ class Upload extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'post_id' => t('post_id'),
-			'file_type' => t('file_type'),
-			'url' => 'Url',
-			'create_time' => t('create_time'),
-			'create_ip' => t('create_ip'),
-			'user_id' => t('user_id'),
-			'desc' => t('file_description'),
-			'token' => 'Token',
+			'post_id' => t('post_id', 'model'),
+			'file_type' => t('file_type', 'model'),
+			'url' => 'URL',
+			'create_time' => t('create_time', 'model'),
+			'create_ip' => t('create_ip', 'model'),
+			'user_id' => t('user_id', 'model'),
+			'desc' => t('file_description', 'model'),
+			'token' => 'TOKEN',
 		);
 	}
 

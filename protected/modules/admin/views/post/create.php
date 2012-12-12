@@ -10,21 +10,21 @@
 <fieldset>
     <legend><?php echo t('create_posts', 'admin');?></legend>
     <div class="control-group bottom10px <?php if ($model->hasErrors('title')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_title');?></label>
+        <?php echo CHtml::activeLabel($model, 'title', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'title', array('class'=>'span6', 'id'=>'post-title'));?>
             <?php if ($model->hasErrors('title')):?><p class="help-block"><?php echo $model->getError('title');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('source')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_source');?></label>
+        <?php echo CHtml::activeLabel($model, 'source', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'source', array('class'=>'span6'));?>
             <?php if ($model->hasErrors('source')):?><p class="help-block"><?php echo $model->getError('source');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
-        <label class="control-label"><?php echo t('tags');?></label>
+        <?php echo CHtml::activeLabel($model, 'tags', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'tags', array('class'=>'span5'));?>
             <span class="help-inline"><?php echo t('tags_rules', 'admin');?></span>
@@ -47,12 +47,12 @@
                 <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('settop', 'admin');?>
             </label>
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>
+                <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment', 'admin');?>
             </label>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('thumbnail')) echo 'error';?>">
-        <label class="control-label"><?php echo t('thumbnail');?></label>
+        <?php echo CHtml::activeLabel($model, 'thumbnail', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'thumbnail', array('class'=>'span6'));?>
             <?php if ($model->hasErrors('thumbnail')):?><p class="help-block"><?php echo $model->getError('thumbnail');?></p><?php endif;?>
@@ -69,14 +69,14 @@
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('summary')) echo 'error';?>">
-        <label class="control-label"><?php echo t('summary');?></label>
+        <?php echo CHtml::activeLabel($model, 'summary', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextArea($model, 'summary', array('id'=>'summary'));?>
             <?php if ($model->hasErrors('summary')):?><p class="help-block"><?php echo $model->getError('summary');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('content')) echo 'error';?>">
-        <label class="control-label"><?php echo t('content');?></label>
+        <?php echo CHtml::activeLabel($model, 'content', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextArea($model, 'content', array('id'=>'content'));?>
             <?php if ($model->hasErrors('content')):?><p class="help-block"><?php echo $model->getError('content');?></p><?php endif;?>
@@ -112,35 +112,35 @@
         <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('contributor')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_contributor');?></label>
+        <?php echo CHtml::activeLabel($model, 'contributor', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'contributor', array('class'=>'text'));?>
             <?php if ($model->hasErrors('contributor')):?><p class="help-block"><?php echo $model->getError('contributor');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('contributor_site')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_contributor_site');?></label>
+        <?php echo CHtml::activeLabel($model, 'contributor_site', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'contributor_site', array('class'=>'span6'));?>
             <?php if ($model->hasErrors('contributor_site')):?><p class="help-block"><?php echo $model->getError('contributor_site');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('contributor_email')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_contributor_email');?></label>
+        <?php echo CHtml::activeLabel($model, 'contributor_email', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'contributor_email', array('class'=>'span6'));?>
             <?php if ($model->hasErrors('contributor_email')):?><p class="help-block"><?php echo $model->getError('contributor_email');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('visit_nums')) echo 'error';?>">
-        <label class="control-label"><?php echo t('visit_nums');?></label>
+        <?php echo CHtml::activeLabel($model, 'visit_nums', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'visit_nums', array('class'=>'span6'));?>
             <?php if ($model->hasErrors('visit_nums')):?><p class="help-block"><?php echo $model->getError('visit_nums');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('digg_nums')) echo 'error';?>">
-        <label class="control-label"><?php echo t('digg_nums');?></label>
+        <?php echo CHtml::activeLabel($model, 'digg_nums', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'digg_nums', array('class'=>'span6'));?>
             <?php if ($model->hasErrors('digg_nums')):?><p class="help-block"><?php echo $model->getError('digg_nums');?></p><?php endif;?>

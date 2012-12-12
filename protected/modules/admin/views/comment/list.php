@@ -13,10 +13,10 @@
         <tr>
             <th class="item-checkbox align-center">#</th>
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
-            <th class="span8"><?php echo t('content');?></th>
+            <th class="span8"><?php echo t('comment_content', 'admin');?></th>
             <th class="span1 align-center">#</th>
             <th class="span1 align-center">#</th>
-            <th class="span2"><?php echo t('user_name');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
+            <th class="span2"><?php echo t('comment_user_name', 'admin');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
             <th>#</th>
         </tr>
     </thead>

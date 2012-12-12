@@ -52,6 +52,7 @@ return array(
     'setshow' => '显示',
     'sethide' => '隐藏',
     'cancel_delete' => '取消删除',
+    'disable_comment' => '禁止评论',
     'submit' => '提交',
     'submit_post' => '发表文章',
     'return_list_page' => '返回列表',
@@ -188,6 +189,8 @@ return array(
     'reload_data' => '重新载入',
     'recommend_word' => '荐',
     'hot_word' => '热',
+    'comment_content' => '内容',
+    'comment_user_name' => '评论人',
 
     /* post manage */
     'create_posts' => '发表文章',

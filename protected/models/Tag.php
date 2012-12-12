@@ -60,8 +60,8 @@ class Tag extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => t('tag_name'),
-			'post_nums' => t('post_nums'),
+			'name' => t('tag_name', 'model'),
+			'post_nums' => t('tag_post_nums', 'model'),
 		);
 	}
 	

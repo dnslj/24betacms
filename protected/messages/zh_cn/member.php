@@ -9,12 +9,12 @@ return array(
     'comment_state_diabled' => '隐藏',
     'comment_state_not_verify' => '待审',
 
-    'uer_logout' => '退出登录',
+    'user_logout' => '退出登录',
     'my_favorite' => '我的收藏',
     'my_posts' => '我的文章',
     'my_comments' => '我的评论',
-    'basic_profile' => '基本资料',
-    'edit_avator' => '修改头像',
+    'edit_basic_profile' => '基本资料',
+    'edit_avatar' => '修改头像',
     'edit_nickname' => '修改昵称',
     'edit_password' => '修改密码',
 );

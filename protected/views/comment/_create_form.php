@@ -12,7 +12,7 @@
     <div class="beta-controls comment-input">
         <?php echo CHtml::activeTextField($comment, 'captcha', array('class'=>'beta-text beta-captcha'));?>
         <?php $this->widget('BetaCaptcha', array('skin'=>'comment'));?>
-        <a href="<?php echo url('post/captcha', array('refresh'=>1));?>" class="refresh-captcha" tabindex="99999"><?php echo t('refresh_captcha');?></a>
+        <a href="<?php echo aurl('post/captcha', array('refresh'=>1));?>" class="refresh-captcha" tabindex="99999"><?php echo t('refresh_captcha', 'basic');?></a>
     </div>
     <div class="clear"></div>
 </div>

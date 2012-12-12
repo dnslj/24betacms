@@ -36,15 +36,15 @@
                 <h5><?php echo $this->nickname;?></h5>
             </div>
             <ul class="member-nav">
-                <li><a href="<?php echo aurl('member/post/favorite');?>" <?php if ($this->menu == 'favorite') echo 'class="active"';?>>我的收藏</a></li>
-                <li><a href="<?php echo aurl('member/post/index');?>" <?php if ($this->menu == 'post') echo 'class="active"';?>>我的段子</a></li>
-                <li><a href="<?php echo aurl('member/comment/index');?>" <?php if ($this->menu == 'comment') echo 'class="active"';?>>我的评论</a></li>
+                <li><?php echo l(t('my_favorite', 'member'), aurl('member/post/favorite'), array('class'=>$this->menu == 'favorite' ? 'active' : ''));?></li>
+                <li><?php echo l(t('my_posts', 'member'), aurl('member/post/index'), array('class'=>$this->menu == 'post' ? 'active' : ''));?></li>
+                <li><?php echo l(t('my_comments', 'member'), aurl('member/comment/index'), array('class'=>$this->menu == 'comment' ? 'active' : ''));?></li>
                 <li><div class="space10px"></div></li>
-                <li><a href="<?php echo aurl('member/profile/index');?>" <?php if ($this->menu == 'profile') echo 'class="active"';?>>基本资料</a></li>
-                <li><a href="<?php echo aurl('member/profile/avatar');?>" <?php if ($this->menu == 'avatar') echo 'class="active"';?>>修改头像</a></li>
-                <li><a href="<?php echo aurl('member/profile/nickname');?>" <?php if ($this->menu == 'nickname') echo 'class="active"';?>>修改昵称</a></li>
+                <li><?php echo l(t('edit_basic_profile', 'member'), aurl('member/profile/index'), array('class'=>$this->menu == 'profile' ? 'active' : ''));?></li>
+                <li><?php echo l(t('edit_avatar', 'member'), aurl('member/profile/avatar'), array('class'=>$this->menu == 'avatar' ? 'active' : ''));?></li>
+                <li><?php echo l(t('edit_nickname', 'member'), aurl('member/profile/nickname'), array('class'=>$this->menu == 'nickname' ? 'active' : ''));?></li>
                 <li><?php echo l(t('edit_password', 'member'), aurl('member/profile/passwd'), array('class'=>$this->menu == 'passwd' ? 'active' : ''));?></li>
-                <li><?php echo l(t('user_logout', 'member'), BetaBase::logoutUrl());?>"</li>
+                <li><?php echo l(t('user_logout', 'member'), BetaBase::logoutUrl());?></li>
             </ul>
         </div>
         <div class="member-content fright">

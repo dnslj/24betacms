@@ -3,7 +3,7 @@
     <?php echo CHtml::form($submitUrl, 'post', array('class'=>'login-form'));?>
     <?php echo CHtml::activeHiddenField($form, 'returnUrl');?>
     <div class="beta-control-group <?php echo $form->hasErrors('email') ? 'error' : '';?>">
-        <label class="beta-control-label"><?php echo t('email');?></label>
+        <?php echo CHtml::activeLabel($form, 'email', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'email', array('class'=>'beta-text', 'tabindex'=>1));?>
             <?php if ($form->hasErrors('email')):?><span class="beta-help-inline"><?php echo $form->getError('email');?></span><?php endif;?>
@@ -11,7 +11,7 @@
         <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php echo $form->hasErrors('password') ? 'error' : '';?>">
-        <label class="beta-control-label"><?php echo t('password');?></label>
+        <?php echo CHtml::activeLabel($form, 'password', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activePasswordField($form, 'password', array('class'=>'beta-text', 'tabindex'=>2));?>
             <?php if ($form->hasErrors('password')):?><span class="beta-help-inline"><?php echo $form->getError('password');?></span><?php endif;?>
@@ -20,7 +20,7 @@
     </div>
     <?php if ($form->getEnableCaptcha()):?>
     <div class="beta-control-group <?php echo $form->hasErrors('captcha') ? 'error' : '';?>">
-        <label class="beta-control-label"><?php echo t('captcha');?></label>
+        <?php echo CHtml::activeLabel($form, 'captcha', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'captcha', array('class'=>'beta-captcha beta-text', 'tabindex'=>3));?>
             <?php $this->widget('BetaCaptcha');?>

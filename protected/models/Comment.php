@@ -105,17 +105,17 @@ class Comment extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'post_id' => t('post_id'),
-			'content' => t('content'),
-			'create_time' => t('create_time'),
-			'create_ip' => t('create_ip'),
-			'up_nums' => t('up_nums'),
-			'down_nums' => t('down_nums'),
-			'report_nums' => t('report_nums'),
-			'user_id' => t('user_id'),
-			'user_name' => t('user_name'),
-			'state' => t('state'),
-		    'recommend' => t('recommend'),
+			'post_id' => t('comment_post_id', 'model'),
+			'content' => t('comment_content', 'model'),
+			'create_time' => t('create_time', 'basic'),
+			'create_ip' => t('create_ip', 'basic'),
+			'up_nums' => t('comment_up_nums', 'model'),
+			'down_nums' => t('comment_down_nums', 'model'),
+			'report_nums' => t('comment_report_nums', 'model'),
+			'user_id' => t('comment_user_id', 'model'),
+			'user_name' => t('comment_user_name', 'model'),
+			'state' => t('comment_state', 'model'),
+		    'recommend' => t('comment_recommend', 'model'),
 		);
 	}
 	

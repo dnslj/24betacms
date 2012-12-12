@@ -84,7 +84,7 @@ var BetaPost = {
 			if (tthis.find('.beta-captcha:visible').length == 0) {
 				var captchaEl = tthis.find('.captcha-clearfix img.beta-captcha-img');
 				captchaEl.attr('src', captchaEl.attr('lazy-src')).removeAttr('lazy-src');
-				tthis.find('.captcha-clearfix').fadeIn('fast');
+				tthis.find('.captcha-clearfix').removeClass('hide').fadeIn('fast');
 				tthis.find('.beta-captcha:visible').focus();
 				event.preventDefault();
 			}

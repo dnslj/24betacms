@@ -91,17 +91,17 @@ class UserProfile extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'user_id' => '用户ID',
-			'province' => '省份',
-			'city' => '城市',
-			'location' => '地址',
-			'gender' => '性别',
-			'description' => '简介',
-			'website' => '网址',
-			'image_url' => '头像',
-			'avatar_large' => '头像大图',
-		    'weibo_uid' => '新浪微博UID',
-		    'qqt_uid' => '腾讯微博UID',
+			'user_id' => t('user_id', 'model'),
+			'province' => t('user_province', 'model'),
+			'city' => t('user_city', 'model'),
+			'location' => t('user_location', 'model'),
+			'gender' => t('user_gender', 'model'),
+			'description' => t('user_description', 'model'),
+			'website' => t('user_website', 'model'),
+			'image_url' => t('user_image_url', 'model'),
+			'avatar_large' => t('user_avatar_large', 'model'),
+		    'weibo_uid' => t('user_weibo_uid', 'model'),
+		    'qqt_uid' => t('user_qqt_uid', 'model'),
 		);
 	}
 	

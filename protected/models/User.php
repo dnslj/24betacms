@@ -84,13 +84,13 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'email' => t('user_email'),
-			'name' => t('user_name'),
-			'password' => t('password'),
-			'create_time' => t('create_time'),
-			'create_ip' => t('create_ip'),
-			'state' => t('user_state'),
-			'token' => t('user_token'),
+			'email' => t('user_email', 'model'),
+			'name' => t('user_name', 'model'),
+			'password' => t('password', 'model'),
+			'create_time' => t('create_time', 'basic'),
+			'create_ip' => t('create_ip', 'basic'),
+			'state' => t('user_state', 'model'),
+			'token' => t('user_token', 'model'),
 		);
 	}
 	

@@ -80,7 +80,7 @@ input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkre
 .beta-post-form #beta-summary {width:620px; height:180px;}
 .beta-post-form #beta-content {width:620px; height:400px;}
 body.beta-ke-content {padding:5px;}
-.beta-success-items {margin-bottom:100px;}
+.beta-success-items {margin-top:20px; margin-bottom:100px;}
 .beta-success-items li {margin-bottom:10px;}
 .temp-pictures img {max-height:53px; max-width:80px; cursor:pointer;}
 
@@ -102,9 +102,9 @@ body.beta-ke-content {padding:5px;}
 .login-form {padding-bottom:100px;}
 .login-form .beta-control-group {margin:18px 0;}
 .login-form .beta-control-group .beta-control-label {width:70px;}
-.login-form .beta-controls label {font-size:12px;}
-.login-form .beta-controls.agreement input, .login-form .beta-controls.rememberme input {margin-bottom:2px;}
-.login-form .beta-controls.agreement label, .login-form .beta-controls.rememberme label {margin-left:5px;}
+.login-form .beta-controls label {font-size:12px; display:inline-block; margin-left:5px;}
+.login-form .beta-controls.beta-agreement input, .login-form .beta-controls.rememberme input {margin-bottom:2px;}
+.login-form .beta-controls.beta-agreement label, .login-form .beta-controls.rememberme label {margin-left:5px;}
 .login-form .suggestion {color:gray; font-size:12px; clear:both; margin-top:2px;}
 .login-form .action-buttons {padding-left:90px;}
 .login-form .action-buttons .beta-btn {padding:4px 18px;}

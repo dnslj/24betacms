@@ -73,12 +73,12 @@ class Special extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'token' => t('special_token'),
-			'name' => t('special_name'),
-			'desc' => t('special_desc'),
-			'create_time' => t('create_time'),
-		    'state' => t('state'),
-		    'thumbnail' => t('thumbnail'),
+			'token' => t('special_token', 'model'),
+			'name' => t('special_name', 'model'),
+			'desc' => t('special_desc', 'model'),
+			'create_time' => t('create_time', 'basic'),
+		    'state' => t('special_state', 'model'),
+		    'thumbnail' => t('special_thumbnail', 'model'),
 		);
 	}
 
