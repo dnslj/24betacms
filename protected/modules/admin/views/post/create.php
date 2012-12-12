@@ -61,8 +61,8 @@
     <div class="control-group bottom10px <?php if ($model->hasErrors('category_id') || $model->hasErrors('topic_id')) echo 'error';?>">
         <label class="control-label"><?php echo t('post_category', 'admin') . '/' . t('post_topic', 'admin');?></label>
         <div class="controls">
-            <?php echo CHtml::activeDropDownList($model, 'category_id', AdminCategory::listData(), array('empty'=>t('please_select_category', 'admin')));?>
-            <?php echo CHtml::activeDropDownList($model, 'topic_id', AdminTopic::listData(), array('empty'=>t('please_select_topic', 'admin')));?>
+            <?php echo CHtml::activeDropDownList($model, 'category_id', AdminCategory::listData(), array('empty'=>t('please_select_category', 'admin'), 'id'=>'post-category'));?>
+            <?php echo CHtml::activeDropDownList($model, 'topic_id', AdminTopic::listData(), array('empty'=>t('please_select_topic', 'admin'), 'id'=>'post-topic'));?>
             <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
             <?php if (!$model->hasErrors('category_id')):?><span class="help-block"><?php echo $model->getError('category_id');?></span><?php endif;?>
             <?php if ($model->hasErrors('topic_id')):?><span class="help-block"><?php echo $model->getError('topic_id');?></span><?php endif;?>
@@ -152,12 +152,21 @@
 </fieldset>
 <?php echo CHtml::endForm();?>
 
-<?php cs()->registerScriptFile(sbu('libs/kindeditor/kindeditor-min.js'), CClientScript::POS_END);?>
-<?php cs()->registerScriptFile(sbu('libs/kindeditor/config.js'), CClientScript::POS_END);?>
+
+<?php
+cs()->registerScriptFile(sbu('libs/chosen/chosen.jquery.min.js'), CClientScript::POS_END);
+cs()->registerCssFile(sbu('libs/chosen/chosen.css'));
+cs()->registerScriptFile(sbu('libs/kindeditor/kindeditor-min.js'), CClientScript::POS_END);
+cs()->registerScriptFile(sbu('libs/kindeditor/config.js'), CClientScript::POS_END);
+cs()->registerScriptFile(sbu('libs/kindeditor/config.js'), CClientScript::POS_END);
+?>
 
 <script type="text/javascript">
 $(function(){
 	$(':text:first').focus();
+	$('#post-category, #post-topic').chosen({
+    	'no_results_text': '没有找到匹配的内容'
+	});
 	
     KindEditor.ready(function(K) {
     	var cssPath = ['<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>', '<?php echo tbu('styles/beta-common.css');?>', '<?php echo tbu('styles/beta-all.css');?>'];
