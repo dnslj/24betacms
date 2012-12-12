@@ -62,6 +62,7 @@ class PostController extends AdminController
             }
 	    }
 	    
+	    $this->channel = 'create_post';
 		$this->render('create', array(
 		    'model'=>$model,
 	        'tempPictures' => $tempPictures,
@@ -124,6 +125,7 @@ class PostController extends AdminController
 	    $criteria->addCondition('t.state != ' . POST_STATE_TRASH);
 	    $data = AdminPost::fetchList($criteria);
 	    
+	    $this->channel = 'latest_post';
 	    $this->adminTitle = $title;
 	    $this->render('list', $data);
 	}
@@ -134,6 +136,7 @@ class PostController extends AdminController
 	    $criteria->addColumnCondition(array('t.state'=>POST_STATE_NOT_VERIFY));
 	    $data = AdminPost::fetchList($criteria);
 	    
+	    $this->channel = 'verify_post';
 	    $this->adminTitle = t('noverify_post_list_table', 'admin');
 	    $this->render('list', $data);
 	}
@@ -149,6 +152,7 @@ class PostController extends AdminController
 	        user()->setFlash('table_caption', t('post_search_result', 'admin'));
 	    }
 	    
+	    $this->channel = 'search_post';
         $this->render('search', array('form'=>$form, 'data'=>$data));
 	}
 	
@@ -158,6 +162,7 @@ class PostController extends AdminController
 	    $criteria->addColumnCondition(array('hottest'=>BETA_YES));
 	    $data = AdminPost::fetchList($criteria);
 	     
+	    $this->channel = 'hottest_post';
 	    $this->render('list', $data);
 	}
 	
@@ -166,7 +171,8 @@ class PostController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('recommend'=>BETA_YES));
 	    $data = AdminPost::fetchList($criteria);
-	     
+
+	    $this->channel = 'recommend_post';
 	    $this->render('list', $data);
 	}
 	
@@ -175,7 +181,8 @@ class PostController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('homeshow'=>BETA_YES));
 	    $data = AdminPost::fetchList($criteria);
-	     
+
+	    $this->channel = 'homeshow_post';
 	    $this->render('list', $data);
 	}
 	
@@ -184,7 +191,8 @@ class PostController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('istop'=>BETA_YES));
 	    $data = AdminPost::fetchList($criteria);
-	     
+
+	    $this->channel = 'top_post';
 	    $this->render('list', $data);
 	}
 	
@@ -194,7 +202,8 @@ class PostController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('t.state'=>POST_STATE_TRASH));
 	    $data = AdminPost::fetchList($criteria);
-	     
+
+	    $this->channel = 'trash_post';
 	    $this->render('list', $data);
 	}
 	

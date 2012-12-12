@@ -6,6 +6,8 @@
 class AdminController extends CController
 {
     public $adminTitle;
+    public $channel;
+    public $breadcrumbs = array();
     
 	public function actions()
 	{
@@ -25,7 +27,6 @@ class AdminController extends CController
 		);
 	}
 	
-	public $breadcrumbs = array();
 
 	public function setSiteTitle($value)
 	{
