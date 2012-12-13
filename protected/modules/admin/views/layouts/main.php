@@ -17,7 +17,7 @@ var confirmAlertText = '<?php echo t('delete_confirm', 'admin');?>';
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container admin-nav-container">
-            <a class="brand" href="<?php echo url('admin/default/welcome');?>"><?php echo t('control_center', 'admin');?></a>
+            <a class="brand" href="<?php echo BetaBase::adminHomeUrl();?>"><?php echo t('control_center', 'admin');?></a>
             <ul class="nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('post_manage', 'admin');?><b class="caret"></b></a>

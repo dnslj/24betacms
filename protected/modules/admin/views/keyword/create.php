@@ -1,6 +1,6 @@
 <?php if (user()->hasFlash('save_filter_keyword_result')):?>
 <div class="alert alert-success fade in" data-dismiss="alert">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
+    <a href="#" data-dismiss="alert" class="close">&times;</a>
     <?php echo user()->getFlash('save_filter_keyword_result');?>
 </div>
 <?php endif;?>
@@ -33,6 +33,5 @@
 </form>
 
 <div class="alert alert-block alert-info">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
     <?php echo t('filter_keyword_alert', 'admin')?>
 </div>

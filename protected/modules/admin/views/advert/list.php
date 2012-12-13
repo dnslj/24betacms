@@ -40,7 +40,6 @@
 <?php endif;?>
 
 <div class="alert alert-block alert-info">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
     <ul>
         <li><?php echo t('clear_all_cache_tip', 'admin');?></li>
         <li><?php echo t('delete_advert_tip', 'admin');?></li>

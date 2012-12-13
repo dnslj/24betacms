@@ -136,6 +136,7 @@ return array(
     'link_url' => '链接地址',
     'link_logo' => '链接LOGO',
     'link_desc' => '链接描述',
+    'link_orderid' => '排序ID',
     
     
     /* advert, adcode model */

@@ -1,9 +1,3 @@
-<?php if (user()->hasFlash('save_config_success')):?>
-<div class="alert alert-success fade in" data-dismiss="alert">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
-    <?php echo user()->getFlash('save_config_success');?>
-</div>
-<?php endif;?>
 <?php if (count($errorNames) > 0):?>
 <div class="alert alert-error">
     <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>

@@ -164,7 +164,8 @@ class SiteController extends Controller
          
         $auth->assign('admin','1');
         
-
+        goto end;
+        end: echo 'aa';
     }
 
     public function actionError()

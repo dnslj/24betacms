@@ -17,8 +17,8 @@ select.select-mini {width:auto;height:auto;line-height:auto; padding:0;}
 
 /* top nav */
 .navbar-fixed-top .admin-nav-container {width:auto; padding-left:10px; padding-right:10px;}
-.admin-container {margin:50px 5px 5px 115px;}
-.admin-sidebar {position:fixed; width:100px; margin:0; padding:0px; top:50px; left:5px;}
+.admin-container {margin:50px 10px 15px 140px;}
+.admin-sidebar {position:fixed; width:125px; margin:0; padding:0px; top:50px; left:5px;}
 
 .quick-nav {border:1px solid rgba(0, 0, 0, 0.2); border:1px solid #CCC; padding-top:10px; padding-bottom:10px; -webkit-border-radius:6px; -webkit-box-shadow:0 5px 10px rgba(0, 0, 0, 0.2); box-shadow:0 5px 10px rgba(0, 0, 0, 0.2); background-clip:padding-box; -webkit-background-clip:padding-box;}
 .quick-nav > li > a {border:0; padding:5px 15px;}

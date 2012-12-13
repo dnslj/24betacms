@@ -59,7 +59,7 @@ class Link extends CActiveRecord
 			'url' => t('link_url', 'model'),
 			'logo' => t('link_logo', 'model'),
 			'desc' => t('link_desc', 'model'),
-			'orderid' => t('orderid', 'model'),
+			'orderid' => t('link_orderid', 'model'),
 		);
 	}
 	

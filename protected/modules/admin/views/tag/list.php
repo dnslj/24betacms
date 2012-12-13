@@ -10,8 +10,8 @@
         <tr>
             <th>#</th>
             <th class="span1 align-center">ID</th>
-            <th class="span4"><?php echo t('tag_name');?></th>
-            <th class="span1 align-center"><?php echo t('post_nums');?></th>
+            <th class="span4"><?php echo t('tag_name', 'model');?></th>
+            <th class="span1 align-center"><?php echo t('tag_post_nums', 'model');?></th>
             <th>#</th>
         </tr>
     </thead>

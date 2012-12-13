@@ -32,7 +32,6 @@
 <?php endif;?>
 
 <div class="alert alert-block alert-info">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
     <ul>
         <li><?php echo t('multi_adcode_tip', 'admin');?></li>
     </ul>
