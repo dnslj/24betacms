@@ -167,7 +167,7 @@ class PostController extends Controller
         ));
     }
     
-    public function actionDigg($callback)
+    public function actionDigg()
     {
         $id = (int)$_POST['pid'];
         if ($id < 0) throw new CHttpException(500);
@@ -181,7 +181,58 @@ class PostController extends Controller
         $data = array('digg_nums'=>$model->digg_nums);
         $data['errno'] = (int)$result;
         
-        BetaBase::jsonp($callback, $data);
+        echo CJSON::encode($data);
+        exit(0);
+    }
+    
+    public function actionLike()
+    {
+        if (user()->getIsGuest())
+            $data['errno'] = -1;
+        else {
+            $id = (int)$_POST['pid'];
+            if ($id < 0) throw new CHttpException(500);
+            
+            $model = Post::model()->published()->findByPk($id);
+            if ($model === null) throw new CHttpException(500);
+            
+            $userID = (int)user()->id;
+            $count = app()->getDb()->createCommand()
+                ->select('count(*)')
+                ->from(TABLE_POST_FAVORITE)
+                ->where(array('and', 'post_id = :postid', 'user_id = :userid'), array(':postid'=>$id, ':userid'=>$userID))
+                ->queryScalar();
+
+            if ($count == 0) {
+                $columns = array(
+                    'post_id' => $id,
+                    'user_id' => $userID,
+                    'create_time' => time(),
+                    'create_ip' => BetaBase::getClientIp(),
+                );
+                $result = app()->getDb()->createCommand()
+                    ->insert(TABLE_POST_FAVORITE, $columns);
+            }
+            else {
+                $result = app()->getDb()->createCommand()
+                    ->delete(TABLE_POST_FAVORITE, array('and', 'post_id = :postid', 'user_id = :userid'), array(':postid'=>$id, ':userid'=>$userID));
+            }
+            if ($result > 0)
+                $model->favorite_nums += ($count == 0) ? 1: -1;
+            else
+                throw new CHttpException(500, 'add favorite error');
+            
+            
+            if ($model->favorite_nums < 0)
+                $model->favorite_nums = 0;
+            
+            $result = $model->save(true, array('favorite_nums'));
+            
+            $data = array('favorite_nums'=>$model->favorite_nums);
+            $data['errno'] = (int)$result;
+        }
+        echo CJSON::encode($data);
+        exit(0);
     }
 
 }

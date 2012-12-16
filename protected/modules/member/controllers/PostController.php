@@ -76,7 +76,7 @@ class PostController extends MemberController
             ->delete(TABLE_POST_FAVORITE, $conditions, $params);
     
         if ($result > 0) {
-            $counters = array('favorite_nums' => 1);
+            $counters = array('favorite_nums' => -1);
             $result = Post::model()->updateCounters($counters, 'id = :postid', array(':postid' => $id));
             $data = array('errno' => BETA_NO);
         }

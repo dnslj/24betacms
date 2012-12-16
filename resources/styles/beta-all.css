@@ -37,9 +37,9 @@
 .beta-post-detail table {border-spacing:0; border-collapse:collapse; border:0; margin:10px 0;}
 .beta-post-detail table th, .beta-post-detail table td {border:1px solid #CFCFCF; padding:5px;}
 .beta-post-share {text-align:right; margin-bottom:10px;}
-.beta-digg-button {display:block; float:right; background:#D14836; padding:5px 8px; color:white; overflow:hidden; height:14px; font-size:12px; line-height:12px;}
+.beta-digg-button {display:block; float:right; background:#D14836; margin-left:5px; padding:5px 8px; color:white; overflow:hidden; height:14px; font-size:12px; line-height:12px;}
 .beta-digg-button:hover {background:black; color:white; text-decoration:none;}
-.beta-digg-button .digg-plus {font-family:Helvetica,Arial,sans-serif; text-transform:uppercase; letter-spacing:-0.05em; font-size:16px; margin-right:5px;}
+.beta-digg-button .digg-plus {font-size:12px; text-transform:uppercase;}
 
 /* comment list */
 .beta-comment-item {font-size:12px; border-bottom:1px solid #CFCFCF; margin:0;}

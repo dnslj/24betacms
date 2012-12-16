@@ -58,6 +58,8 @@ return array(
      * post show
      */
     'thanks_contribute' => '感谢{contributor}的投递',
+    'like_post' => '喜欢 + ',
+    'favorite_post' => '收藏 + ',
 
     /*
      * comment create form

@@ -39,7 +39,7 @@ var BetaPost = {
 			type: 'post',
 			url: url,
 			data: {pid: postid},
-			dataType: 'jsonp',
+			dataType: 'json',
 		});
 		
 		jqXhr.done(function(data){
@@ -52,6 +52,25 @@ var BetaPost = {
 		});
 		
 		$(document).off('click', '#beta-digg-button');
+	},
+	favorite: function(event) {
+		event.preventDefault();
+		var tthis = $(this);
+		var postid = parseInt(tthis.attr('data-id'));
+		var url = tthis.attr('data-url');
+		
+		var jqXhr = $.ajax({
+			type: 'post',
+			url: url,
+			data: {pid: postid},
+			dataType: 'json',
+		});
+		
+		jqXhr.done(function(data){
+			if (data.errno >= 0) {
+				tthis.find('.favorite-count').text(data.favorite_nums);
+			}
+		});
 	},
 	create: function(event) {
 		var tthis = $(this);

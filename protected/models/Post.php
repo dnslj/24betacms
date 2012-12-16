@@ -494,6 +494,22 @@ class Post extends CActiveRecord
         return $html;
 	}
 	
+	public function getDiggButtonHtml()
+	{
+	    $html = '<a id="beta-digg-button" class="beta-digg-button" href="javascript:void(0);" data-url="%s" rel="nofollow" title="%s" data-id="%d">';
+	    $html .= '<span class="digg-plus">%s</span><span class="digg-count">%d</span></a>';
+	    $html = sprintf($html, aurl('post/digg'), 'Like', (int)$this->id, t('like_post'), (int)$this->digg_nums);
+	    return $html;
+	}
+	
+	public function getFavoriteButtonHtml()
+	{
+	    $html = '<a id="beta-favorite-button" class="beta-digg-button" href="javascript:void(0);" data-url="%s" rel="nofollow" title="%s" data-id="%d">';
+	    $html .= '<span class="digg-plus">%s</span><span class="favorite-count">%d</span></a>';
+	    $html = sprintf($html, aurl('post/like'), 'Add to favorite', (int)$this->id, t('favorite_post'), (int)$this->favorite_nums);
+	    return $html;
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
