@@ -126,6 +126,13 @@ class Controller extends CController
 	{
 	    return $this->user->profile;
 	}
+
+
+	public function beforeRender($view)
+	{
+	    cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed'), null, array('title'=>app()->name . ' » Feed'));
+	    return true;
+	}
 }
 
 

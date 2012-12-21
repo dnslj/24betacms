@@ -10,9 +10,6 @@
     <meta name="robots" content="all" />
     <link rel="start" href="<?php echo $this->homeUrl;?>" title="Home" />
     <link rel="home" href="<?php echo $this->homeUrl;?>" title="Home" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo sbu('styles/beta-common.css');?>" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo sbu('styles/beta-all.css');?>" />
     <?php echo param('header_html');?>
 </head>
 <body>
@@ -52,9 +49,24 @@
 </html>
 
 <?php
-cs()->registerCoreScript('jquery');
-cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);
-cs()->registerScriptFile(sbu('scripts/beta-main.js'), CClientScript::POS_END);
-cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed'), null, array('title'=>app()->name . ' » Feed'));
+
+cs()->registerCssFile(sbu('libs/bootstrap/css/bootstrap.min.css'))
+    ->registerCssFile(sbu('styles/beta-common.css'))
+    ->registerCssFile(sbu('styles/beta-main.css'))
+    ->registerCoreScript('jquery')
+    ->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END)
+    ->registerScriptFile(sbu('scripts/beta-main.js'), CClientScript::POS_END);
+
+cs()->scriptMap = array(
+    'bootstrap.min.js' => sbu('scripts/beta-all.min.js'),
+    'jquery.lazyload.min.js' => sbu('scripts/beta-all.min.js'),
+    'jquery.pagecontrol.js' => sbu('scripts/beta-all.min.js'),
+    'beta-main.js' => sbu('scripts/beta-all.min.js'),
+    'json.js' => sbu('scripts/beta-all.min.js'),
+    
+    'bootstrap.min.css' => sbu('styles/beta-all.min.css'),
+    'beta-common.css' => sbu('styles/beta-all.min.css'),
+    'beta-main.css' => sbu('styles/beta-all.min.css'),
+);
 ?>
 
