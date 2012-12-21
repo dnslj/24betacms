@@ -57,7 +57,7 @@ cs()->registerCssFile(sbu('libs/bootstrap/css/bootstrap.min.css'))
     ->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END)
     ->registerScriptFile(sbu('scripts/beta-main.js'), CClientScript::POS_END);
 
-cs()->scriptMap = array(
+YII_DEBUG || cs()->scriptMap = array(
     'bootstrap.min.js' => sbu('scripts/beta-all.min.js'),
     'jquery.lazyload.min.js' => sbu('scripts/beta-all.min.js'),
     'jquery.pagecontrol.js' => sbu('scripts/beta-all.min.js'),
