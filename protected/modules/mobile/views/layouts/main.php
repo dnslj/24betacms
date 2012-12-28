@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-mobile.css');?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo sbu('styles/beta-mobile.css');?>" />
 </head>
 <body>
 <noscript><div id="noscript"><h2>Notice</h2><p>JavaScript is currently off.</p><p>Turn it on in browser settings to view this mobile website.</p></div></noscript>
@@ -26,4 +26,4 @@
 
 <?php cs()->registerCoreScript('jquery');?>
 <?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);?>
-<?php cs()->registerScriptFile(tbu('scripts/beta-mobile.js'), CClientScript::POS_END);?>
+<?php cs()->registerScriptFile(sbu('scripts/beta-mobile.js'), CClientScript::POS_END);?>
