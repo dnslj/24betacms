@@ -130,6 +130,8 @@ class SiteController extends Controller
     
     public function actionTest()
     {
+        echo tbu('xx.js', true);
+        exit;
         phpinfo();
         exit;
         

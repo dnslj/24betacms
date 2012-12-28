@@ -159,13 +159,12 @@ function tbu($file = null, $checkExist = false, $themeName = null)
     elseif ($themeName instanceof CDTheme)
         $theme = $themeName;
 
-    $url = sbu($file);
+    $url = null;
     if ($theme !== null) {
-        $url = $theme->getBaseUrl() . '/' . ltrim($file, '/');
         if ($checkExist) {
             $filename = $theme->getBasePath() . DS . ltrim($file, DS);
-            if (!file_exists($filename))
-                $url = null;
+            if (file_exists($filename))
+                $url = $theme->getBaseUrl() . '/' . ltrim($file, '/');
         }
     }
 
