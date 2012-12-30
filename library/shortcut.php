@@ -197,6 +197,23 @@ function tbp($file = null, $checkExist = false, $themeName = null)
     return $filepath;
 }
 
+function resbu($file, $checkExit = false, $themeName = null)
+{
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
+    
+    if ($theme === null)
+        $url = sbu($url);
+    else
+        $url = tbu($file, $checkExit, $theme);
+    
+    return $url;
+}
+
 /**
  * This is the shortcut to Yii::app()->authManager.
  * @return IAuthManager Yii::app()->authManager

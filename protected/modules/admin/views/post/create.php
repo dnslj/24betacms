@@ -169,7 +169,7 @@ $(function(){
 	});
 	
     KindEditor.ready(function(K) {
-    	var cssPath = ['<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>', '<?php echo tbu('styles/beta-common.css');?>', '<?php echo tbu('styles/beta-all.css');?>'];
+    	var cssPath = ['<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>', '<?php echo resbu('styles/beta-common.css');?>', '<?php echo resbu('styles/beta-all.css');?>'];
     	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
         KEConfig.adminmini.cssPath = cssPath;
     	KEConfig.adminmini.uploadJson = imageUploadUrl;
