@@ -207,7 +207,7 @@ function resbu($file, $checkExit = false, $themeName = null)
         $theme = $themeName;
     
     if ($theme === null)
-        $url = sbu($url);
+        $url = sbu($file);
     else
         $url = tbu($file, $checkExit, $theme);
     
