@@ -9,7 +9,7 @@
 
 
 - [24Blog v1.4 正式版下载地址](http://pan.baidu.com/share/link?shareid=186249&uk=1627690140)
-- [24Blog v1.4 升级包下载地址(适用于v1.3)](http://pan.baidu.com/share/link?shareid=186263&uk=1627690140)
+- [24Blog v1.4 升级包下载地址(适用于v1.3)](http://pan.baidu.com/share/link?shareid=186308&uk=1627690140)
 - [24Blog v1.4 正式版安装使用教程](https://github.com/cdcchen/24beta/wiki)
 - [24Blog Change Log](http://cms.24beta.com/changelog.txt)
 
