@@ -17,7 +17,7 @@ class CategoryController extends MobileController
 	    $id = (int)$id;
 	    $criteria = new CDbCriteria();
 	    $criteria->order = 't.istop desc, t.create_time desc';
-	    $criteria->limit = param('postCountOfPage');
+	    $criteria->limit = param('mobile_post_list_page_count');
 	    $criteria->scopes = array('published');
 	    $criteria->addColumnCondition(array('category_id' => $id));
 	

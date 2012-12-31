@@ -9,6 +9,22 @@ class FeedController extends Controller
         header('Content-Type:application/xml; charset=' . app()->charset);
     }
     
+    public function filters()
+    {
+        $duration = 300;
+        return array(
+            array(
+                'COutputCache + index',
+                'duration' => $duration,
+            ),
+            array(
+                'COutputCache + category, topic',
+                'duration' => $duration,
+                'varyByParam' => array('id'),
+            ),
+        );
+    }
+    
     public function actionIndex()
     {
         $cmd = app()->getDb()->createCommand()
@@ -36,7 +52,7 @@ class FeedController extends Controller
         
         $rows = self::fetchPosts($cmd);
         
-        $feedname = $categoryName . ' - ' . app()->name;
+        $feedname = app()->name . ' » ' . $categoryName;
         self::outputXml($feedname, $rows);
         exit(0);
     }
@@ -58,7 +74,7 @@ class FeedController extends Controller
         
         $rows = self::fetchPosts($cmd);
         
-        $feedname = $topicName . ' - ' . app()->name;
+        $feedname = app()->name . ' » ' . $topicName;
         self::outputXml($feedname, $rows);
         exit(0);
     }
@@ -97,7 +113,7 @@ class FeedController extends Controller
         $channel = new DOMElement('channel');
         $rss->appendChild($channel);
         $channel->appendChild(new DOMElement('copyright', 'Copyright (c) 2012 ' . app()->name . '. All rights reserved.'));
-        $channel->appendChild(new DOMElement('title', $feedname . ' - ' . param('shortdesc')));
+        $channel->appendChild(new DOMElement('title', $feedname));
         $channel->appendChild(new DOMElement('link', app()->homeUrl));
         $channel->appendChild(new DOMElement('description', param('shortdesc')));
         $channel->appendChild(new DOMElement('lastBuildDate', date('D, d M Y H:i:s O', $_SERVER['REQUEST_TIME'])));

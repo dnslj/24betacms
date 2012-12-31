@@ -8,10 +8,8 @@
     <meta name="generator" content="<?php echo BetaBase::powered();?>" />
     <meta name="copyright" content="Copyright (c) 2009-2012 24beta.com All Rights Reserved." />
     <meta name="robots" content="all" />
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo aurl('feed');?>" />
-    <link rel="start" href="<?php echo abu('/');?>" title="Home" />
-    <link rel="home" href="<?php echo abu('/');?>" title="Home" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-all.css');?>" />
+    <link rel="start" href="<?php echo $this->homeUrl;?>" title="Home" />
+    <link rel="home" href="<?php echo $this->homeUrl;?>" title="Home" />
     <?php echo param('header_html');?>
 </head>
 <body>
@@ -50,6 +48,25 @@
 </body>
 </html>
 
-<?php cs()->registerCoreScript('jquery');?>
-<?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);?>
-<?php cs()->registerScriptFile(tbu('scripts/beta-main.js'), CClientScript::POS_END);?>
+<?php
+
+cs()->registerCssFile(sbu('libs/bootstrap/css/bootstrap.min.css'))
+    ->registerCssFile(sbu('styles/beta-common.css'))
+    ->registerCssFile(sbu('styles/beta-main.css'))
+    ->registerCoreScript('jquery')
+    ->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END)
+    ->registerScriptFile(sbu('scripts/beta-main.js'), CClientScript::POS_END);
+
+YII_DEBUG || cs()->scriptMap = array(
+    'bootstrap.min.js' => sbu('scripts/beta-all.min.js'),
+    'jquery.lazyload.min.js' => sbu('scripts/beta-all.min.js'),
+    'jquery.pagecontrol.js' => sbu('scripts/beta-all.min.js'),
+    'beta-main.js' => sbu('scripts/beta-all.min.js'),
+    'json.js' => sbu('scripts/beta-all.min.js'),
+    
+    'bootstrap.min.css' => sbu('styles/beta-all.min.css'),
+    'beta-common.css' => sbu('styles/beta-all.min.css'),
+    'beta-main.css' => sbu('styles/beta-all.min.css'),
+);
+?>
+

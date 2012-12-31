@@ -1,6 +1,6 @@
 <?php if (user()->hasFlash('save_topic_result')):?>
-<div class="alert alert-success fade in">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
+<div class="alert alert-success fade in" data-dismiss="alert">
+    <a href="#" data-dismiss="alert" class="close">&times;</a>
     <?php echo user()->getFlash('save_topic_result');?>
 </div>
 <?php endif;?>

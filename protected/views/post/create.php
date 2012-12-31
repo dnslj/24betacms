@@ -1,7 +1,7 @@
 <div class="beta-content beta-post-show beta-radius3px">
     <?php echo CHtml::form('',  'post', array('class'=>'beta-form-horizontal beta-post-form', 'id'=>'post-form'));?>
     <div class="beta-control-group <?php if ($form->hasErrors('title')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('post_title');?></label>
+        <?php echo CHtml::activeLabel($form, 'title', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'title', array('class'=>'beta-text', 'id'=>'post-title'));?>
             <p class="beta-help-block"><?php echo $form->getError('title');?></p>
@@ -9,7 +9,7 @@
         <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('source')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('post_source');?></label>
+        <?php echo CHtml::activeLabel($form, 'source', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'source', array('class'=>'beta-text'));?>
             <p class="beta-help-block"><?php echo $form->getError('source');?></p>
@@ -18,7 +18,7 @@
     </div>
     <?php if (!user()->checkAccess('editor')):?>
     <div class="beta-control-group <?php if ($form->hasErrors('contributor')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('post_contributor');?></label>
+        <?php echo CHtml::activeLabel($form, 'contributor', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'contributor', array('class'=>'beta-text'));?>
             <p class="beta-help-block"><?php echo $form->getError('contributor');?></p>
@@ -26,7 +26,7 @@
         <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('post_contributor_site');?></label>
+        <?php echo CHtml::activeLabel($form, 'contributor_site', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'beta-text', 'id'=>'post-site'));?>
             <p class="beta-help-block"><?php echo $form->getError('contributor_site');?></p>
@@ -34,7 +34,7 @@
         <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('post_contributor_email');?></label>
+        <?php echo CHtml::activeLabel($form, 'contributor_email', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'beta-text', 'id'=>'post-email'));?>
             <p class="beta-help-block"><?php echo $form->getError('contributor_email');?></p>
@@ -44,7 +44,7 @@
     <?php endif;?>
     <?php if (user()->checkAccess('editor')):?>
     <div class="beta-control-group <?php if ($form->hasErrors('tags')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('tags');?></label>
+        <?php echo CHtml::activeLabel($form, 'tags', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'tags', array('class'=>'beta-text', 'id'=>'post-tags'));?>
             <p class="beta-help-block"><?php echo $form->getError('tags');?></p>
@@ -53,14 +53,14 @@
     </div>
     <?php endif;?>
     <div class="beta-control-group stacked <?php if ($form->hasErrors('summary')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('summary');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('summary');?></span></label>
+        <label class="beta-control-label"><?php echo t('post_summary', 'model');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('summary');?></span></label>
         <div class="beta-controls">
             <?php echo CHtml::activeTextArea($form, 'summary', array('id'=>'beta-summary'));?>
         </div>
         <div class="clear"></div>
     </div>
     <div class="beta-control-group stacked <?php if ($form->hasErrors('content')) echo 'error';?>">
-        <label class="beta-control-label"><?php echo t('content');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('content');?></span></label>
+        <label class="beta-control-label"><?php echo t('post_content', 'model');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('content');?></span></label>
         <div class="beta-controls">
             <?php echo CHtml::activeTextArea($form, 'content', array('id'=>'beta-content'));?>
         </div>
@@ -68,7 +68,7 @@
     </div>
     <?php if (!$form->captchaAllowEmpty()):?>
     <div class="beta-control-group captcha-clearfix <?php echo $captchaClass?>">
-        <label class="beta-control-label"><?php echo t('captcha');?></label>
+        <?php echo CHtml::activeLabel($form, 'captcha', array('class'=>'beta-control-label'));?>
         <div class="beta-controls">
             <?php echo CHtml::activeTextField($form, 'captcha', array('class'=>'beta-captcha beta-text'));?>
             <?php echo $captchaWidget;?>
@@ -78,8 +78,7 @@
     </div>
     <?php endif;?>
     <div class="beta-form-actions acenter">
-        <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn small'));?>
-        <?php echo CHtml::resetButton(t('reset'), array('class'=>'beta-btn small'));?>
+        <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-primary'));?>
     </div>
     <?php echo CHtml::endForm();?>
 </div>
@@ -114,11 +113,11 @@
 $(function(){
 	$('#post-title').focus();
     KindEditor.ready(function(K) {
-    	var cssurl = '<?php echo tbu('styles/beta-all.css');?>';
+    	var cssPath = ['<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>', '<?php echo resbu('styles/beta-common.css');?>', '<?php echo resbu('styles/beta-all.css');?>'];
     	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
-    	KEConfig.mini.cssPath = [cssurl];
+    	KEConfig.mini.cssPath = cssPath;
     	KEConfig.mini.uploadJson = imageUploadUrl;
-        KEConfig.common.cssPath = [cssurl];
+        KEConfig.common.cssPath = cssPath;
         KEConfig.common.uploadJson = imageUploadUrl;
     	var betaSummary = K.create('#beta-summary', KEConfig.mini);
     	var betaContent = K.create('#beta-content', KEConfig.common);

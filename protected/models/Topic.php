@@ -69,10 +69,10 @@ class Topic extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => t('topic_name'),
-			'post_nums' => t('post_nums'),
-			'icon' => t('icon'),
-			'orderid' => t('orderid'),
+			'name' => t('topic_name', 'model'),
+			'post_nums' => t('topic_post_nums', 'model'),
+			'icon' => t('topic_icon', 'model'),
+			'orderid' => t('topic_orderid', 'model'),
 		);
 	}
 

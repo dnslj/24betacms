@@ -8,7 +8,7 @@ class LoginForm extends CFormModel
     public $password;
     public $captcha;
     public $rememberMe = 1;
-    public $agreement;
+    public $agreement = 1;
     public $returnUrl;
 
     private $_identity;
@@ -17,20 +17,20 @@ class LoginForm extends CFormModel
     public function rules()
     {
         return array(
-            array('email', 'required', 'message'=>t('please_input_your_email')),
-            array('email', 'unique', 'className'=>'User', 'attributeName'=>'email', 'on'=>'signup', 'message'=>t('email_is_exist')),
+            array('email', 'required', 'message'=>t('please_input_your_email', 'model')),
+            array('email', 'unique', 'className'=>'User', 'attributeName'=>'email', 'on'=>'signup', 'message'=>t('email_is_exist', 'model')),
             array('email', 'email'),
             array('username', 'required', 'message'=>t('please_input_your_nickname'), 'on'=>'signup'),
-            array('username', 'unique', 'className'=>'User', 'attributeName'=>'name', 'on'=>'signup', 'message'=>t('nickname_is_exist')),
+            array('username', 'unique', 'className'=>'User', 'attributeName'=>'name', 'on'=>'signup', 'message'=>t('nickname_is_exist', 'model')),
             array('username', 'checkReserveWords'),
-            array('password', 'required', 'on'=>'signup', 'message'=>t('please_input_your_password')),
+            array('password', 'required', 'on'=>'signup', 'message'=>t('please_input_your_password', 'model')),
             array('password', 'authenticate', 'on'=>'login'),
             array('captcha', 'captcha', 'allowEmpty'=>!$this->getEnableCaptcha(), 'on'=>'login'),
             array('captcha', 'captcha', 'allowEmpty'=>false, 'on'=>'signup'),
             array('rememberMe', 'boolean', 'on'=>'login'),
             array('username, password', 'length', 'min'=>3, 'max'=>50),
             array('email, returnUrl', 'length', 'max'=>255),
-            array('agreement', 'compare', 'compareValue'=>true, 'on'=>'signup', 'message'=>t('please_agree_policy')),
+            array('agreement', 'compare', 'compareValue'=>true, 'on'=>'signup', 'message'=>t('please_agree_policy', 'model')),
             array('rememberMe', 'in', 'range'=>array(0, 1)),
         );
     }
@@ -41,7 +41,7 @@ class LoginForm extends CFormModel
         foreach ((array)param('reservedWords') as $v) {
             $pos = stripos($this->$attribute, $v);
             if (false !== $pos) {
-                $this->addError($attribute, t('nickname_is_exist'));
+                $this->addError($attribute, t('nickname_is_exist', 'model'));
                 break;
             }
         }
@@ -54,19 +54,19 @@ class LoginForm extends CFormModel
         $this->_identity = new UserIdentity($this->email, $this->password);
 
         if (!$this->_identity->authenticate()) {
-            $this->addError($attribute, t('email_or_password_error'));
+            $this->addError($attribute, t('email_or_password_error', 'model'));
         }
     }
 
     public function attributeLabels()
     {
         return array(
-            'username' => t('username'),
-            'password' => t('password'),
-            'captcha' => t('captcha'),
-            'rememberMe' => t('member_me'),
-            'email' => t('email'),
-        	'agreement' => t('agreement'),
+            'username' => t('username', 'model'),
+            'password' => t('password', 'model'),
+            'captcha' => t('captcha', 'basic'),
+            'rememberMe' => t('member_me', 'model'),
+            'email' => t('useremail', 'model'),
+        	'agreement' => t('agreement', 'model'),
             'reutrnUrl' => 'Return Url',
         );
     }

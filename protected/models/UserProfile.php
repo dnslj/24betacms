@@ -1,0 +1,168 @@
+<?php
+
+/**
+ * This is the model class for table "{{user_profile}}".
+ *
+ * The followings are the available columns in table '{{user_profile}}':
+ * @property integer $user_id
+ * @property integer $province
+ * @property integer $city
+ * @property string $location
+ * @property integer $gender
+ * @property string $description
+ * @property string $website
+ * @property string $image_url
+ * @property string $avatar_large
+ * @property integer $weibo_uid
+ * @property integer $qqt_uid
+ *
+ * @property string $largeAvatarUrl
+ * @property string $smallAvatarUrl
+ * @property string $largeAvatar
+ * @property string $smallAvatar
+ * @property string $genderLabel
+ */
+class UserProfile extends CActiveRecord
+{
+    public static function genders()
+    {
+        return array(GENDER_UNKOWN, GENDER_FEMALE, GENDER_MALE);
+    }
+    
+    public static function genderLabel($gender = null)
+    {
+        $labels = array(
+                GENDER_UNKOWN => '保密',
+                GENDER_FEMALE => '妹纸',
+                GENDER_MALE => '帅锅',
+        );
+    
+        return ($gender === null) ? $labels : $labels[$gender];
+    }
+    
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @return UserProfile the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return TABLE_USER_PROFILE;
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		return array(
+    		array('user_id', 'unique'),
+			array('user_id', 'required'),
+			array('user_id, province, city', 'numerical', 'integerOnly'=>true),
+			array('location', 'length', 'max'=>100),
+			array('weibo_uid, qqt_uid', 'length', 'max'=>50),
+			array('description, website, image_url, avatar_large', 'length', 'max'=>250),
+	        array('gender', 'in', 'range'=>self::genders()),
+			array('website', 'url'),
+			array('description', 'safe'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		return array(
+		    'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'user_id' => t('user_id', 'model'),
+			'province' => t('user_province', 'model'),
+			'city' => t('user_city', 'model'),
+			'location' => t('user_location', 'model'),
+			'gender' => t('user_gender', 'model'),
+			'description' => t('user_description', 'model'),
+			'website' => t('user_website', 'model'),
+			'image_url' => t('user_image_url', 'model'),
+			'avatar_large' => t('user_avatar_large', 'model'),
+		    'weibo_uid' => t('user_weibo_uid', 'model'),
+		    'qqt_uid' => t('user_qqt_uid', 'model'),
+		);
+	}
+	
+	public function getGenderLabel()
+	{
+	    return self::genderLabel($this->gender);
+	}
+
+	public function getSmallAvatarUrl()
+	{
+	    $url = '';
+	    if (empty($this->image_url))
+	        return $url;
+	    
+	    $pos = stripos($this->image_url, 'http://');
+	    if ($pos === 0)
+	        $url = $this->image_url;
+	    elseif ($pos === false)
+	        $url = fbu($this->image_url);
+	    
+	    return $url;
+	}
+
+	public function getLargeAvatarUrl()
+	{
+	    $url = '';
+	    if (empty($this->avatar_large))
+	        return $url;
+	    
+	    $pos = stripos($this->avatar_large, 'http://');
+	    if ($pos === 0)
+	        $url = $this->avatar_large;
+	    elseif ($pos === false)
+	        $url = fbu($this->avatar_large);
+	    
+	    return $url;
+	}
+
+	public function getLargeAvatar($htmlOptions = array())
+	{
+	    $html = '';
+	    $url = $this->getLargeAvatarUrl();
+	    if ($url) {
+	        $htmlOptions += array('class'=>'large-avatar');
+	        $html = image($url, '我的头像', $htmlOptions);
+	    }
+	
+	    return $html;
+	}
+	
+	public function getSmallAvatar($htmlOptions = array())
+	{
+	    $html = '';
+	    $url = $this->getSmallAvatarUrl();
+	    if ($url) {
+	        $htmlOptions += array('class'=>'small-avatar');
+	        $html = image($url, '我的头像', $htmlOptions);
+	    }
+	
+	    return $html;
+	}
+}
+
+

@@ -47,6 +47,9 @@ return array(
         'mobile' => array(
             'layout' => 'main',
         ),
+        'member' => array(
+            'layout' => 'main',
+        ),
     ),
     'preload' => array('log'),
     'components' => array(
@@ -68,6 +71,7 @@ return array(
             'errorAction' => 'site/error',
         ),
         'user' => array(
+            'class' => 'CDWebUser',
             'allowAutoLogin' => true,
             'loginUrl' => array('site/login'),
             'returnUrl' => array('site/index')
@@ -99,6 +103,7 @@ return array(
             'baseUrl' => $params['resourceBaseUrl'] . 'assets',
         ),
         'themeManager' => array(
+            'themeClass' => 'CDTheme',
             'basePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'themes',
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),
@@ -126,16 +131,19 @@ return array(
                 'page/<page:\d+>' => 'site/index',
                 '' => 'site/index',
                 'archives/<id:\d+>' => 'post/show',
+                'post-<id:\d+>' => 'post/detail',
                 '<_a:(login|signup|logout)>' => 'site/<_a>',
                 '<_c:(category|topic)>/<id:\d+>/page/<page:\d+>' => '<_c>/posts',
                 '<_c:(category|topic)>/<id:\d+>' => '<_c>/posts',
                 'topics' => 'topic/list',
-                'tag/<name:[\w\s\%\-\+\.]+>' => 'tag/posts',
+                'tag/<name:.+>' => 'tag/posts',
                 'feed/<_a:(category|topic)>/<id:\d+>' => 'feed/<_a>',
             
                 'mobile/page/<page:\d+>' => 'mobile/default/index',
                 'mobile' => 'mobile/default/index',
                 'mobile/archives/<id:\d+>' => 'mobile/post/show',
+            
+                'account' => 'member/default/index',
             ),
         ),
     ),

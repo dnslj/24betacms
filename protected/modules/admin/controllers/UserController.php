@@ -10,17 +10,13 @@ class UserController extends AdminController
         );
     }
     
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
-	
 	public function actionVerify()
 	{
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('state'=>USER_STATE_UNVERIFY));
 	    $data = AdminUser::fetchList($criteria);
-	     
+
+	    $this->channel = 'verify_user';
 	    $this->adminTitle = t('verify_user', 'admin');
 	    $this->render('list', $data);
 	}
@@ -30,7 +26,8 @@ class UserController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('state'=>USER_STATE_FORBIDDEN));
 	    $data = AdminUser::fetchList($criteria);
-	     
+
+	    $this->channel = 'forbidden_user';
 	    $this->adminTitle = t('forbidden_user', 'admin');
 	    $this->render('list', $data);
 	}
@@ -42,8 +39,8 @@ class UserController extends AdminController
 	    $criteria->addCondition('create_time > ' . $time);
 	    $data = AdminUser::fetchList($criteria);
 	    
+	    $this->channel = 'today_user';
 	    $this->adminTitle = t('today_signup_user', 'admin');
-	    
 	    $this->render('list', $data);
 	}
 	
@@ -53,8 +50,8 @@ class UserController extends AdminController
 	    $criteria = new CDbCriteria();
 	    $data = AdminUser::fetchList($criteria);
 	    
+	    $this->channel = 'list_user';
 	    $this->adminTitle = t('user_account_list', 'admin');
-	    
 	    $this->render('list', $data);
 	}
 	
@@ -87,6 +84,7 @@ class UserController extends AdminController
 	        }
 	    }
 	    
+	    $this->channel = 'create_user';
 	    $view = $model->getIsNewRecord() ? 'create' : 'edit';
 	    $this->render($view, array(
 	        'model' => $model,
@@ -105,6 +103,7 @@ class UserController extends AdminController
 	        user()->setFlash('table_caption', t('user_search_result', 'admin'));
 	    }
 	    
+	    $this->channel = 'search_user';
         $this->render('search', array('form'=>$form, 'data'=>$data));
 	}
 
@@ -173,6 +172,7 @@ class UserController extends AdminController
         if ($model === null)
             throw new CHttpException(500, t('user_is_not_exist', 'admin'));
         
+        $this->channel = 'info_user';
         $this->adminTitle = $model->name;
         $this->render('info', array('model' => $model));
     }

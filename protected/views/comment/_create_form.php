@@ -1,4 +1,4 @@
-<div class="alert beta-alert beta-alert-message hide" id="beta-create-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text">/span></div>
+<div class="alert beta-alert beta-alert-message hide" id="beta-create-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text"></span></div>
 <?php echo CHtml::form(aurl('post/comment'),  'post', array('class'=>'beta-form-horizontal beta-comment-form', 'id'=>'comment-form'));?>
 <?php echo CHtml::activeHiddenField($comment, 'post_id');?>
 <div class="beta-control-group stacked">
@@ -8,17 +8,16 @@
     </div>
     <div class="clear"></div>
 </div>
-<div class="beta-control-group comment-captcha hide">
-    <label class="beta-control-label"><?php echo t('captcha');?></label>
+<div class="beta-control-group comment-captcha" style="display:none;">
     <div class="beta-controls comment-input">
         <?php echo CHtml::activeTextField($comment, 'captcha', array('class'=>'beta-text beta-captcha'));?>
         <?php $this->widget('BetaCaptcha', array('skin'=>'comment'));?>
-        <a href="<?php echo url('post/captcha', array('refresh'=>1));?>" class="refresh-captcha" tabindex="99999"><?php echo t('refresh_captcha');?></a>
+        <a href="<?php echo aurl('post/captcha', array('refresh'=>1));?>" class="refresh-captcha" tabindex="99999"><?php echo t('refresh_captcha', 'basic');?></a>
     </div>
     <div class="clear"></div>
 </div>
 <div class="acenter">
-    <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn small'));?>
+    <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-small'));?>
 </div>
 <?php echo CHtml::endForm();?>
 

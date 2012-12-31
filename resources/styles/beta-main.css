@@ -1,0 +1,154 @@
+@CHARSET "UTF-8";
+
+/* post summary list */
+.beta-block-title {background:#DFDFDF; font-size:18px; line-height:20px; padding:15px; margin:0 0 10px;}
+.beta-post-item {border:1px solid #CFCFCF; margin:0 0 10px; position:relative;}
+.beta-post-item dt, .beta-post-item dd {padding:0 10px; margin:0;}
+.beta-post-item dt {font-size:18px; font-family:微软雅黑; line-height:22px; margin:12px 0;}
+.beta-post-item dt strong {color:darkred;}
+.beta-post-item .beta-post-summary {margin:10px 0px; overflow:hidden; line-height:24px;}
+.beta-post-item .beta-post-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:#F2F2F2; border-top:1px solid #DFDFDF;}
+.beta-post-item .beta-post-toolbar a {margin-right:10px;}
+.beta-thank {font-size:12px; color:#555555;}
+.beta-post-extra {font-size:12px; margin-bottom:5px;}
+.beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
+.beta-post-item img.topic-icon {height:80px; max-width:150px; margin:0 0 5px 5px;}
+/* summary and content css */
+.beta-post-summary .beta-post-content p {margin:0;}
+.beta-post-content {word-wrap:break-word; overflow-x:hidden; width:100%; line-height:24px;}
+.beta-post-content p, .beta-post-content div {line-height:24px; margin-bottom:18px;}
+.beta-post-content img {margin:10px; max-width:600px; overflow:hidden;}
+.beta-post-content blockquote {padding: 10px; background:#EFEFEF; color:#555; font-size:14px; margin:15px 10px; -wekkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
+.beta-post-content blockquote p {font-size:14px;}
+.beta-post-content ul {margin:1px 0 15px 30px;}
+.beta-post-content li {margin-bottom:5px; line-height:22px;}
+.beta-post-list li, .beta-post-list .post-item {margin:10px 0;}
+
+
+/* post show detail */
+.beta-post-show {border:1px solid #CFCFCF; overflow:hidden;}
+.beta-post-detail {overflow:hidden; padding:10px;}
+.beta-post-detail h1 {font-family:微软雅黑;font-size:20px; line-height:26px; margin-bottom:25px; text-align:center;}
+.beta-post-detail .beta-post-content {margin:20px 0 10px; word-wrap:break-word; overflow:hidden;}
+.beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {font-size:12px; margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
+.beta-post-detail .beta-post-tags a, .beta-post-detail .beta-post-source a {margin-left:5px; font-size:12px!important;}
+.beta-post-detail .beta-post-source a {line-height:16px;}
+.beta-mini-title {font-size:12px; background:#CFCFCF; text-indent:10px; height:24px; line-height:24px; font-weight:bold;}
+.beta-post-detail table {border-spacing:0; border-collapse:collapse; border:0; margin:10px 0;}
+.beta-post-detail table th, .beta-post-detail table td {border:1px solid #CFCFCF; padding:5px;}
+.beta-post-share {text-align:right; margin-bottom:10px;}
+.beta-digg-button {display:block; float:right; background:#D14836; margin-left:5px; padding:5px 8px; color:white; overflow:hidden; height:14px; font-size:12px; line-height:12px;}
+.beta-digg-button:hover {background:black; color:white; text-decoration:none;}
+.beta-digg-button .digg-plus {font-size:12px; text-transform:uppercase;}
+
+/* comment list */
+.beta-comment-item {font-size:12px; border-bottom:1px solid #CFCFCF; margin:0;}
+.beta-comment-item dt, .beta-comment-item dd {padding:0px 10px; margin:0;}
+.beta-comment-item dt {padding-top:10px; font-weight:normal;}
+.beta-comment-item .beta-comment-content {padding:10px; line-height:20px;}
+.beta-comment-item .beta-comment-toolbar {height:22px; line-height:24px; background:#DFDFDF;}
+.beta-comment-item .beta-comment-toolbar a {margin-right:10px;}
+.beta-comment-item .beta-comment-toolbar a:last-child {margin-right:0;}
+.beta-comment-quote {border:1px solid #CFCFCF; padding:8px; margin:0 0 10px; line-height:20px;}
+.beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; margin:0; padding:0 5px; width:auto; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid #CFCFCF;}
+.beta-hot-comment {border:1px solid #FC0; background:#FFE57F;}
+.beta-no-comments, .beta-no-hot-comments {font-size:12px; text-align:center; color:gray;}
+.disable_comment {font-size:12px; text-align:center; color:red; padding:5px;}
+
+
+/* comment create form */
+.beta-comment-form {font-size:12px; margin:5px; padding:5px; background:white;}
+.beta-comment-form .beta-control-group {margin:0 0 6px;}
+.beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:5px; font-size:12px;}
+.beta-comment-form .beta-control-group.stacked .beta-controls {margin-left:0; width:100%;}
+.beta-comment-form .beta-controls input.beta-text, .beta-comment-form .beta-controls textarea {height:16px; padding:4px; line-height:16px; font-size:12px;}
+.beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px; margin:0;}
+.beta-comment-form .beta-control-group .beta-controls textarea.mini {width:98%; height:24px;}
+.beta-hot-comment .beta-comment-form .beta-control-group .beta-controls textarea {width:96%;}
+input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkred;}
+
+/* post create form */
+.beta-post-form {margin:10px 0; font-size:12px;}
+.beta-post-form .beta-control-group {margin:0 0 6px 5px;}
+.beta-post-form .beta-control-group .beta-control-label {width:70px; font-size:12px;}
+.beta-post-form .beta-controls .beta-help-block {margin:0; font-size:12px;}
+.beta-post-form .beta-controls input, .beta-post-form textarea {font-size:12px; padding:3px;}
+.beta-post-form .beta-text {width:450px;}
+.beta-post-form .captcha-clearfix label {text-align:left; width:auto;}
+.beta-post-form .beta-control-group.stacked label {display:block; width:auto; clear:both; text-align:left; margin-bottom:0; float:none;}
+.beta-post-form .beta-control-group.stacked .beta-controls {display:block; margin-left:0; float:none;}
+.beta-post-form #beta-summary {width:620px; height:180px;}
+.beta-post-form #beta-content {width:620px; height:400px;}
+body.beta-ke-content {padding:5px;}
+.beta-success-items {margin-top:20px; margin-bottom:100px;}
+.beta-success-items li {margin-bottom:10px;}
+.temp-pictures img {max-height:53px; max-width:80px; cursor:pointer;}
+
+/* beta-hottest-posts */
+.beta-hottest-posts {margin:0 auto; position:relative; height:160px;}
+.beta-hottest-items a {display:block; position:relative; float:left; width:232px; height:130px; overflow:hidden;}
+.beta-hottest-items a:link, .beta-hottest-items a:hover, .beta-hottest-items a:visited {text-decoration:none;}
+.beta-hottest-items a:last-child {margin-right:0;}
+.beta-hottest-items span.separate {display:block; float:left; overflow:hidden; width:20px; height:140px;}
+.beta-hottest-items strong {position:absolute; bottom:0; background-color:rgba(0, 0, 0, 0.5); color:white; width:222px; max-height:36px; line-height:16px; font-weight:normal; padding:3px 5px; font-size:12px; overflow:hidden;}
+.beta-hottest-items img {width:100%; height:100%;}
+.beta-hottest-items {position:absolute; background:white; display:none; height:140px;}
+.beta-hottest-items.active {display:block;}
+.beta-hottest-posts .page-nav {position:absolute; top:140px; width:100%; text-align:center; font-size:0; line-height:0;}
+.beta-hottest-posts .page-nav a {display:inline-block; font-size:0; line-height:0; background:#DDDDDD; width:8px; height:8px; margin:0 6px 2px 6px; -moz-border-radius:4px; -webkit-border-radius:4px; -o-border-radius:4px; border-radius:4px;}
+.beta-hottest-posts .page-nav a.active {font-size:0; line-height:0; background:#CD7B00;}
+
+/* login form */
+.login-form {padding-bottom:100px;}
+.login-form .beta-control-group {margin:18px 0;}
+.login-form .beta-control-group .beta-control-label {width:70px;}
+.login-form .beta-controls label {font-size:12px; display:inline-block; margin-left:5px;}
+.login-form .beta-controls.beta-agreement input, .login-form .beta-controls.rememberme input {margin-bottom:2px;}
+.login-form .beta-controls.beta-agreement label, .login-form .beta-controls.rememberme label {margin-left:5px;}
+.login-form .suggestion {color:gray; font-size:12px; clear:both; margin-top:2px;}
+.login-form .action-buttons {padding-left:90px;}
+.login-form .action-buttons .beta-btn {padding:4px 18px;}
+.login-form .refresh-captcha {font-size:12px;}
+.quick-login-signup {margin-top:100px;}
+
+/* index recommend posts */
+.beta-recommend-posts dl {margin:0; padding:10px; border-bottom:1px dashed black;}
+.beta-recommend-posts dl:last-child {border:0;}
+.beta-recommend-posts dl.row0 {background:#F7FFD4;}
+.beta-recommend-posts dl.row1 {background:#F7FBF3;}
+.beta-recommend-posts dt {margin:0 0 8px; padding:0;}
+.beta-recommend-posts dt a, .beta-recommend-posts dt a:link, .beta-recommend-posts dt a:visited {font-size:14px; color:#6F9F3F;}
+.beta-recommend-posts dd {font-size:12px; color:#3F6F9F; margin:0; padding:0; text-indent:24px;}
+
+/* index recommend comments */
+.beta-recommend-comments dl {margin:0; padding:10px 10px 5px; border-bottom:1px dashed black;}
+.beta-recommend-comments dl:last-child {border:0;}
+.beta-recommend-comments dl.row0 {background:#EFEFEF;}
+.beta-recommend-comments dl.row1 {background:#F7FBF3;}
+.beta-recommend-comments dt {margin:0; padding:0; font-size:12px; font-weight:normal; text-align:right;}
+.beta-recommend-comments dt a, .beta-recommend-comments dt a:link, .beta-recommend-comments dt a:visited {font-size:12px;}
+.beta-recommend-comments dd {font-size:12px; margin:0 0 10px; padding:0; color:#555555;}
+
+/* all topic list */
+.beta-all-topics dl {float:left; width:80px; height:100px; overflow:hidden; border:0px solid #DFDFDF; margin:5px 6px 10px;}
+.beta-all-topics dd {margin:0; padding:0; overflow:hidden; height:80px; display:block; text-align:center;}
+.beta-all-topics dt {margin:0; padding:0; overflow:hidden; font-size:12px; font-weight:normal; text-align:center; height:20px; line-height:20px;}
+.beta-all-topics dd img {max-width:70px; max-height:70px; margin:5px; +width:70px; _width:70px;}
+
+/* topic/posts */
+.beta-post-title-item li {margin:10px;}
+
+/* error page */
+.beta-error {color:gray;}
+.beta-error .error-icon {font-size:200px; color:#CFCFCF; margin-right:20px; line-height:220px; font-weight:bold;}
+.beta-error .error-detail {padding:0px 0 0; line-height:24px;}
+.beta-error .error-detail p {margin-bottom:30px;}
+
+/* friend links */
+.beta-links li {float:left; margin:5px 6px; width:93px; overflow:hidden;}
+.beta-links li a {font-size:12px;}
+.beta-links li img {width:81px; height:31px;}
+
+
+
+

@@ -1,5 +1,11 @@
 <?php
 
+define('REQUIREMENT_PASSED', 1);
+define('REQUIREMENT_ERROR', 0);
+define('REQUIREMENT_WARNING', -1);
+
+
+
 /**
  * Returns a localized message according to user preferred language.
  * @param string message category

@@ -16,6 +16,7 @@
  * @property integer $comment_nums
  * @property integer $digg_nums
  * @property integer $visit_nums
+ * @property integer $favorite_nums
  * @property integer $user_id
  * @property string $user_name
  * @property string $source
@@ -57,12 +58,33 @@
  * @property string $containCode
  * @property Topic $topic
  * @property Category $category
+ * @property User $user
+ * @property array $comments
+ * @property array$files
  */
 class Post extends CActiveRecord
 {
     public static function states()
     {
         return array(POST_STATE_ENABLED, POST_STATE_DISABLED, POST_STATE_REJECTED, POST_STATE_NOT_VERIFY, POST_STATE_TRASH);
+    }
+
+    public static function stateLabels($state = null)
+    {
+        $labels = array(
+            POST_STATE_ENABLED => t('post_state_enabled', 'basic'),
+            POST_STATE_DISABLED => t('post_state_disabled', 'basic'),
+            POST_STATE_NOT_VERIFY => t('post_state_not_verify', 'basic'),
+            POST_STATE_REJECTED => t('post_state_rejected', 'basic'),
+            POST_STATE_TRASH => t('post_state_trash', 'basic'),
+        );
+    
+        return $state === null ? $labels : $labels[$state];
+    }
+    
+    public function getStateLabel()
+    {
+        return self::stateLabels($this->state);
     }
     
     public static function types()
@@ -96,7 +118,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, summary, content', 'required'),
-	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, homeshow, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
+	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, favorite_nums, user_id, create_time, state, istop, homeshow, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
@@ -142,6 +164,9 @@ class Post extends CActiveRecord
 		        'params' => array(':filetype' => UPLOAD_TYPE_FILE),
 		        'order' => 'id asc',
 		    ),
+		    'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+		    'comments' => array(self::HAS_MANY, 'Comment', 'post_id'),
+		    'files' => array(self::HAS_MANY, 'Upload', 'post_id'),
 		    
 		);
 	}
@@ -153,34 +178,35 @@ class Post extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-            'post_type' => t('post_type'),
-			'category_id' => t('category'),
-			'topic_id' => t('topic'),
-			'title' => t('title'),
-			'create_time' => t('create_time'),
-			'create_ip' => t('create_ip'),
-			'score' => t('score'),
-			'score_nums' => t('score_nums'),
-			'comment_nums' => t('comment_nums'),
-			'digg_nums' => t('digg_nums'),
-			'visit_nums' => t('visit_nums'),
-			'user_id' => t('user_id'),
-			'user_name' => t('user_name'),
-	        'source' => t('source'),
-			'tags' => t('tags'),
-			'state' => t('state'),
-			'istop' => t('istop'),
-		    'disable_comment' => t('disable_comment'),
-	        'recommend' => t('recommend'),
-	        'hottest' => t('hottest'),
-	        'homeshow' => t('homeshow'),
-			'thumbnail' => t('thumbnail'),
-			'summary' => t('summary'),
-			'content' => t('content'),
-		    'contributor_id' => t('contributor_id'),
-		    'contributor' => t('contributor'),
-		    'contributor_site' => t('contributor_site'),
-		    'contributor_email' => t('contributor_email'),
+            'post_type' => t('post_type', 'model'),
+			'category_id' => t('post_category', 'model'),
+			'topic_id' => t('post_topic', 'model'),
+			'title' => t('post_title', 'model'),
+			'create_time' => t('create_time', 'basic'),
+			'create_ip' => t('create_ip', 'basic'),
+			'score' => t('post_score', 'model'),
+			'score_nums' => t('post_score_nums', 'model'),
+			'comment_nums' => t('post_comment_nums', 'model'),
+			'digg_nums' => t('post_digg_nums', 'model'),
+			'visit_nums' => t('post_visit_nums', 'model'),
+			'favorite_nums' => t('post_favorite_nums', 'model'),
+			'user_id' => t('post_user_id', 'model'),
+			'user_name' => t('post_user_name', 'model'),
+	        'source' => t('post_source', 'model'),
+			'tags' => t('post_tags', 'model'),
+			'state' => t('post_state', 'model'),
+			'istop' => t('post_istop', 'model'),
+		    'disable_comment' => t('post_disable_comment', 'model'),
+	        'recommend' => t('post_recommend', 'model'),
+	        'hottest' => t('post_hottest', 'model'),
+	        'homeshow' => t('post_homeshow', 'model'),
+			'thumbnail' => t('post_thumbnail', 'model'),
+			'summary' => t('post_summary', 'model'),
+			'content' => t('post_content', 'model'),
+		    'contributor_id' => t('post_contributor_id', 'model'),
+		    'contributor' => t('post_contributor', 'model'),
+		    'contributor_site' => t('post_contributor_site', 'model'),
+		    'contributor_email' => t('post_contributor_email', 'model'),
 		);
 	}
 	
@@ -253,7 +279,7 @@ class Post extends CActiveRecord
 	
 	public function getAuthorName()
 	{
-	    static $name;
+	    static $name = null;
 	
 	    if (null !== $name) return $name;
 	
@@ -371,7 +397,7 @@ class Post extends CActiveRecord
 	    if (empty($tags)) return '';
 	
 	    foreach ($tags as $tag)
-	        $data[] = l($tag, aurl('tag/posts', array('name'=>urlencode($tag))), array('target'=>$target, 'class'=>$class));
+	        $data[] = l($tag, aurl('tag/posts', array('name'=>$tag)), array('target'=>$target, 'class'=>$class));
 	    
 	    return join($operator, $data);
 	}
@@ -468,6 +494,22 @@ class Post extends CActiveRecord
         return $html;
 	}
 	
+	public function getDiggButtonHtml()
+	{
+	    $html = '<a id="beta-digg-button" class="beta-digg-button" href="javascript:void(0);" data-url="%s" rel="nofollow" title="%s" data-id="%d">';
+	    $html .= '<span class="digg-plus">%s</span><span class="digg-count">%d</span></a>';
+	    $html = sprintf($html, aurl('post/digg'), 'Like', (int)$this->id, t('like_post'), (int)$this->digg_nums);
+	    return $html;
+	}
+	
+	public function getFavoriteButtonHtml()
+	{
+	    $html = '<a id="beta-favorite-button" class="beta-digg-button" href="javascript:void(0);" data-url="%s" rel="nofollow" title="%s" data-id="%d">';
+	    $html .= '<span class="digg-plus">%s</span><span class="favorite-count">%d</span></a>';
+	    $html = sprintf($html, aurl('post/like'), 'Add to favorite', (int)$this->id, t('favorite_post'), (int)$this->favorite_nums);
+	    return $html;
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
@@ -503,14 +545,13 @@ class Post extends CActiveRecord
 	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
 	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
 	     
-	    $comments = Comment::model()->findAllByAttributes(array('post_id'=>$this->id));
-	    foreach ($comments as $c) $c->delete();
+	    foreach ($this->comments as $c) $c->delete();
 	     
-	    app()->db->createCommand()->delete(TABLE_POST_TAG, 'post_id = :pid', array(':pid'=>$this->id));
-	    app()->db->createCommand()->delete(TABLE_SPECIAL_POST, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->getDb()->createCommand()->delete(TABLE_POST_TAG, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->getDb()->createCommand()->delete(TABLE_SPECIAL_POST, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->getDb()->createCommand()->delete(TABLE_POST_FAVORITE, 'post_id = :postid', array(':postid' => $this->id));
 	     
-	    $files = Upload::model()->findAllByAttributes(array('post_id'=>$this->id));
-	    foreach ($files as $file) $file->delete();
+	    foreach ($this->files as $file) $file->delete();
 	}
 	
 	protected function afterFind()

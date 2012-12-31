@@ -16,9 +16,9 @@ class CommentController extends AdminController
 	    
 	    $criteria = new CDbCriteria();
 	    $data = AdminComment::model()->fetchList($criteria);
-	    
+
+	    $this->channel = 'latest_comment';
 	    $this->adminTitle = t('latest_comment', 'admin');
-	    
 	    $this->render('list', $data);
 	}
 	
@@ -35,9 +35,9 @@ class CommentController extends AdminController
 	    
 	    $data = AdminComment::model()->fetchList($criteria);
 	    $data['post'] = $post;
+
+	    $this->channel = 'list_comment';
 	    $this->adminTitle = t('latest_comment', 'admin');
-	    
-	    
 	    $this->render('list', $data);
 	}
 	
@@ -49,8 +49,8 @@ class CommentController extends AdminController
 	    
 	    $data = AdminComment::model()->fetchList($criteria);
 	    
+	    $this->channel = 'verify_comment';
 	    $this->adminTitle = t('verify_comment', 'admin');
-	    
 	    $this->render('list', $data);
 	}
 
@@ -65,6 +65,7 @@ class CommentController extends AdminController
 	        $this->adminTitle = t('comment_search_result', 'admin');
 	    }
 	    
+	    $this->channel = 'search_comment';
 	    $this->render('search', array('form'=>$form, 'data'=>$data));
 	}
 	
@@ -76,9 +77,9 @@ class CommentController extends AdminController
 	    $criteria->limit = $count;
 	     
 	    $data = AdminComment::model()->fetchList($criteria);
-	     
+
+	    $this->channel = 'recommend_comment';
 	    $this->adminTitle = t('recommend_comment', 'admin');
-	     
 	    $this->render('list', $data);
 	}
 	

@@ -7,6 +7,8 @@ return array(
         'nextPageLabel' => t('next_page_label'),
         'prevPageLabel' => t('prev_page_label'),
         'cssFile' => false,
+        'hiddenPageCssClass' => 'disabled',
+        'selectedPageCssClass' => 'active',
     ),
     'classic' => array(
         'header' => '',
@@ -28,4 +30,14 @@ return array(
         'hiddenPageCssClass' => 'disabled',
         'selectedPageCssClass' => 'active',
     ),
+    'admin' => array(
+        'header' => '',
+        'footer' => '',
+        'nextPageLabel' => t('next_page_label'),
+        'prevPageLabel' => t('prev_page_label'),
+        'cssFile' => false,
+        'hiddenPageCssClass' => 'disabled',
+        'selectedPageCssClass' => 'active',
+    ),
+    
 );

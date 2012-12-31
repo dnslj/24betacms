@@ -67,10 +67,10 @@ class Category extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => t('category_name'),
-			'post_nums' => t('post_nums'),
-			'orderid' => t('orderid'),
-	        'state' => t('state'),
+			'name' => t('category_name', 'model'),
+			'post_nums' => t('category_post_nums', 'model'),
+			'orderid' => t('category_orderid', 'model'),
+	        'state' => t('category_state', 'model'),
 		);
 	}
     

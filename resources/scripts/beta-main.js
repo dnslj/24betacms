@@ -39,7 +39,7 @@ var BetaPost = {
 			type: 'post',
 			url: url,
 			data: {pid: postid},
-			dataType: 'jsonp',
+			dataType: 'json',
 		});
 		
 		jqXhr.done(function(data){
@@ -52,6 +52,25 @@ var BetaPost = {
 		});
 		
 		$(document).off('click', '#beta-digg-button');
+	},
+	favorite: function(event) {
+		event.preventDefault();
+		var tthis = $(this);
+		var postid = parseInt(tthis.attr('data-id'));
+		var url = tthis.attr('data-url');
+		
+		var jqXhr = $.ajax({
+			type: 'post',
+			url: url,
+			data: {pid: postid},
+			dataType: 'json',
+		});
+		
+		jqXhr.done(function(data){
+			if (data.errno >= 0) {
+				tthis.find('.favorite-count').text(data.favorite_nums);
+			}
+		});
 	},
 	create: function(event) {
 		var tthis = $(this);
@@ -84,7 +103,7 @@ var BetaPost = {
 			if (tthis.find('.beta-captcha:visible').length == 0) {
 				var captchaEl = tthis.find('.captcha-clearfix img.beta-captcha-img');
 				captchaEl.attr('src', captchaEl.attr('lazy-src')).removeAttr('lazy-src');
-				tthis.find('.captcha-clearfix').fadeIn('fast');
+				tthis.find('.captcha-clearfix').removeClass('hide').fadeIn('fast');
 				tthis.find('.beta-captcha:visible').focus();
 				event.preventDefault();
 			}

@@ -1,7 +1,7 @@
 <?php
 class BetaBase
 {
-    const VERSION = '1.3';
+    const VERSION = '1.4';
     
     const FILE_NO_EXIST = -1; // '目录不存在并且无法创建';
     const FILE_NO_WRITABLE = -2; // '目录不可写';
@@ -82,10 +82,11 @@ class BetaBase
     
     public static function encryptPassword($password)
     {
-        if (empty($password))
-            return '';
-        else
-            return md5($password);
+        $pwd = '';
+        if (!empty($password))
+            $pwd = md5($password);
+        
+        return $pwd;
     }
 
     public static function jsonp($callback, $data, $exit = true)
@@ -248,5 +249,54 @@ class BetaBase
         
         return false;
     }
+
+    public static function isHttpUrl($url)
+    {
+        $url = trim($url);
+        $pos = stripos($url, 'http://');
+        return $pos === 0;
+    }
+
+    public static function siteHomeUrl()
+    {
+        return aurl('site/index');
+    }
+    
+    public static function memberHomeUrl()
+    {
+        return aurl('member/default/index');
+    }
+    
+    public static function wapHomeUrl()
+    {
+        return aurl('wap/index');
+    }
+    
+    public static function adminHomeUrl()
+    {
+        return aurl('admin/default/index');
+    }
+    
+    
+    public static function mobileHomeUrl()
+    {
+        return aurl('mobile/default/index');
+    }
+    
+    public static function loginUrl()
+    {
+        return aurl('site/login');
+    }
+    
+    public static function logoutUrl()
+    {
+        return aurl('site/logout');
+    }
+    
+    public static function singupUrl()
+    {
+        return aurl('site/signup');
+    }
+    
 }
 

@@ -28,6 +28,7 @@ class ConfigController extends AdminController
             if ($result === true) {
                 user()->setFlash('save_config_success', t('cofig_save_success', 'admin'));
                 self::afterSaveConfig();
+                $this->redirect(url('admin/config/view', array('categoryid'=>$categoryid)));
             }
             else
                 $errorNames = $result;

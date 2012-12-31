@@ -47,8 +47,8 @@ class FilterKeyword extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-	        'keyword' => t('filter_keyword'),
-			'replace' => t('filter_replace'),
+	        'keyword' => t('filter_keyword', 'model'),
+			'replace' => t('filter_replace', 'model'),
 		);
 	}
 

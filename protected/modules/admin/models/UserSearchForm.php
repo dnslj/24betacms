@@ -23,11 +23,11 @@ class UserSearchForm extends CFormModel
     {
         return array(
             'userid' => t('userid', 'admin'),
-            'email' => t('user_email'),
-            'name' => t('user_name'),
-            'createTime' => t('create_time'),
-            'createIp' => t('create_ip'),
-            'state' => t('user_state'),
+            'email' => t('user_email', 'model'),
+            'name' => t('user_name', 'model'),
+            'createTime' => t('create_time', 'basic'),
+            'createIp' => t('create_ip', 'basic'),
+            'state' => t('user_state', 'model'),
         );
     }
     

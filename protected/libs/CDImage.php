@@ -12,7 +12,7 @@ class CDImage
     private $_site = 'http://www.24beta.com/';
     
     private $_image;
-    private $_original;
+    private $_data;
     private $_imageType = IMAGETYPE_GIF;
     private $_lastSaveFile;
     
@@ -60,12 +60,12 @@ class CDImage
     /**
      * 从文件地址载入图像
      * @param string $data 图像路径或图像数据
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function load($data)
     {
-        $image = self::loadImage($data);
-        $this->_image = $this->_original = $image;
+        $this->_data = $data;
+        $this->_image = self::loadImage($this->_data);
         if (file_exists($data)) {
             $info = getimagesize($data);
             $this->_imageType = $info[2];
@@ -135,11 +135,11 @@ class CDImage
     
     /**
      * 将图片数据还原为初始值
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function revert()
     {
-        $this->_image = $this->_original;
+        $this->_image = $this->loadImage($this->_data);
         return $this;
     }
     
@@ -170,7 +170,7 @@ class CDImage
      * 保存图像到一个文件中
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $mode 图像文件的权限
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function save($filename, $mode = null)
     {
@@ -191,7 +191,7 @@ class CDImage
      * 将图像保存为gif类型
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $mode 图像文件的权限
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function saveAsGif($filename, $mode = null)
     {
@@ -211,7 +211,7 @@ class CDImage
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $quality 图像质量，取值为0-100
      * @param integer $mode 图像文件的权限
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function saveAsJpeg($filename, $quality = 75, $mode = null)
     {
@@ -232,7 +232,7 @@ class CDImage
      * @param integer $quality 图像质量，取值为0-9
      * @param integer $filters PNG图像过滤器，取值参考imagepng函数
      * @param integer $mode 图像文件的权限
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function saveAsPng($filename, $quality = 9, $filters = 0, $mode = null)
     {
@@ -253,7 +253,7 @@ class CDImage
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $foreground 前景色，取值为imagecolorallocate()的返回的颜色标识符
      * @param integer $mode 图像文件的权限
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function saveAsWbmp($filename, $foreground  = 0, $mode = null)
     {
@@ -273,7 +273,7 @@ class CDImage
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $foreground 前景色，取值为imagecolorallocate()的返回的颜色标识符
      * @param integer $mode 图像文件的权限
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function saveAsXbm($filename, $foreground  = 0, $mode = null)
     {
@@ -416,7 +416,7 @@ class CDImage
     /**
      * 等比例绽放图像
      * @param integer $scale 绽放值，取值为0-100
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function scale($scale)
     {
@@ -429,7 +429,7 @@ class CDImage
     /**
      * 根据设定高度等比例绽放图像
      * @param integer $height 图像高度
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function resizeToHeight($height)
     {
@@ -444,7 +444,7 @@ class CDImage
 	/**
      * 根据设定宽度等比例绽放图像
      * @param integer $width 图像宽度
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function resizeToWidth($width)
     {
@@ -460,7 +460,7 @@ class CDImage
      * 改变图像大小
      * @param integer $width 图像宽度
      * @param integer $height 图像高度
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function resize($width, $height)
     {
@@ -476,32 +476,33 @@ class CDImage
      * 裁剪图像
      * @param integer $width 图像宽度
      * @param integer $height 图像高度
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
-    public function crop($width, $height)
+    public function crop($width, $height, $fromTop = false, $fromLeft = false)
     {
         $image = imagecreatetruecolor($width, $height);
-        $wm = $this->width() / $width;
-        $hm = $this->height() / $height;
+        $ow = $this->width();
+        $oh = $this->height();
+        $wm = $ow / $width;
+        $hm = $oh / $height;
         $h_height = $height / 2;
         $w_height = $width / 2;
         
-        if ($this->width() > $this->height()) {
-            $adjusted_width = $this->width() / $hm;
+        $oscale = $ow / $oh;
+        $nscale = $width / $height;
+        if ($oscale >= $nscale) {
+            $adjusted_width = $ow / $hm;
             $half_width = $adjusted_width / 2;
             $int_width = $half_width - $w_height;
-            
-            imagecopyresampled($image, $this->_image, -$int_width, 0, 0, 0, $adjusted_width, $height, $this->width(), $this->height());
-        }
-        elseif (($this->width() < $this->height()) || ($this->width() == $this->height())) {
-            $adjusted_height = $this->height() / $wm;
-            $half_height = $adjusted_height / 2;
-            $int_height = $half_height - $h_height;
-        
-            imagecopyresampled($image, $this->_image, 0, -$int_height, 0, 0, $width, $adjusted_height, $this->width(), $this->height());
+            $dstX = $fromLeft? 0 : -$int_width;
+            imagecopyresampled($image, $this->_image, $dstX, 0, 0, 0, $adjusted_width, $height, $ow, $oh);
         }
         else {
-            imagecopyresampled($image, $this->_image, 0, 0, 0, 0, $width, $height, $this->width(), $this->height());
+            $adjusted_height = $oh / $wm;
+            $half_height = $adjusted_height / 2;
+            $int_height = $half_height - $h_height;
+            $dstY = $fromTop ? 0 : -$int_height;
+            imagecopyresampled($image, $this->_image, 0, $dstY, 0, 0, $width, $adjusted_height, $ow, $oh);
         }
         $this->_image = $image;
         return $this;
@@ -510,7 +511,7 @@ class CDImage
     /**
      * 顺时针旋转图片
      * @param integer $degree 取值为0-360
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function rotate($degree = 90)
     {
@@ -521,7 +522,7 @@ class CDImage
     
     /**
      * 将图像转换为灰度的
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function gray()
     {
@@ -531,7 +532,7 @@ class CDImage
     
     /**
      * 将图像颜色反转
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function negate()
     {
@@ -542,7 +543,7 @@ class CDImage
     /**
      * 调整图像亮度
      * @param integer $bright 亮度值
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function brightness($bright)
     {
@@ -554,7 +555,7 @@ class CDImage
     /**
      * 调整图像对比度
      * @param integer $contrast 对比度值
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function contrast($contrast)
     {
@@ -565,7 +566,7 @@ class CDImage
     
     /**
      * 将图像浮雕化
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function emboss()
     {
@@ -576,7 +577,7 @@ class CDImage
     /**
      * 让图像柔滑
      * @param integer $smooth 柔滑度值
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function smooth($smooth)
     {
@@ -587,7 +588,7 @@ class CDImage
 
     /**
      * 将图像使用高斯模糊
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
     public function blur()
     {
@@ -599,16 +600,60 @@ class CDImage
      * 在图像上添加文字
      * @param string $text 添加的文字
      * @param integer $opacity 不透明度，值为0-1
-     * @param 文字添加位置 $position
+     * @param array $position 文字添加位置
      * @param string $font 字体文件路径
      * @param integer $size 文字大小
      * @param integer $color 颜色值
-     * @return CdImage CdImage对象本身
+     * @return CDImage CDImage对象本身
      */
-    public function text($text, $opacity = 0.5, $position = 0, $font, $size, $color)
+    public function text($text, $font, $size, $position = self::MERGE_BOTTOM_RIGHT, $color = array(0, 0, 0), $opacity = 0, $padding = 5)
     {
-        imagettftext($this->_image, $size, 0, $x, $y, $color, $font, $text);
+        if (is_int($position))
+            $pos = $this->textPosition($text, $font, $size, $position, $padding);
+        elseif (is_array($position))
+            $pos = $position;
+        else
+            throw new Exception('position error.');
+        
+        if (is_array($color))
+            $color = imagecolorallocatealpha($this->_image, $color[0], $color[1], $color[2], $opacity);
+        imagettftext($this->_image, $size, 0, $pos[0], $pos[1], $color, $font, $text);
+
         return $this;
+    }
+    
+    public function textPosition($text, $font, $size, $position, $padding = 5, $angle = 0)
+    {
+        $points = imagettfbbox($size, $angle, $font, $text);
+        $width = $points[2] - $points[0];
+        $height = $points[1] - $points[7];
+        switch ($position) {
+            case self::MERGE_TOP_LEFT:
+                $x = $points[0] + $padding;
+                $y = $points[1] - $points[7] + $padding;
+                break;
+            case self::MERGE_TOP_RIGHT:
+                $x = $this->width() - ($points[2] - $points[0]) - $padding;
+                $y = $points[1] - $points[7] + $padding;
+                break;
+            case self::MERGE_BOTTOM_LEFT:
+                $x = $points[0] + $padding;
+                $y = $this->height() - $points[1] - $padding;
+                break;
+            case self::MERGE_CENTER:
+                $x = ($this->width() - $width) / 2;
+                $y = $this->height() / 2 + $height / 2;
+                break;
+            case self::MERGE_BOTTOM_RIGHT:
+            default:
+                $x = $this->width() - ($points[2] - $points[0]) - $padding;
+                $y = $this->height() - $points[1] - $padding;
+                break;
+        }
+        
+        $position = array($x, $y);
+        
+        return $position;
     }
     
     /**
@@ -617,18 +662,25 @@ class CDImage
      * @param constant $position 合并位置
      * @param integer $opacity 不透明度，取值为0-100
      */
-    public function merge($data, $opacity = 100, $position = self::MERGE_BOTTOM_RIGHT)
+    public function merge($data, $position = self::MERGE_BOTTOM_RIGHT, $opacity = 100)
     {
         $src = self::loadImage($data);
         if (!is_resource($src))
             throw new Exception('图像数据错误', 0);
 
+        if (is_int($position))
+            $pos = self::mergePosition($position, $this->_image, $src);
+        elseif (is_array($position))
+            $pos = $position;
+        else
+            throw new Exception('position error.');
+        
         $w = imagesx($src);
         $h = imagesy($src);
         $image = imagecreatetruecolor($w, $h);
         imagealphablending($this->_image, true);
         imagealphablending($image, true);
-        $pos = self::getPosition($position, $this->_image, $src);
+        
         imagecopyresampled($image, $this->_image, 0, 0, $pos[0], $pos[1], $w, $h, $w, $h);
         self::saveAlpha($src);
         imagecopy($image, $src, 0, 0, 0, 0, $w, $h);
@@ -637,7 +689,7 @@ class CDImage
         return $this;
     }
     
-    public static function getPosition($position, $dst, $src)
+    public static function mergePosition($position, $dst, $src)
     {
         $dstW = imagesx($dst);
         $dstH = imagesy($dst);
@@ -645,26 +697,25 @@ class CDImage
         $srcH = imagesy($src);
         switch ($position) {
             case self::MERGE_TOP_LEFT:
-                return array(0, 0);
+                $position = array(0, 0);
                 break;
             case self::MERGE_TOP_RIGHT:
-                return array($dstW-$srcW, 0);
-                break;
-            case self::MERGE_BOTTOM_RIGHT:
-                return array($dstW-$srcW, $dstH-$srcH);
+                $position = array($dstW-$srcW, 0);
                 break;
             case self::MERGE_BOTTOM_LEFT:
-                return array(0, $dstH-$srcH);
+                $position = array(0, $dstH-$srcH);
                 break;
             case self::MERGE_CENTER:
                 $x = ($dstW - $srcW) / 2;
                 $y = ($dstH - $srcH) / 2;
-                return array((int)$x, (int)$y);
+                $position = array((int)$x, (int)$y);
                 break;
+            case self::MERGE_BOTTOM_RIGHT:
             default:
-                return false;
+                $position = array($dstW-$srcW, $dstH-$srcH);
                 break;
         }
+        return $position;
     }
 
     public static function saveAlpha(&$im)
@@ -694,6 +745,6 @@ class CDImage
     public function __destruct()
     {
         is_resource($this->_image) && imagedestroy($this->_image);
-        is_resource($this->_original) && imagedestroy($this->_original);
     }
 }
+

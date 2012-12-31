@@ -6,7 +6,6 @@ class SiteController extends Controller
         $this->autoSwitchMobile(url('mobile/default/index'));
         
         $data = self::fetchLatestPosts();
-        $data['hottest'] = self::fetchHottestPosts();
         $data['recommend'] = self::fetchRecommendPosts();
         $data['comments'] = self::fetchRecommendComments();
         
@@ -18,17 +17,6 @@ class SiteController extends Controller
         
         
         $this->render('index', $data);
-    }
-    
-    private static function fetchHottestPosts()
-    {
-        $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.thumbnail', 't.state', 't.hottest');
-        $criteria->limit = 4;
-        $criteria->scopes = array('hottest', 'published');
-        $models = Post::model()->findAll($criteria);
-        
-        return (array)$models;
     }
     
     private static function fetchRecommendPosts()
@@ -142,6 +130,8 @@ class SiteController extends Controller
     
     public function actionTest()
     {
+        echo tbu('xx.js', true);
+        exit;
         phpinfo();
         exit;
         
@@ -176,9 +166,9 @@ class SiteController extends Controller
          
         $auth->assign('admin','1');
         
-
+        goto end;
+        end: echo 'aa';
     }
-
 
     public function actionError()
     {
@@ -187,41 +177,6 @@ class SiteController extends Controller
             $this->setPageTitle('Error ' . $error['code']);
             $this->render('/system/error', $error);
         }
-    }
-
-    /**
-     * baidu ping test
-     */
-    public function actionPing()
-    {
-        $result = BetaBase::ping('贝塔资讯', 'http://www.waduanzi.com/', 'http://www.24beta.com/archives/406', 'http://www.24beta.com/');
-        print_r($result);
-        
-        exit;
-        $client = new SoapClient(BAIDU_PING_URL);
-        $functions = $client->__getFunctions();
-        var_dump($functions);
-        exit;
-        
-        $arguments = array('贝塔IT资讯', 'http://www.24beta.com', 'http://www.24beta.com/archives/406', 'http://www.24beta.com');
-        $result = $client->__soapCall('weblogUpdates.extendedPing', $arguments);
-        var_dump($result);
-    }
-
-    public function actionPics()
-    {
-        $url = 'http://www.24beta.cn/archives/89';
-        
-        $curl = new CDCurl();
-        $curl->referer($url);
-        $curl->user_agent($agent);
-        $curl->get($url);
-        $errno = $curl->errno();
-        $error = $curl->error();
-        $html = $curl->rawdata();
-        
-        $data = CDFileLocal::fetchAndReplaceMultiWithHtml($html);
-        echo $data;
     }
 
 }

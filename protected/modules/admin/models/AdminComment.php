@@ -30,7 +30,7 @@ class AdminComment extends Comment
 	    return l($title, $this->getInfoUrl(), array('class'=>'post-title', 'target'=>$target));
     }
     
-    public static function fetchList($criteria = null, $sort = true, $pages = true)
+    public function fetchList($criteria = null, $sort = true, $pages = true)
     {
         $criteria = ($criteria === null) ? new CDbCriteria() : $criteria;
         if ($criteria->limit < 0)

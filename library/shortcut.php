@@ -14,13 +14,13 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
  
 /**
  * This is the shortcut to Yii::app()
- * @return CApplication Yii::app()
+ * @return CWebApplication Yii::app()
  */
 function app()
 {
     return Yii::app();
 }
- 
+
 /**
  * This is the shortcut to Yii::app()->clientScript
  * @return CClientScript Yii::app()->clientScript
@@ -148,26 +148,70 @@ function user()
 /**
  * this is the shortcut to Yii::app()->theme->baseUrl
  * @param string $url
- * @return string Yii::app()->theme->baseUrl
+ * @return Ambigous <string, NULL> Yii::app()->theme->baseUrl
  */
-function tbu($url = null, $useDefault = true)
+function tbu($file = null, $checkExist = false, $themeName = null)
 {
-    if (empty(Yii::app()->theme))
-        return sbu($url);
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
+
+    $url = null;
+    if ($theme !== null) {
+        if ($checkExist) {
+            $filename = $theme->getBasePath() . DS . ltrim($file, DS);
+            if (file_exists($filename))
+                $url = $theme->getBaseUrl() . '/' . ltrim($file, '/');
+        }
+    }
+
+    return $url;
+}
+
+/**
+ * 获取theme文件的物理路径
+ * @param string $file
+ * @param bool $useDefault 如果theme不存在此文件，是否返回默认theme文件
+ * @param string $themeName theme名字
+ * @return Ambigous <string, NULL> 如果存在返回路径，不存在返回空
+ */
+function tbp($file = null, $checkExist = false, $themeName = null)
+{
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
+
+    $filepath = null;
+    if ($theme !== null) {
+        $filepath = $theme->getBasePath() . DS . ltrim($file, DS);
+        if ($checkExist && !file_exists($filepath))
+            $filepath = null;
+    }
+
+    return $filepath;
+}
+
+function resbu($file, $checkExit = false, $themeName = null)
+{
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
     
-    static $themeBasePath;
-    static $themeBaseUrl;
-    $themeBasePath = rtrim(param('themeResourceBasePath'), DS) . DS . Yii::app()->theme->name . DS;
-    $filename = realpath($themeBasePath . $url);
-    if (file_exists($filename)) {
-        $themeBaseUrl = rtrim(Yii::app()->theme->baseUrl, '/') . '/';
-        return ($url === null) ? $themeBaseUrl : $themeBaseUrl . ltrim($url, '/');
-    }
-    elseif ($useDefault) {
-        return sbu($url);
-    }
+    if ($theme === null)
+        $url = sbu($file);
     else
-        return 'javascript:void(0);';
+        $url = tbu($file, $checkExit, $theme);
+    
+    return $url;
 }
 
 /**
@@ -190,7 +234,7 @@ function fbp($file = null)
     if ($uploadBasePath === null)
         $uploadBasePath = rtrim(param('uploadBasePath'), DS) . DS;
 
-    return empty($url) ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
+    return empty($file) ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
 }
 
 /**
@@ -219,9 +263,9 @@ function sbp($file = null)
 {
     static $resourcePath = null;
     if ($resourcePath === null)
-        $resourcePath = rtrim(param('resourcePath'), DS) . DS;
+        $resourcePath = rtrim(param('resourceBasePath'), DS) . DS;
 
-    return empty($url) ? $resourcePath : $resourcePath . ltrim($file, DS);
+    return empty($file) ? $resourcePath : $resourcePath . ltrim($file, DS);
 }
 
 /**
@@ -267,12 +311,30 @@ function request()
 {
     return Yii::app()->request;
 }
+
 function dp($path = null)
 {
     $dp = rtrim(param('dataPath'), DS) . DS;
     return $path ?  $dp . $path : $dp;
 }
 
+/**
+ * This is the shortcut to Yii::app()->getSecurityManager().
+ * @return CThemeManager
+ */
+function tm()
+{
+    return app()->getThemeManager();
+}
+
+/**
+ * This is the shortcut to Yii::app()->getSecurityManager().
+ * @return CAssetManager
+ */
+function am()
+{
+    return app()->getAssetManager();
+}
 
 
 

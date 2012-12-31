@@ -1,6 +1,6 @@
 <?php if (user()->hasFlash('order_id_save_result_success')):?>
 <div class="alert alert-success fade in">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
+    <a href="#" data-dismiss="alert" class="close">&times;</a>
     <?php echo user()->getFlash('order_id_save_result_success');?>
 </div>
 <?php endif;?>
@@ -42,7 +42,7 @@
     </tbody>
 </table>
 <?php if ($pages):?>
-<div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'htmlOptions'=>array('class'=>'pagination')));?></div>
+<div class="pagination"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'skin'=>'admin'));?></div>
 <?php endif;?>
 
 <?php if (count($models) > 0):?>
@@ -56,7 +56,6 @@
 <?php echo CHtml::endForm();?>
 
 <div class="alert alert-danger">
-    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
     <?php echo t('link_orderid_sort_tip', 'admin');?>
 </div>
 

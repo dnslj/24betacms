@@ -1,11 +1,5 @@
 <?php
 require dirname(__FILE__) . '/header.php';
-
-$checkResult = (int)$_SESSION['check_result'];
-if ($checkResult == 0) {
-    header('Location:./index.php');
-    exit(0);
-}
 ?>
 
 <div class="beta-intro">
@@ -14,6 +8,7 @@ if ($checkResult == 0) {
     <p>如果有问题可以加入我们的QQ群(72101715)进行反馈。</p>
 </div>
 <div class="start-install">
+    <a class="beta-btn" href="javascript:history.back();">上一步</a>
     <a class="beta-btn" href="./index.php?step=3">下一步</a>
 </div>
 

@@ -53,7 +53,7 @@
                         <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('settop', 'admin');?>
                     </label>
                     <label class="checkbox">
-                        <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>
+                        <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment', 'admin');?>
                     </label>
                     <label class="checkbox">
                         <?php echo CHtml::activeDropDownList($model, 'state', AdminPost::stateLabels(), array('class'=>'select-mini'));?>
@@ -83,7 +83,7 @@
     </tbody>
 </table>
 <?php if ($pages):?>
-<div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'htmlOptions'=>array('class'=>'pagination')));?></div>
+<div class="pagination"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'skin'=>'admin'));?></div>
 <?php endif;?>
 
 <script type="text/javascript">

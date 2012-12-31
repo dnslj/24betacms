@@ -32,18 +32,18 @@ class PostForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-			'category_id' => t('category'),
-			'topic_id' => t('topic'),
-			'title' => t('title'),
-			'summary' => t('summary'),
-			'content' => t('content'),
-		    'contributor_id' => t('contributor_id'),
-		    'contributor' => t('contributor'),
-		    'contributor_site' => t('contributor_site'),
-		    'contributor_email' => t('contributor_email'),
-	        'source' => t('source'),
-			'tags' => t('tags'),
-            'captcha' => t('captcha'),
+			'category_id' => t('post_category', 'model'),
+			'topic_id' => t('post_topic', 'model'),
+			'title' => t('post_title', 'model'),
+			'summary' => t('post_summary', 'model'),
+			'content' => t('post_content', 'model'),
+		    'contributor_id' => t('post_contributor_id', 'model'),
+		    'contributor' => t('post_contributor', 'model'),
+		    'contributor_site' => t('post_contributor_site', 'model'),
+		    'contributor_email' => t('post_contributor_email', 'model'),
+	        'source' => t('post_source', 'model'),
+			'tags' => t('post_tags', 'model'),
+            'captcha' => t('captcha', 'basic'),
         );
     }
     
