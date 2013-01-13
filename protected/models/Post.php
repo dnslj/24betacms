@@ -347,7 +347,7 @@ class Post extends CActiveRecord
 	{
 	    $len = (int)$len;
 	    if ($this->istop == BETA_YES)
-	        $this->title = '[' . t('istop', 'model') . ']' . $this->title;
+	        $this->title = '[' . t('post_istop', 'model') . ']' . $this->title;
 	    $title = ($len === 0) ? $this->title : $this->getSubTitle($len);
 	    if ($this->istop == BETA_YES)
 	        $title = '<strong>' . $title . '</strong>';
