@@ -113,7 +113,7 @@
 $(function(){
 	$('#post-title').focus();
     KindEditor.ready(function(K) {
-    	var cssPath = ['<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>', '<?php echo resbu('styles/beta-common.css');?>', '<?php echo resbu('styles/beta-all.css');?>'];
+    	var cssPath = ['<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>', '<?php echo resbu('styles/beta-common.css');?>', '<?php echo resbu('styles/beta-main.css');?>'];
     	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
     	KEConfig.mini.cssPath = cssPath;
     	KEConfig.mini.uploadJson = imageUploadUrl;
