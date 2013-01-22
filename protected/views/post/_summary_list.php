@@ -19,5 +19,8 @@
 <div class="pagination"><?php $this->widget('CLinkPager', array('pages'=>$pages));?></div>
 <?php endif;?>
 
-<?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>
-<?php cs()->registerScript('beta-lazyload', "Beta24.imageLazyLoad($('img.lazy'));", CClientScript::POS_END);?>
+<?php
+cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);
+if (param('enable_lazyload_img'))
+    cs()->registerScript('beta-lazyload', "Beta24.imageLazyLoad($('img.lazy'));", CClientScript::POS_END);
+?>
