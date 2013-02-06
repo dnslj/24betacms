@@ -129,7 +129,7 @@ class SiteController extends Controller
     }
     
     public function actionTest()
-    {gddoto eeee;
+    {
         exit;
         
         $auth=Yii::app()->authManager;
