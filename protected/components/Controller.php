@@ -124,7 +124,7 @@ class Controller extends CController
 	 */
 	public function getProfile()
 	{
-	    return $this->user->profile;
+	    return $this->getUser()->profile;
 	}
 
 

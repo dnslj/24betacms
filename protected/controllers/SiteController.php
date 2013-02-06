@@ -130,9 +130,6 @@ class SiteController extends Controller
     
     public function actionTest()
     {
-        echo tbu('xx.js', true);
-        exit;
-        phpinfo();
         exit;
         
         $auth=Yii::app()->authManager;
@@ -165,9 +162,6 @@ class SiteController extends Controller
         $role->addChild('delete_post');
          
         $auth->assign('admin','1');
-        
-        goto end;
-        end: echo 'aa';
     }
 
     public function actionError()

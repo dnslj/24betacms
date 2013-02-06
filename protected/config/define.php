@@ -71,6 +71,11 @@ define('UPLOAD_TYPE_FILE', 2);
 define('UPLOAD_TYPE_AUDIO', 3);
 define('UPLOAD_TYPE_VIDEO', 4);
 
+/* gender */
+define('GENDER_UNKOWN', 0);
+define('GENDER_FEMALE', 1);
+define('GENDER_MALE', 2);
+
 /*
  * category post list type
  * 0 title and summary type
