@@ -1,9 +1,12 @@
 <?php
-define('BETA_WEBROOT', dirname(__FILE__));
 defined('BETA_PRODUCT') or define('BETA_PRODUCT', false);
 defined('YII_DEBUG') or define('YII_DEBUG', true);
+define('BETA_WEBROOT', dirname(__FILE__));
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-YII_DEBUG or error_reporting(0);
+if (YII_DEBUG)
+     error_reporting(E_ALL);
+else
+    error_reporting(E_ALL ^ E_NOTICE);
 
 $bootstrap = extension_loaded('apc') ? 'yiilite.php' : 'yii.php';
 $yii = BETA_WEBROOT . '/../library/framework/' . $bootstrap;
