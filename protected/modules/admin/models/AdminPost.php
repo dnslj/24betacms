@@ -26,15 +26,17 @@ class AdminPost extends Post
         return parent::model($className);
     }
     
-    public static function stateLabels()
+    public static function stateLabels($state = null)
     {
-        return array(
+        $labels = array(
             POST_STATE_ENABLED => t('post_state_enabled', 'admin'),
             POST_STATE_DISABLED => t('post_state_disabled', 'admin'),
             POST_STATE_REJECTED => t('post_state_rejected', 'admin'),
             POST_STATE_NOT_VERIFY => t('post_state_not_verify', 'admin'),
             POST_STATE_TRASH => t('post_state_trash', 'admin'),
         );
+        
+        return $state === null ? $labels : $labels[$state];
     }
     
     public function relations()
