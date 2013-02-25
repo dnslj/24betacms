@@ -21,6 +21,7 @@
     <a class="return-top" href="#top"><?php echo t('return_top', 'mobile');?></a>
     <a class="switch-version" href="<?php echo url('site/index', array('f'=>1));?>"><?php echo t('switch_desktop_version', 'mobile');?></a>
 </footer>
+<?php echo param('tongji_code');?>
 </body>
 </html>
 
