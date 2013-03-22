@@ -2,7 +2,7 @@
     <div class="error-icon fleft">囧</div>
     <div class="error-detail fleft">
         <p><?php echo t('site_page_error_tip');?></p>
-        <div class="alert alert-block alert-danger"><?php echo $message;?></div>
+        <div class="alert alert-block alert-danger"><?php echo h($message);?></div>
     </div>
     <div class="clear"></div>
 </div>

@@ -37,7 +37,7 @@ class TagController extends Controller
         }
         $listType = param('post_list_type');
         $view = ($listType == POST_LIST_TYPE_SUMMARY) ? '/post/_summary_list' : '/post/_title_list';
-        $blockTitle = t('tag_posts', 'main', array('{name}'=>$tag));
+        $blockTitle = t('tag_posts', 'main', array('{name}'=>h($tag)));
         $data = array(
             'blockTitle' => $blockTitle,
             'posts' => $posts,
