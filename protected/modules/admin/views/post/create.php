@@ -155,9 +155,8 @@
 
 <?php
 cs()->registerScriptFile(sbu('libs/chosen/chosen.jquery.min.js'), CClientScript::POS_END);
-cs()->registerCssFile(sbu('libs/chosen/chosen.css'));
+cs()->registerCssFile(sbu('libs/chosen/chosen.min.css'));
 cs()->registerScriptFile(sbu('libs/kindeditor/kindeditor-min.js'), CClientScript::POS_END);
-cs()->registerScriptFile(sbu('libs/kindeditor/config.js'), CClientScript::POS_END);
 cs()->registerScriptFile(sbu('libs/kindeditor/config.js'), CClientScript::POS_END);
 ?>
 
