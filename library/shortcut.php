@@ -5,7 +5,7 @@
  * @since 2010-9-7 10:39
  */
 
-defined('LIBRARY_ROOT') or define('LIBRARY_ROOT', dirname(__FILE__));
+defined('CD_LIBRARY_ROOT') or define('CD_LIBRARY_ROOT', dirname(__FILE__));
 
 /**
  * This is the shortcut to DIRECTORY_SEPARATOR
@@ -14,13 +14,13 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
  
 /**
  * This is the shortcut to Yii::app()
- * @return CApplication Yii::app()
+ * @return CWebApplication Yii::app()
  */
 function app()
 {
     return Yii::app();
 }
- 
+
 /**
  * This is the shortcut to Yii::app()->clientScript
  * @return CClientScript Yii::app()->clientScript
@@ -119,9 +119,6 @@ function bu($url = null)
  */
 function abu($url = null)
 {
-    if (filter_var($url, FILTER_VALIDATE_URL))
-        return $url;
-    
     static $baseUrl = null;
     if ($baseUrl === null)
         $baseUrl = rtrim(Yii::app()->request->getBaseUrl(true), '/') . '/';
@@ -138,20 +135,10 @@ function param($name)
 {
     return Yii::app()->params[$name];
 }
-
-/**
- * alias param
- * @param string $name 参数名称
- * @return mixed 参数值
- */
-function p($name)
-{
-    return Yii::app()->params[$name];
-}
  
 /**
  * This is the shortcut to Yii::app()->user.
- * @return CDWebUser
+ * @return CWebUser
  */
 function user()
 {
@@ -161,26 +148,70 @@ function user()
 /**
  * this is the shortcut to Yii::app()->theme->baseUrl
  * @param string $url
- * @return string Yii::app()->theme->baseUrl
+ * @return Ambigous <string, NULL> Yii::app()->theme->baseUrl
  */
-function tbu($url = null, $useDefault = true)
+function tbu($file = null, $checkExist = false, $themeName = null)
 {
-    if (empty(Yii::app()->theme))
-        return sbu($url);
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
+
+    $url = null;
+    if ($theme !== null) {
+        if ($checkExist) {
+            $filename = $theme->getBasePath() . DS . ltrim($file, DS);
+            if (file_exists($filename))
+                $url = $theme->getBaseUrl() . '/' . ltrim($file, '/');
+        }
+    }
+
+    return $url;
+}
+
+/**
+ * 获取theme文件的物理路径
+ * @param string $file
+ * @param bool $useDefault 如果theme不存在此文件，是否返回默认theme文件
+ * @param string $themeName theme名字
+ * @return Ambigous <string, NULL> 如果存在返回路径，不存在返回空
+ */
+function tbp($file = null, $checkExist = false, $themeName = null)
+{
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
+
+    $filepath = null;
+    if ($theme !== null) {
+        $filepath = $theme->getBasePath() . DS . ltrim($file, DS);
+        if ($checkExist && !file_exists($filepath))
+            $filepath = null;
+    }
+
+    return $filepath;
+}
+
+function resbu($file, $checkExit = false, $themeName = null)
+{
+    if ($themeName === null)
+        $theme = app()->theme;
+    elseif (is_string($themeName))
+        $theme = tm()->getTheme($themeName);
+    elseif ($themeName instanceof CDTheme)
+        $theme = $themeName;
     
-    static $themeBasePath;
-    static $themeBaseUrl;
-    $themeBasePath = rtrim(param('themeResourceBasePath'), DS) . DS . Yii::app()->theme->name . DS;
-    $filename = realpath($themeBasePath . $url);
-    if (file_exists($filename)) {
-        $themeBaseUrl = rtrim(Yii::app()->theme->baseUrl, '/') . '/';
-        return ($url === null) ? $themeBaseUrl : $themeBaseUrl . ltrim($url, '/');
-    }
-    elseif ($useDefault) {
-        return sbu($url);
-    }
+    if ($theme === null)
+        $url = sbu($file);
     else
-        return 'javascript:void(0);';
+        $url = tbu($file, $checkExit, $theme);
+    
+    return $url;
 }
 
 /**
@@ -190,6 +221,37 @@ function tbu($url = null, $useDefault = true)
 function auth()
 {
     return Yii::app()->authManager;
+}
+
+/**
+ * 此函数返回附件地址相对于BasePath的物理路径
+ * @param string $file 附件文件相对path地址
+ * @return string
+ */
+function fbp($file = null)
+{
+    static $uploadBasePath = null;
+    if ($uploadBasePath === null)
+        $uploadBasePath = rtrim(param('uploadBasePath'), DS) . DS;
+
+    return empty($file) ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
+}
+
+/**
+ * 此函数返回附件地址的BaseUrl
+ * @param string $url 附件文件相对url地址
+ * @return string
+ */
+function fbu($url = null)
+{
+    static $uploadBaseUrl = null;
+    if ($uploadBaseUrl === null)
+        $uploadBaseUrl = rtrim(param('uploadBaseUrl'), '/') . '/';
+    
+    if (empty($url))
+        return $uploadBaseUrl;
+    else
+        return (stripos($url, 'http://') === 0) ? $url : $uploadBaseUrl . ltrim($url, '/');
 }
 
 /**
@@ -249,6 +311,7 @@ function request()
 {
     return Yii::app()->request;
 }
+
 function dp($path = null)
 {
     $dp = rtrim(param('dataPath'), DS) . DS;
@@ -256,180 +319,26 @@ function dp($path = null)
 }
 
 /**
- * 此函数返回附件地址相对于BasePath的物理路径
- * @param string $file 附件文件相对path地址
- * @return string
+ * This is the shortcut to Yii::app()->getSecurityManager().
+ * @return CThemeManager
  */
-function fbp($file = null)
+function tm()
 {
-    static $uploadBasePath = null;
-    if ($uploadBasePath === null) {
-        $uploader = app()->getComponent('localUploader');
-        if ($uploader === null)
-            throw new CDException('没有配置localuploader');
-        $uploadBasePath = rtrim($uploader->basePath, DS) . DS;
-    }
-
-    return empty($file) ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
+    return app()->getThemeManager();
 }
 
 /**
- * 此函数返回附件地址的BaseUrl
- * @param string $file 附件文件相对url地址
- * @return string
+ * This is the shortcut to Yii::app()->getSecurityManager().
+ * @return CAssetManager
  */
-function fbu($file = null, $imageFile = true)
+function am()
 {
-    $url = '';
-    if (upyunEnabled())
-        $url = upyunbu($file, $imageFile);
-    else
-        $url = localbu($file);
-
-    return $url;
+    return app()->getAssetManager();
 }
 
-/**
- * 此函数返回附件保存在本地服务器时地址的BaseUrl
- * @param string $file 附件文件相对url地址
- * @return string
- */
-function localbu($file = null)
-{
-    static $uploadBaseUrl = null;
-    if ($uploadBaseUrl === null) {
-        $uploader = app()->getComponent('localUploader');
-        if ($uploader === null)
-            throw new CDException('没有配置localUploader');
 
-        $uploadBaseUrl = rtrim($uploader->baseUrl, '/') . '/';
-    }
 
-    if (empty($file))
-        return $uploadBaseUrl;
-    else
-        return (stripos($file, 'http://') === 0) ? $file : $uploadBaseUrl . ltrim($file, '/');
-}
 
-/**
- * 此函数返回使用又拍云时附件地址的BaseUrl
- * @param string $file 附件文件相对url地址
- * @return string
- */
-function upyunbu($file = null, $imageFile = true)
-{
-    static $uploadBaseUrl = null;
-    $isImage = (int)$imageFile;
-    if ($uploadBaseUrl[$isImage] === null) {
-        $uploader = upyunUploader($imageFile);
-        if ($uploader === null)
-            throw new CDException('没有配置upyun uploader');
 
-        $uploadBaseUrl[$isImage] = rtrim($uploader->baseUrl, '/') . '/';
-    }
 
-    if (empty($file))
-        return $uploadBaseUrl[$isImage];
-    else
-        return (stripos($file, 'http://') === 0) ? $file : $uploadBaseUrl[$isImage] . ltrim($file, '/');
-}
-
-/**
- * 返回当前使用的uploader
- * @return CDUpyunUploader | CDLocalUploader 如果使用又拍云存储，则返回CDUpyunUploader，存储在硬盘，返回CDLocalUploader
- */
-function uploader($image = true)
-{
-    $uploader = upyunEnabled() ? upyunUploader($image) : localuploader();
-    return $uploader;
-}
-
-/**
- * 获取又拍云uploader component
- * @param string $image 如果为true, 则返回upyunImageUploader，否则返回upyunFileUploader
- * @return CDUpyunUploader 如果找不到组件，则返回null
- */
-function upyunUploader($image = true)
-{
-    $component = (bool)$image ? 'upyunImageUploader' : 'upyunFileUploader';
-    $uploader = app()->getComponent($component);
-    return $uploader;
-}
-
-/**
- * 获取本地存储uploader component
- * @return CDLocalUploader 如果找不到组件，则返回null
- */
-function localuploader()
-{
-    return app()->getComponent('localUploader');
-}
-
-/**
- * 当前环境是否使用又拍云
- * @return boolean
- */
-function upyunEnabled()
-{
-    return (bool)param('upyun_enabled');
-}
-
-/**
- * 获取缓存组件
- * @param string $component
- * @return CCache | null
- */
-function cache($component = 'cache')
-{
-    return app()->getComponent($component);
-}
-
-/**
- * 获取缓存组件
- * @param string $component
- * @return CFileCache | null
- */
-function fcache()
-{
-    return app()->getComponent('fcache');
-}
-
-/**
- * 获取缓存组件
- * @param string $component
- * @return CMemCache | null
- */
-function memcache()
-{
-    return app()->getComponent('memcache');
-}
-
-/**
- * 获取缓存组件
- * @param string $component
- * @return CDRedisCache | null
- */
-function pcache()
-{
-    return app()->getComponent('redis');
-}
-
-/**
- * 获取数据库组件
- * @param string $component
- * @return CDbConnection | null
- */
-function db($component = 'db')
-{
-    return app()->getComponent($component);
-}
-
-/**
- * 应用用户
- * @return CDAppUser
- */
-function appuser()
-{
-    return app()->getComponent('appuser');
-}
 
