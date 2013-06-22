@@ -84,17 +84,25 @@ return array(
 		    'charset' => 'utf8',
 		    'persistent' => false,
 		    'tablePrefix' => $dbconfig['tablePrefix'],
-            'enableParamLogging' => true,
-            'enableProfiling' => true,
+//             'enableParamLogging' => true,
+//             'enableProfiling' => true,
             'attributes' => array(
                 PDO::ATTR_EMULATE_PREPARES => true,
             ),
-// 		    'schemaCacheID' => 'cache',
-// 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
-// 		    'queryCacheID' => 'cache',
-// 		    'queryCachingDuration' => 60,
+		    'schemaCacheID' => 'cache',
+		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
+		    'queryCacheID' => 'fcache',
+		    'queryCachingDuration' => 60,
         ),
         'cache' => array(
+            'serializer' => array('igbinary_serialize', 'igbinary_unserialize'),
+            'class'=>'CMemCache',
+            'useMemcached' => extension_loaded('memcached'),
+            'servers'=>array(
+                array('host'=>'localhost', 'port'=>22122, 'weight'=>100),
+            ),
+        ),
+        'fcache' => array(
             'class' => 'CFileCache',
             'directoryLevel' => 2,
         ),
