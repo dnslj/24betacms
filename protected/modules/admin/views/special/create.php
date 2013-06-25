@@ -40,13 +40,13 @@
         <?php echo CHtml::activeLabel($model, 'state', array('class'=>'control-label'));?>
         <div class="controls">
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('special_enabled', 'admin');?>
+                <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo CHtml::activeLabel($model, 'state');?>
             </label>
             <?php if($model->hasErrors('state')):?><p class="help-block"><?php echo $model->getError('state');?></p><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('desc')) echo 'error';?>">
-        <label class="control-label"><?php echo t('special_desc');?></label>
+        <label class="control-label"><?php echo CHtml::activeLabel($model, 'desc');?></label>
         <div class="controls">
             <?php echo CHtml::activeTextArea($model, 'desc', array('id'=>'special-desc'));?>
             <?php if ($model->hasErrors('desc')):?><p class="help-block"><?php echo $model->getError('desc');?></p><?php endif;?>

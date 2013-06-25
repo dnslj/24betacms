@@ -38,16 +38,16 @@
                 <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo CHtml::activeLabel($model, 'homeshow');?>
             </label>
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'hottest');?><?php echo t('hottest_show', 'admin');?>
+                <?php echo CHtml::activeCheckBox($model, 'hottest');?><?php echo CHtml::activeLabel($model, 'hottest');?>
             </label>
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'recommend');?><?php echo t('recommend_show', 'admin');?>
+                <?php echo CHtml::activeCheckBox($model, 'recommend');?><?php echo CHtml::activeLabel($model, 'recommend');?>
             </label>
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('settop', 'admin');?>
+                <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo CHtml::activeLabel($model, 'istop');?>
             </label>
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment', 'admin');?>
+                <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo CHtml::activeLabel($model, 'disable_comment');?>
             </label>
         </div>
     </div>

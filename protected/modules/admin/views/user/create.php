@@ -33,7 +33,7 @@
         <?php echo CHtml::activeLabel($model, 'state', array('class'=>'control-label'));?>
         <div class="controls">
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('user_enabled', 'admin');?>
+                <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo CHtml::activeLabel($model, 'state');?>
             </label>
             <?php if($model->hasErrors('state')):?><p class="help-block"><?php echo $model->getError('state');?></p><?php endif;?>
         </div>
