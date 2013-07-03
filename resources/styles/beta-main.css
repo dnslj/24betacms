@@ -84,7 +84,7 @@ body.beta-ke-content {padding:5px;}
 
 /* beta-hottest-posts */
 .beta-hottest-posts {margin:0 auto; position:relative; height:160px;}
-.beta-hottest-items a {display:block; position:relative; float:left; width:232px; height:130px; overflow:hidden;}
+.beta-hottest-items a {display:block; position:relative; float:left; width:225px; height:130px; overflow:hidden;}
 .beta-hottest-items a:link, .beta-hottest-items a:hover, .beta-hottest-items a:visited {text-decoration:none;}
 .beta-hottest-items a:last-child {margin-right:0;}
 .beta-hottest-items span.separate {display:block; float:left; overflow:hidden; width:20px; height:140px;}
