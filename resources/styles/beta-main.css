@@ -2,13 +2,11 @@
 
 /* post summary list */
 .beta-block-title {background:#DFDFDF; font-size:18px; line-height:20px; padding:15px; margin:0 0 10px;}
-.beta-post-item {border:1px solid #CFCFCF; margin:0 0 10px; position:relative;}
+.beta-post-item {border-bottom:1px solid #CFCFCF; margin:0 0 10px; position:relative;}
 .beta-post-item dt, .beta-post-item dd {padding:0 10px; margin:0;}
 .beta-post-item dt {font-size:18px; font-family:微软雅黑; line-height:22px; margin:12px 0;}
 .beta-post-item dt strong {color:darkred;}
 .beta-post-item .beta-post-summary {margin:10px 0px; overflow:hidden; line-height:24px;}
-.beta-post-item .beta-post-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:#F2F2F2; border-top:1px solid #DFDFDF;}
-.beta-post-item .beta-post-toolbar a {margin-right:10px;}
 .beta-thank {font-size:12px; color:#555555;}
 .beta-post-extra {font-size:12px; margin-bottom:5px;}
 .beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
@@ -17,7 +15,7 @@
 .beta-post-summary .beta-post-content p {margin:0;}
 .beta-post-content {word-wrap:break-word; overflow-x:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:24px; margin-bottom:18px;}
-.beta-post-content img {margin:10px; max-width:600px; overflow:hidden;}
+.beta-post-content img {margin:10px 0; max-width:600px; overflow:hidden;}
 .beta-post-content blockquote {padding: 10px; background:#EFEFEF; color:#555; font-size:14px; margin:15px 10px; -wekkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
 .beta-post-content blockquote p {font-size:14px;}
 .beta-post-content ul {margin:1px 0 15px 30px;}

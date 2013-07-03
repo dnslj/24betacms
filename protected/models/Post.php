@@ -354,12 +354,6 @@ class Post extends CActiveRecord
 	    return l($title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target, 'title'=>$this->title));
 	}
 	
-	public function getPostToolbar()
-	{
-	    // @todo 此处authorName最终应该为authorLink
-	    return array('{comment_nums}'=>$this->comment_nums, '{score_nums}'=>$this->score_nums, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums);
-	}
-	
 	public function getSubTitle($len = 40)
 	{
 	    return mb_strimwidth($this->title, 0, $len, '...', app()->charset);

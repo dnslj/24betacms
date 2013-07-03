@@ -26,11 +26,11 @@ a:hover {color:#D14836;text-decoration:underline;}
 
 /* global layout */
 /*body {background:#CACACA;}*/
-.beta-container {width:990px; background:#FFFFFF; margin:0 auto; /*-moz-box-shadow:0 0 18px #444; -webkite-box-shadow:0 0 18px #444; box-shadow:0 0 18px #444;*/}
-.beta-entry {background:#FFFFFF; margin:0 auto;}
+.beta-container {width:1000px; background:#FFFFFF; margin:0 auto; /*-moz-box-shadow:0 0 18px #444; -webkite-box-shadow:0 0 18px #444; box-shadow:0 0 18px #444;*/}
+.beta-entry {width:640px; background:#FFFFFF; margin:0 auto;}
 .beta-footer {margin-top:10px;}
-.beta-sidebar {width:338px; float:right;}
-.beta-content {width:642px; float:left;}
+.beta-sidebar {width:300px; float:right;}
+.beta-content {width:640px; float:left;}
 .beta-backtop {position:fixed; right:-1px; bottom:-1px; display:inline-block; font-size:12px; font-weight:bold; height:27px; line-height:27px; padding:0 8px; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px; background:whiteSmoke; border:1px solid rgba(0, 0, 0, 0.1); box-shadow:0 0 6px #808080; min-width:55px; margin:0; text-align:center; z-index:10001;}
 .beta-backtop:hover, .beta-backtop:active, .beta-backtop:visited, .beta-backtop:focus {color:#444444; text-decoration:none;}
 /* ie6, ie7 */
@@ -61,9 +61,11 @@ a:hover {color:#D14836;text-decoration:underline;}
 .beta-nav a.green:link, .beta-nav a.green:visited {text-decoration:none; color:white; background:green;}
 .beta-nav a:hover, .beta-nav a.active:link, .beta-nav a.active:visited, .beta-nav a.gray:hover, .beta-nav a.green:hover {text-decoration:none; color:white; background:#D14836;}
 .beta-nav .user-mini-bar li a {margin-right:0; maring-left:4px;}
+.beta-nav .channel-nav {margin-left:15px;}
+.beta-nav .user-mini-bar {margin-right:15px;}
 
 /* content block */
-.beta-block {border:1px solid #BFBFBF; margin-bottom:10px; font-size:14px; overflow-x:hidden;}
+.beta-block {border:1px solid #EFEFEF; margin-bottom:15px; font-size:14px; overflow-x:hidden;}
 .beta-block h2, .beta-block .beta-title {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:#CFCFCF; border-bottom:1px solid #BBBBBB; margin:0;}
 .beta-block .beta-block-content {margin:10px; font-size:inherit;}
 .beta-block ul.beta-block-content, .beta-block ol.beta-block-content {margin-left:25px;}
