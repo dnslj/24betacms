@@ -25,9 +25,9 @@ a:hover {color:#D14836;text-decoration:underline;}
 .beta-no-content-tip {font-size:12px; color:gray; margin:0; padding:0;}
 
 /* global layout */
-body {background:#CACACA;}
+/*body {background:#CACACA;}*/
 .beta-container {width:1000px; background:#FFFFFF; margin:0 auto; /*-moz-box-shadow:0 0 18px #444; -webkite-box-shadow:0 0 18px #444; box-shadow:0 0 18px #444;*/}
-.beta-entry {width:960px; background:#FFFFFF; margin:0 auto;}
+.beta-entry {width:640px; background:#FFFFFF; margin:0 auto;}
 .beta-footer {margin-top:10px;}
 .beta-sidebar {width:300px; float:right;}
 .beta-content {width:640px; float:left;}
