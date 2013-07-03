@@ -2,7 +2,7 @@
 
 /* post summary list */
 .beta-block-title {background:#DFDFDF; font-size:18px; line-height:20px; padding:15px; margin:0 0 10px;}
-.beta-post-item {border-bottom:1px solid #CFCFCF; margin:0 0 10px; position:relative;}
+.beta-post-item {border-bottom:1px solid #CFCFCF; margin:0 0 35px; position:relative;}
 .beta-post-item dt, .beta-post-item dd {padding:0 10px; margin:0;}
 .beta-post-item dt {font-size:18px; font-family:微软雅黑; line-height:22px; margin:12px 0;}
 .beta-post-item dt strong {color:darkred;}
