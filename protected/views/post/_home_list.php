@@ -8,10 +8,6 @@
         <?php if ($model->contributor):?><div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$model->contributorLink));?></div><?php endif;?>
         <div class="beta-post-content"><?php echo $model->topicIconHtml;?><?php echo $model->filterSummary;?></div>
     </dd>
-    <dd class="beta-post-toolbar">
-        <?php echo l(t('view_detail'), $model->url, array('target'=>'_blank'));?>
-        <?php echo t('post_toolbar_text', 'main', $model->postToolbar);?>
-    </dd>
 </dl>
 <?php endforeach;?>
 <?php if ($pages->pageCount > 1):?>
