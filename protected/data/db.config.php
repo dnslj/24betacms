@@ -1,9 +1,9 @@
 <?php
 return array(
-    'dbHost' => '127.0.0.1',
+    'dbHost' => 'cdcchendb.mysql.rds.aliyuncs.com',
     'dbPort' => '3306',
     'dbName' => 'cd_24beta',
-    'dbUser' => 'root',
-    'dbPassword' => '123',
+    'dbUser' => 'beta24',
+    'dbPassword' => 'cdc_790406',
     'tablePrefix' => 'cd_',
 );
